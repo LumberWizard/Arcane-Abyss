@@ -19,14 +19,19 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityPr
 {
 	private static final TrackedData<Integer> SOUL_CORRUPTION = DataTracker.registerData(LivingEntity.class, TrackedDataHandlerRegistry.INTEGER);
 	private static final TrackedData<Integer> BODY_CORRUPTION = DataTracker.registerData(LivingEntity.class, TrackedDataHandlerRegistry.INTEGER);
+	private static final TrackedData<Integer> ENTROPIC_FLUX = DataTracker.registerData(LivingEntity.class, TrackedDataHandlerRegistry.INTEGER);
 
-	public LivingEntityMixin(EntityType<?> type, World world) { super(type, world); }
+	public LivingEntityMixin(EntityType<?> type, World world)
+	{
+		super(type, world);
+	}
 
 	@Inject(method = "readCustomDataFromTag", at = @At("TAIL"))
 	public void readNbt(CompoundTag tag, CallbackInfo info)
 	{
 		dataTracker.set(SOUL_CORRUPTION, tag.getInt("SoulCorruption"));
 		dataTracker.set(BODY_CORRUPTION, tag.getInt("BodyCorruption"));
+		dataTracker.set(ENTROPIC_FLUX, tag.getInt("EntropicFlux"));
 	}
 
 	@Inject(method = "writeCustomDataToTag", at = @At("TAIL"))
@@ -34,6 +39,7 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityPr
 	{
 		tag.putInt("SoulCorruption", dataTracker.get(SOUL_CORRUPTION));
 		tag.putInt("BodyCorruption", dataTracker.get(BODY_CORRUPTION));
+		tag.putInt("EntropicFlux", dataTracker.get(ENTROPIC_FLUX));
 	}
 
 	@Inject(method = "initDataTracker", at = @At("TAIL"))
@@ -41,36 +47,42 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityPr
 	{
 		dataTracker.startTracking(SOUL_CORRUPTION, 0);
 		dataTracker.startTracking(BODY_CORRUPTION, 0);
+		dataTracker.startTracking(ENTROPIC_FLUX, 0);
+	}
+
+	@Override
+	public boolean hasCorruption(CorruptionType type)
+	{
+		return getCorruption(type) > 0;
+	}
+
+	@Override
+	public boolean hasEntropicFlux()
+	{
+		return dataTracker.get(ENTROPIC_FLUX) > 0;
 	}
 
 	@Override
 	public int getCorruption(CorruptionType type)
 	{
-		switch(type)
-		{
-			case SOUL:
-				return dataTracker.get(SOUL_CORRUPTION);
-			case BODY:
-				return dataTracker.get(BODY_CORRUPTION);
-			default:
-				System.out.println("You need to define a type of corruption, numnut!");
-				return 0;
-		}
+		return dataTracker.get(type == CorruptionType.SOUL ? SOUL_CORRUPTION : BODY_CORRUPTION);
 	}
 
 	@Override
 	public void setCorruption(CorruptionType type, int amount)
 	{
-		switch(type)
-		{
-			case SOUL:
-				dataTracker.set(SOUL_CORRUPTION, amount);
-				break;
-			case BODY:
-				dataTracker.set(BODY_CORRUPTION, amount);
-				break;
-			default:
-				System.out.println("You need to define a type of corruption, numnut!");
-		}
+		dataTracker.set(type == CorruptionType.SOUL ? SOUL_CORRUPTION : BODY_CORRUPTION, amount);
+	}
+
+	@Override
+	public int getEntropicFlux()
+	{
+		return dataTracker.get(ENTROPIC_FLUX);
+	}
+
+	@Override
+	public void setEntropicFlux(int amount)
+	{
+		dataTracker.set(ENTROPIC_FLUX, amount);
 	}
 }

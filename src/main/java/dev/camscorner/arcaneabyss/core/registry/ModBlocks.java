@@ -1,13 +1,11 @@
 package dev.camscorner.arcaneabyss.core.registry;
 
 import dev.camscorner.arcaneabyss.ArcaneAbyss;
-import dev.camscorner.arcaneabyss.common.blocks.CorrodedBedrockBlock;
-import dev.camscorner.arcaneabyss.common.blocks.VaciumCrystalBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
+import net.minecraft.block.*;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
@@ -21,8 +19,9 @@ public class ModBlocks
 	public static final LinkedHashMap<Block, Identifier> BLOCKS = new LinkedHashMap<>();
 
 	//-----Blocks-----//
-	public static final Block CORRODED_BEDROCK = create("corroded_bedrock", new CorrodedBedrockBlock());
-	public static final Block VACIUM_CRYSTAL = create("vacium_crystal", new VaciumCrystalBlock());
+	public static final Block ENTROPIC_STONE = create("entropic_stone", new Block(AbstractBlock.Settings.of(Material.STONE, MaterialColor.PURPLE).requiresTool().strength(1.5F, 6.0F)));
+	public static final Block ENTROPIC_LOG = create("entropic_log", new PillarBlock(AbstractBlock.Settings.of(Material.WOOD, MaterialColor.PURPLE).strength(2.0F).sounds(BlockSoundGroup.WOOD)));
+	public static final Block ENTROPIC_PLANKS = create("entropic_planks", new Block(AbstractBlock.Settings.of(Material.WOOD, MaterialColor.PURPLE).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD)));
 
 	//-----Registry-----//
 	public static void register()
@@ -33,8 +32,7 @@ public class ModBlocks
 
 	private static BlockItem getItem(Block block)
 	{
-		Item.Settings settings = new Item.Settings().group(ItemGroup.MISC);
-		return new BlockItem(block, settings);
+		return new BlockItem(block, new Item.Settings().group(ItemGroup.MISC));
 	}
 
 	private static <T extends Block> T create(String name, T block)

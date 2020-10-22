@@ -2,7 +2,6 @@
   "schemaVersion": 1,
   "id": "arcaneabyss",
   "version": "${version}",
-
   "name": "Arcane Abyss",
   "description": "The power of the Abyss is immense and unwavering. Perhaps it could be put to use...",
   "authors": [
@@ -12,10 +11,8 @@
     "homepage": "https://www.curseforge.com/minecraft/mc-mods/arcane-abyss",
     "sources": "https://github.com/FabricMC/fabric-example-mod"
   },
-
   "license": "GPL-3.0",
   "icon": "assets/arcaneabyss/icon.png",
-
   "environment": "*",
   "entrypoints": {
     "main": [
@@ -25,7 +22,6 @@
   "mixins": [
     "arcaneabyss.mixins.json"
   ],
-
   "depends": {
     "fabricloader": ">=0.7.4",
     "fabric": "*",

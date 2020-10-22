@@ -15,6 +15,7 @@ repositories {
 	maven { url 'https://jitpack.io' }
 	maven { url 'https://maven.fabricmc.net' }
 	maven { url 'http://tehnut.info/maven' }
+	maven { url 'https://dl.bintray.com/ladysnake/libs' }
 }
 
 dependencies {
@@ -25,17 +26,26 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 	modImplementation "vazkii.patchouli:Patchouli:${project.patchouli_version}"
 	modImplementation "com.github.bernie-g:geckolib:${project.geckolib_version}"
+	modImplementation "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-base:${project.cardinal_version}"
+	modImplementation "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-chunk:${project.cardinal_version}"
+	modImplementation "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-block:${project.cardinal_version}"
+	modImplementation "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-entity:${project.cardinal_version}"
+	modImplementation "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-item:${project.cardinal_version}"
 
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api:${project.rei_version}"
 	modCompileOnly "vazkii.patchouli:Patchouli:${project.patchouli_version}:api"
 
 	modRuntime "me.shedaniel:RoughlyEnoughItems:${project.rei_version}"
 	modRuntime "io.github.prospector:modmenu:${project.modmenu_version}"
-//	modRuntime "mcp.mobius.waila:Hwyla:${project.hwyla_version}"
 
 	include "vazkii.patchouli:Patchouli:${project.patchouli_version}"
 	include "me.shedaniel.cloth:config-2:${project.cloth_version}"
 	include "com.github.bernie-g:geckolib:${project.geckolib_version}"
+	include "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-base:${project.cardinal_version}"
+	include "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-chunk:${project.cardinal_version}"
+	include "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-block:${project.cardinal_version}"
+	include "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-entity:${project.cardinal_version}"
+	include "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-item:${project.cardinal_version}"
 }
 
 processResources {

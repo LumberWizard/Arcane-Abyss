@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "arcaneabyss:block/entropic_log_top",
+    "side": "arcaneabyss:block/entropic_log"
+  }
+}

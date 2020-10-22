@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "arcaneabyss:block/entropic_log",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "arcaneabyss:block/entropic_log"
+    },
+    "axis=z": {
+      "model": "arcaneabyss:block/entropic_log",
+      "x": 90
+    }
+  }
+}
