@@ -25,7 +25,6 @@ dependencies {
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 	modImplementation "vazkii.patchouli:Patchouli:${project.patchouli_version}"
-	modImplementation "com.github.bernie-g:geckolib:${project.geckolib_version}"
 	modImplementation "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-base:${project.cardinal_version}"
 	modImplementation "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-chunk:${project.cardinal_version}"
 	modImplementation "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-block:${project.cardinal_version}"
@@ -40,7 +39,6 @@ dependencies {
 
 	include "vazkii.patchouli:Patchouli:${project.patchouli_version}"
 	include "me.shedaniel.cloth:config-2:${project.cloth_version}"
-	include "com.github.bernie-g:geckolib:${project.geckolib_version}"
 	include "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-base:${project.cardinal_version}"
 	include "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-chunk:${project.cardinal_version}"
 	include "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-block:${project.cardinal_version}"

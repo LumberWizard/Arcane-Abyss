@@ -25,10 +25,7 @@
   "depends": {
     "fabricloader": ">=0.7.4",
     "fabric": "*",
-    "minecraft": "1.16.x",
-    "patchouli": ">=1.16-40-FABRIC",
-    "cloth-config2": ">=4.8.1",
-    "geckolib": ">=2.0.0"
+    "minecraft": "1.16.x"
   },
   "suggests": {
     "flamingo": "*"
