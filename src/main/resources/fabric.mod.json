@@ -17,6 +17,12 @@
   "entrypoints": {
     "main": [
       "dev.camscorner.arcaneabyss.ArcaneAbyss"
+    ],
+    "client": [
+      "dev.camscorner.arcaneabyss.client.ArcaneAbyssClient"
+    ],
+    "cardinal-components": [
+      "dev.camscorner.arcaneabyss.ArcaneAbyss"
     ]
   },
   "mixins": [
@@ -29,5 +35,10 @@
   },
   "suggests": {
     "flamingo": "*"
+  },
+  "custom": {
+    "cardinal-components": [
+      "arcaneabyss:entropic_flux"
+    ]
   }
 }

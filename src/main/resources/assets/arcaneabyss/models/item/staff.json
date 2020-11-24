@@ -1,0 +1,62 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "arcaneabyss:item/staff"
+	},
+	"elements": [
+		{
+			"name": "staffBase",
+			"from": [7.5, -6, 7.5],
+			"to": [8.5, 10, 8.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [15.5, 2, 15.5]},
+			"faces": {
+				"north": {"uv": [1, 0, 2, 16], "texture": "#0"},
+				"east": {"uv": [0, 0, 1, 16], "texture": "#0"},
+				"south": {"uv": [3, 0, 4, 16], "texture": "#0"},
+				"west": {"uv": [2, 0, 3, 16], "texture": "#0"},
+				"up": {"uv": [0, 0, 1, 1], "texture": "#0"},
+				"down": {"uv": [5, 4, 6, 5], "texture": "#0"}
+			}
+		},
+		{
+			"name": "staffBase2",
+			"from": [7.5, 10, 7.5],
+			"to": [8.5, 22, 8.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [15.5, 18, 15.5]},
+			"faces": {
+				"north": {"uv": [5, 4, 6, 16], "texture": "#0"},
+				"east": {"uv": [4, 4, 5, 16], "texture": "#0"},
+				"south": {"uv": [7, 4, 8, 16], "texture": "#0"},
+				"west": {"uv": [6, 4, 7, 16], "texture": "#0"},
+				"up": {"uv": [1, 13, 2, 14], "texture": "#0"},
+				"down": {"uv": [0, 0, 1, 1], "texture": "#0"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"translation": [0, -1.25, 1.25]
+		},
+		"thirdperson_lefthand": {
+			"translation": [0, -1.25, 1.25]
+		},
+		"firstperson_righthand": {
+			"translation": [2, -3.5, 0]
+		},
+		"firstperson_lefthand": {
+			"translation": [2, -3.5, 0]
+		},
+		"ground": {
+			"rotation": [45, 0, 0],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"gui": {
+			"rotation": [0, 0, -45],
+			"scale": [0.65, 0.65, 0.65]
+		},
+		"fixed": {
+			"rotation": [0, 0, -45],
+			"scale": [0.8, 0.8, 0.8]
+		}
+	}
+}
