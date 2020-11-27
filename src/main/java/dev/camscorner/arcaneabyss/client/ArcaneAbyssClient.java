@@ -6,7 +6,9 @@ import dev.camscorner.arcaneabyss.core.registry.ModItems;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.client.model.ModelLoadingRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderingRegistry;
+import net.minecraft.client.util.ModelIdentifier;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.util.Identifier;
 
@@ -17,6 +19,8 @@ public class ArcaneAbyssClient implements ClientModInitializer
 	@Override
 	public void onInitializeClient()
 	{
+		ModelLoadingRegistry.INSTANCE.registerAppender((resourceManager, out) -> out.accept(new ModelIdentifier(new Identifier(ArcaneAbyss.MOD_ID, "infused_staff_in_hand"), "inventory")));
+
 		ArmorRenderingRegistry.registerModel((entity, stack, slot, model) -> new InfusedArmourModel(EquipmentSlot.HEAD), ModItems.INFUSED_HOOD);
 		ArmorRenderingRegistry.registerTexture((entity, stack, slot, layer2, suffix, texture) -> armourTex, ModItems.INFUSED_HOOD);
 		ArmorRenderingRegistry.registerModel((entity, stack, slot, model) -> new InfusedArmourModel(EquipmentSlot.CHEST), ModItems.INFUSED_ROBES);

@@ -13,7 +13,6 @@ import net.minecraft.item.ItemStack;
 public class InfusedArmourModel<T extends LivingEntity> extends BipedEntityModel<T>
 {
 	private final EquipmentSlot slot;
-	private final int offset;
 	private boolean showLeftEyeCrystal = true;
 	private boolean showRightEyeCrystal = true;
 	private boolean showLeftGauntletCrystal = true;
@@ -41,9 +40,8 @@ public class InfusedArmourModel<T extends LivingEntity> extends BipedEntityModel
 
 	public InfusedArmourModel(EquipmentSlot slot)
 	{
-		super((texture) -> RenderLayer.getEntityAlpha(texture, 0.5f), 1.0F, 0.0F, 80, 136);
+		super(RenderLayer::getArmorCutoutNoCull, 1.0F, 0.0F, 80, 136);
 		this.slot = slot;
-		this.offset = 64;
 
 		// Chest & Arms
 		torso.setTextureOffset(0, 122).addCuboid(-4.0F, 0.0F, -3.0F, 8.0F, 12.0F, 1.0F, 0.0F, false);

@@ -1,7 +1,6 @@
 {
-	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "arcaneabyss:item/staff"
+		"0": "arcaneabyss:item/infused_staff"
 	},
 	"elements": [
 		{
