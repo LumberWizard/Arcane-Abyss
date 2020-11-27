@@ -1,6 +1,7 @@
 package dev.camscorner.arcaneabyss.client.models;
 
 import dev.camscorner.arcaneabyss.core.registry.ModItems;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
@@ -13,14 +14,6 @@ import net.minecraft.item.ItemStack;
 public class InfusedArmourModel<T extends LivingEntity> extends BipedEntityModel<T>
 {
 	private final EquipmentSlot slot;
-	private boolean showLeftEyeCrystal = true;
-	private boolean showRightEyeCrystal = true;
-	private boolean showLeftGauntletCrystal = true;
-	private boolean showLeftShoulderCrystal = true;
-	private boolean showRightGauntletCrystal = true;
-	private boolean showRightShoulderCrystal = true;
-	private boolean showLeftLegCrystal = true;
-	private boolean showRightLegCrystal = true;
 
 	private final ModelPart leftGauntletCrystal;
 	private final ModelPart shoulderLeft;
@@ -151,6 +144,8 @@ public class InfusedArmourModel<T extends LivingEntity> extends BipedEntityModel
 	@Override
 	public void render(MatrixStack stack, VertexConsumer buffer, int light, int overlay, float r, float g, float b, float a)
 	{
+		super.render(stack, buffer, light, overlay, r, g, b, a);
+
 		head.visible = slot == EquipmentSlot.HEAD;
 		helmet.visible = slot == EquipmentSlot.HEAD;
 		torso.visible = slot == EquipmentSlot.CHEST;
@@ -159,45 +154,29 @@ public class InfusedArmourModel<T extends LivingEntity> extends BipedEntityModel
 		leftLeg.visible = slot == EquipmentSlot.LEGS;
 		rightLeg.visible = slot == EquipmentSlot.LEGS;
 
-		leftEyeCrystal.visible = showLeftEyeCrystal;
-		rightEyeCrystal.visible = showRightEyeCrystal;
-		leftGauntletCrystal.visible = showLeftGauntletCrystal;
-		leftShoulderCrystal.visible = showLeftShoulderCrystal;
-		rightGauntletCrystal.visible = showRightGauntletCrystal;
-		rightShoulderCrystal.visible = showRightShoulderCrystal;
-		leftLegCrystal.visible = showLeftLegCrystal;
-		rightLegCrystal.visible = showRightLegCrystal;
-
-		super.render(stack, buffer, light, overlay, r, g, b, a);
-	}
-
-	@Override
-	public void animateModel(T entity, float f, float g, float h)
-	{
-		super.animateModel(entity, f, g, h);
-
-		if(entity.getEquippedStack(EquipmentSlot.HEAD).getItem() != ModItems.INFUSED_HOOD ||
-			entity.getEquippedStack(EquipmentSlot.CHEST).getItem() != ModItems.INFUSED_ROBES ||
-			entity.getEquippedStack(EquipmentSlot.LEGS).getItem() != ModItems.INFUSED_LEGS || true) // temp
+		if(MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.HEAD).getItem() != ModItems.INFUSED_HOOD ||
+				MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.CHEST).getItem() != ModItems.INFUSED_ROBES ||
+				MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.LEGS).getItem() != ModItems.INFUSED_LEGS)
 		{
 			return;
 		}
 
-		ItemStack hood = entity.getEquippedStack(EquipmentSlot.HEAD);
-		ItemStack robes = entity.getEquippedStack(EquipmentSlot.CHEST);
-		ItemStack legs = entity.getEquippedStack(EquipmentSlot.LEGS);
+		ItemStack hood = MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.HEAD);
+		ItemStack robes = MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.CHEST);
+		ItemStack legs = MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.LEGS);
 
-		showLeftEyeCrystal = hood.getTag().getBoolean("hasLeftEyeCrystal");
-		showRightEyeCrystal = hood.getTag().getBoolean("hasRightEyeCrystal");
-		showLeftGauntletCrystal = robes.getTag().getBoolean("hasLeftGauntletCrystal");
-		showLeftShoulderCrystal = robes.getTag().getBoolean("hasLeftShoulderCrystal");
-		showRightGauntletCrystal = robes.getTag().getBoolean("hasRightGauntletCrystal");
-		showLeftShoulderCrystal = robes.getTag().getBoolean("hasRightShoulderCrystal");
-		showLeftLegCrystal = legs.getTag().getBoolean("hasLeftLegCrystal");
-		showRightLegCrystal = legs.getTag().getBoolean("hasRightLegCrystal");
+		leftEyeCrystal.visible = true;//hood.getTag().getBoolean("hasLeftEyeCrystal");
+		rightEyeCrystal.visible = true;//hood.getTag().getBoolean("hasRightEyeCrystal");
+		leftGauntletCrystal.visible = true;//robes.getTag().getBoolean("hasLeftGauntletCrystal");;
+		leftShoulderCrystal.visible = true;//robes.getTag().getBoolean("hasLeftShoulderCrystal");;
+		rightGauntletCrystal.visible = true;//robes.getTag().getBoolean("hasRightGauntletCrystal");;
+		rightShoulderCrystal.visible = true;//robes.getTag().getBoolean("hasRightShoulderCrystal");;
+		leftLegCrystal.visible = true;//legs.getTag().getBoolean("hasLeftLegCrystal");;
+		rightLegCrystal.visible = true;//legs.getTag().getBoolean("hasRightLegCrystal");;
 	}
 
-	public void setRotationAngle(ModelPart part, float x, float y, float z) {
+	public void setRotationAngle(ModelPart part, float x, float y, float z)
+	{
 		part.pitch = x;
 		part.yaw = y;
 		part.roll = z;
