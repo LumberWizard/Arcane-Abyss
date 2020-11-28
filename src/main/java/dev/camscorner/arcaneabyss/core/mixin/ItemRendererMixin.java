@@ -24,6 +24,9 @@ public abstract class ItemRendererMixin
 	@Final
 	private ItemModels models;
 
+	private ModelIdentifier staffHandModel = new ModelIdentifier(new Identifier(ArcaneAbyss.MOD_ID, "infused_staff_in_hand"), "inventory");
+	private ModelIdentifier staffNormalModel = new ModelIdentifier(new Identifier(ArcaneAbyss.MOD_ID, "infused_staff"), "inventory");
+
 	@Shadow public abstract BakedModel getHeldItemModel(ItemStack stack, World world, LivingEntity entity);
 
 	@Redirect(method = "getHeldItemModel", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/item/ItemModels;getModel(Lnet/minecraft/item/ItemStack;)Lnet/minecraft/client/render/model/BakedModel;"))
@@ -31,7 +34,7 @@ public abstract class ItemRendererMixin
 	{
 		if(stack.getItem() == ModItems.INFUSED_STAFF)
 		{
-			return itemModels.getModelManager().getModel(new ModelIdentifier(new Identifier(ArcaneAbyss.MOD_ID, "infused_staff_in_hand"), "inventory"));
+			return itemModels.getModelManager().getModel(staffHandModel);
 		}
 
 		return itemModels.getModel(stack);
@@ -43,7 +46,7 @@ public abstract class ItemRendererMixin
 		if(stack.getItem() == ModItems.INFUSED_STAFF)
 		{
 			final ClientWorld clientWorld = world instanceof ClientWorld ? (ClientWorld) world : null;
-			final BakedModel model = models.getModelManager().getModel(new ModelIdentifier(new Identifier(ArcaneAbyss.MOD_ID, "infused_staff"), "inventory"));
+			final BakedModel model = models.getModelManager().getModel(staffNormalModel);
 			final BakedModel model2 = model.getOverrides().apply(model, stack, clientWorld, entity);
 
 			return model2 == null ? models.getModelManager().getMissingModel() : model2;

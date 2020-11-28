@@ -170,7 +170,7 @@ public class InfusedArmourModel<T extends LivingEntity> extends BipedEntityModel
 			rightShoulderCrystal.visible = robes.getTag().getBoolean("hasRightShoulderCrystal");
 		}
 
-		if(entity.getEquippedStack(EquipmentSlot.LEGS).getItem() == ModItems.INFUSED_LEGS)
+		if(entity.getEquippedStack(EquipmentSlot.LEGS).getItem() == ModItems.INFUSED_GRIEVES)
 		{
 			ItemStack legs = entity.getEquippedStack(EquipmentSlot.LEGS);
 

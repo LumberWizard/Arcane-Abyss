@@ -9,23 +9,17 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.model.ModelLoadingRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderingRegistry;
 import net.minecraft.client.util.ModelIdentifier;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
 public class ArcaneAbyssClient implements ClientModInitializer
 {
-	private Identifier armourTex = new Identifier(ArcaneAbyss.MOD_ID, "textures/models/armour/infused_armour.png");
 	@Override
 	public void onInitializeClient()
 	{
 		ModelLoadingRegistry.INSTANCE.registerAppender((resourceManager, out) -> out.accept(new ModelIdentifier(new Identifier(ArcaneAbyss.MOD_ID, "infused_staff_in_hand"), "inventory")));
 
-		ArmorRenderingRegistry.registerModel((entity, stack, slot, model) -> new InfusedArmourModel(EquipmentSlot.HEAD), ModItems.INFUSED_HOOD);
-		ArmorRenderingRegistry.registerTexture((entity, stack, slot, layer2, suffix, texture) -> armourTex, ModItems.INFUSED_HOOD);
-		ArmorRenderingRegistry.registerModel((entity, stack, slot, model) -> new InfusedArmourModel(EquipmentSlot.CHEST), ModItems.INFUSED_ROBES);
-		ArmorRenderingRegistry.registerTexture((entity, stack, slot, layer2, suffix, texture) -> armourTex, ModItems.INFUSED_ROBES);
-		ArmorRenderingRegistry.registerModel((entity, stack, slot, model) -> new InfusedArmourModel(EquipmentSlot.LEGS), ModItems.INFUSED_LEGS);
-		ArmorRenderingRegistry.registerTexture((entity, stack, slot, layer2, suffix, texture) -> armourTex, ModItems.INFUSED_LEGS);
+		ArmorRenderingRegistry.registerModel((entity, stack, slot, model) -> new InfusedArmourModel(slot), ModItems.INFUSED_HOOD, ModItems.INFUSED_ROBES, ModItems.INFUSED_GRIEVES);
+		ArmorRenderingRegistry.registerTexture((entity, stack, slot, layer2, suffix, texture) -> new Identifier(ArcaneAbyss.MOD_ID, "textures/models/armour/infused_armour.png"), ModItems.INFUSED_HOOD, ModItems.INFUSED_ROBES, ModItems.INFUSED_GRIEVES);
 	}
 }

@@ -21,7 +21,7 @@ public class ModItems
 	public static final Item INFUSED_STAFF = create("infused_staff", new StaffItem(new Item.Settings().group(ItemGroup.COMBAT).maxCount(1), 3.0D, -2.8D));
 	public static final Item INFUSED_HOOD = create("infused_hood", new ArmorItem(ModArmourMaterials.INFUSED, EquipmentSlot.HEAD, new Item.Settings().group(ItemGroup.COMBAT)));
 	public static final Item INFUSED_ROBES = create("infused_robes", new ArmorItem(ModArmourMaterials.INFUSED, EquipmentSlot.CHEST, new Item.Settings().group(ItemGroup.COMBAT)));
-	public static final Item INFUSED_LEGS = create("infused_grieves", new ArmorItem(ModArmourMaterials.INFUSED, EquipmentSlot.LEGS, new Item.Settings().group(ItemGroup.COMBAT)));
+	public static final Item INFUSED_GRIEVES = create("infused_grieves", new ArmorItem(ModArmourMaterials.INFUSED, EquipmentSlot.LEGS, new Item.Settings().group(ItemGroup.COMBAT)));
 
 	//-----Registry-----//
 	public static void register()
