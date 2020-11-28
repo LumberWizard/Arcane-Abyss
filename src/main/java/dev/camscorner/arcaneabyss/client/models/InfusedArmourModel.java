@@ -1,7 +1,6 @@
 package dev.camscorner.arcaneabyss.client.models;
 
 import dev.camscorner.arcaneabyss.core.registry.ModItems;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
@@ -13,6 +12,7 @@ import net.minecraft.item.ItemStack;
 
 public class InfusedArmourModel<T extends LivingEntity> extends BipedEntityModel<T>
 {
+	private T entity;
 	private final EquipmentSlot slot;
 
 	private final ModelPart leftGauntletCrystal;
@@ -144,8 +144,6 @@ public class InfusedArmourModel<T extends LivingEntity> extends BipedEntityModel
 	@Override
 	public void render(MatrixStack stack, VertexConsumer buffer, int light, int overlay, float r, float g, float b, float a)
 	{
-		super.render(stack, buffer, light, overlay, r, g, b, a);
-
 		head.visible = slot == EquipmentSlot.HEAD;
 		helmet.visible = slot == EquipmentSlot.HEAD;
 		torso.visible = slot == EquipmentSlot.CHEST;
@@ -154,25 +152,38 @@ public class InfusedArmourModel<T extends LivingEntity> extends BipedEntityModel
 		leftLeg.visible = slot == EquipmentSlot.LEGS;
 		rightLeg.visible = slot == EquipmentSlot.LEGS;
 
-		if(MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.HEAD).getItem() != ModItems.INFUSED_HOOD ||
-				MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.CHEST).getItem() != ModItems.INFUSED_ROBES ||
-				MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.LEGS).getItem() != ModItems.INFUSED_LEGS)
+		if(entity.getEquippedStack(EquipmentSlot.HEAD).getItem() == ModItems.INFUSED_HOOD)
 		{
-			return;
+			ItemStack hood = entity.getEquippedStack(EquipmentSlot.HEAD);
+
+			leftEyeCrystal.visible = hood.getTag().getBoolean("hasLeftEyeCrystal");
+			rightEyeCrystal.visible = hood.getTag().getBoolean("hasRightEyeCrystal");
 		}
 
-		ItemStack hood = MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.HEAD);
-		ItemStack robes = MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.CHEST);
-		ItemStack legs = MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.LEGS);
+		if(entity.getEquippedStack(EquipmentSlot.CHEST).getItem() == ModItems.INFUSED_ROBES)
+		{
+			ItemStack robes = entity.getEquippedStack(EquipmentSlot.CHEST);
 
-		leftEyeCrystal.visible = true;//hood.getTag().getBoolean("hasLeftEyeCrystal");
-		rightEyeCrystal.visible = true;//hood.getTag().getBoolean("hasRightEyeCrystal");
-		leftGauntletCrystal.visible = true;//robes.getTag().getBoolean("hasLeftGauntletCrystal");;
-		leftShoulderCrystal.visible = true;//robes.getTag().getBoolean("hasLeftShoulderCrystal");;
-		rightGauntletCrystal.visible = true;//robes.getTag().getBoolean("hasRightGauntletCrystal");;
-		rightShoulderCrystal.visible = true;//robes.getTag().getBoolean("hasRightShoulderCrystal");;
-		leftLegCrystal.visible = true;//legs.getTag().getBoolean("hasLeftLegCrystal");;
-		rightLegCrystal.visible = true;//legs.getTag().getBoolean("hasRightLegCrystal");;
+			leftGauntletCrystal.visible = robes.getTag().getBoolean("hasLeftGauntletCrystal");
+			leftShoulderCrystal.visible = robes.getTag().getBoolean("hasLeftShoulderCrystal");
+			rightGauntletCrystal.visible = robes.getTag().getBoolean("hasRightGauntletCrystal");
+			rightShoulderCrystal.visible = robes.getTag().getBoolean("hasRightShoulderCrystal");
+		}
+
+		if(entity.getEquippedStack(EquipmentSlot.LEGS).getItem() == ModItems.INFUSED_LEGS)
+		{
+			ItemStack legs = entity.getEquippedStack(EquipmentSlot.LEGS);
+
+			leftLegCrystal.visible = legs.getTag().getBoolean("hasLeftLegCrystal");
+			rightLegCrystal.visible = legs.getTag().getBoolean("hasRightLegCrystal");
+		}
+
+		super.render(stack, buffer, light, overlay, r, g, b, a);
+	}
+
+	public void setWearer(T livingEntity)
+	{
+		entity = livingEntity;
 	}
 
 	public void setRotationAngle(ModelPart part, float x, float y, float z)

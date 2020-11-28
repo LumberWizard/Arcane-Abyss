@@ -29,7 +29,7 @@ public abstract class ItemRendererMixin
 	@Redirect(method = "getHeldItemModel", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/item/ItemModels;getModel(Lnet/minecraft/item/ItemStack;)Lnet/minecraft/client/render/model/BakedModel;"))
 	BakedModel getModelProxy(final ItemModels itemModels, final ItemStack stack)
 	{
-		if(stack.getItem() == ModItems.STAFF)
+		if(stack.getItem() == ModItems.INFUSED_STAFF)
 		{
 			return itemModels.getModelManager().getModel(new ModelIdentifier(new Identifier(ArcaneAbyss.MOD_ID, "infused_staff_in_hand"), "inventory"));
 		}
@@ -40,7 +40,7 @@ public abstract class ItemRendererMixin
 	@Redirect(method = "innerRenderInGui", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/item/ItemRenderer;getHeldItemModel(Lnet/minecraft/item/ItemStack;Lnet/minecraft/world/World;Lnet/minecraft/entity/LivingEntity;)Lnet/minecraft/client/render/model/BakedModel;"))
 	BakedModel getHeldItemModelProxy(final ItemRenderer itemRenderer, final ItemStack stack, final World world, final LivingEntity entity)
 	{
-		if(stack.getItem() == ModItems.STAFF)
+		if(stack.getItem() == ModItems.INFUSED_STAFF)
 		{
 			final ClientWorld clientWorld = world instanceof ClientWorld ? (ClientWorld) world : null;
 			final BakedModel model = models.getModelManager().getModel(new ModelIdentifier(new Identifier(ArcaneAbyss.MOD_ID, "infused_staff"), "inventory"));

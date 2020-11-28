@@ -1,6 +1,7 @@
 package dev.camscorner.arcaneabyss.core.registry;
 
 import dev.camscorner.arcaneabyss.ArcaneAbyss;
+import dev.camscorner.arcaneabyss.common.items.StaffItem;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
@@ -17,7 +18,7 @@ public class ModItems
 
 	//-----Items-----//
 	public static final Item ENTROPIC_CRYSTAL = create("entropic_crystal", new Item(new Item.Settings().group(ItemGroup.MISC)));
-	public static final Item STAFF = create("infused_staff", new Item(new Item.Settings().group(ItemGroup.COMBAT).maxCount(1)));
+	public static final Item INFUSED_STAFF = create("infused_staff", new StaffItem(new Item.Settings().group(ItemGroup.COMBAT).maxCount(1), 3.0D, -2.8D));
 	public static final Item INFUSED_HOOD = create("infused_hood", new ArmorItem(ModArmourMaterials.INFUSED, EquipmentSlot.HEAD, new Item.Settings().group(ItemGroup.COMBAT)));
 	public static final Item INFUSED_ROBES = create("infused_robes", new ArmorItem(ModArmourMaterials.INFUSED, EquipmentSlot.CHEST, new Item.Settings().group(ItemGroup.COMBAT)));
 	public static final Item INFUSED_LEGS = create("infused_grieves", new ArmorItem(ModArmourMaterials.INFUSED, EquipmentSlot.LEGS, new Item.Settings().group(ItemGroup.COMBAT)));
