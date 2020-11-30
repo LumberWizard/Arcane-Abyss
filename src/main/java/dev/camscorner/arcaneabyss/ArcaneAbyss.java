@@ -2,6 +2,7 @@ package dev.camscorner.arcaneabyss;
 
 import dev.camscorner.arcaneabyss.core.registry.ModBlocks;
 import dev.camscorner.arcaneabyss.core.registry.ModItems;
+import dev.camscorner.arcaneabyss.core.registry.ModRecipes;
 import dev.camscorner.arcaneabyss.core.util.components.IntComponent;
 import dev.camscorner.arcaneabyss.core.util.components.SynchedIntComponent;
 import dev.onyxstudios.cca.api.v3.block.BlockComponentFactoryRegistry;
@@ -28,6 +29,8 @@ public class ArcaneAbyss implements ModInitializer, EntityComponentInitializer, 
 	{
 		ModItems.register();
 		ModBlocks.register();
+		ModRecipes.registerSerializers();
+		ModRecipes.registerTypes();
 		System.out.println("If you gaze long enough into an abyss, the abyss will gaze back into you...");
 	}
 
@@ -52,6 +55,6 @@ public class ArcaneAbyss implements ModInitializer, EntityComponentInitializer, 
 	@Override
 	public void registerBlockComponentFactories(BlockComponentFactoryRegistry registry)
 	{
-		
+
 	}
 }

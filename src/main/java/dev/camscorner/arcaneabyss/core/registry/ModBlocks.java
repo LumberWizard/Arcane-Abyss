@@ -19,9 +19,12 @@ public class ModBlocks
 	public static final LinkedHashMap<Block, Identifier> BLOCKS = new LinkedHashMap<>();
 
 	//-----Blocks-----//
-	public static final Block ENTROPIC_STONE = create("entropic_stone", new Block(AbstractBlock.Settings.of(Material.STONE, MaterialColor.PURPLE).requiresTool().strength(1.5F, 6.0F)));
-	public static final Block ENTROPIC_LOG = create("entropic_log", new PillarBlock(AbstractBlock.Settings.of(Material.WOOD, MaterialColor.PURPLE).strength(2.0F).sounds(BlockSoundGroup.WOOD)));
-	public static final Block ENTROPIC_PLANKS = create("entropic_planks", new Block(AbstractBlock.Settings.of(Material.WOOD, MaterialColor.PURPLE).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD)));
+	public static final Block ENTROPIC_STONE = create("entropic_stone", new Block(AbstractBlock.Settings.of(Material.STONE,
+			MaterialColor.PURPLE).requiresTool().strength(1.5F, 6.0F)));
+	public static final Block ENTROPIC_LOG = create("entropic_log", new PillarBlock(AbstractBlock.Settings.of(Material.WOOD,
+			MaterialColor.PURPLE).strength(2.0F).sounds(BlockSoundGroup.WOOD)));
+	public static final Block ENTROPIC_PLANKS = create("entropic_planks", new Block(AbstractBlock.Settings.of(Material.WOOD,
+			MaterialColor.PURPLE).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD)));
 
 	//-----Registry-----//
 	public static void register()
