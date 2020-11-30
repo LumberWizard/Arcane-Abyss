@@ -19,7 +19,7 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
-import java.util.NoSuchElementException;
+import java.util.Optional;
 
 public class AltarRecipe implements Recipe<Inventory>
 {
@@ -117,12 +117,8 @@ public class AltarRecipe implements Recipe<Inventory>
 			int count = JsonHelper.getInt(json, "count", 1);
 			ItemStack stack = new ItemStack(item, count);
 
-			try
-			{
-				Result result = Result.CODEC.parse(JsonOps.INSTANCE, json).resultOrPartial(System.out::println).get();
-				stack.getOrCreateTag().copyFrom(result.getTag());
-			}
-			catch(NoSuchElementException ignored) {}
+			Optional<Result> result = Result.CODEC.parse(JsonOps.INSTANCE, json).resultOrPartial(System.out::println);
+			result.ifPresent(value -> stack.getOrCreateTag().copyFrom(value.getTag()));
 
 			return stack;
 		}
