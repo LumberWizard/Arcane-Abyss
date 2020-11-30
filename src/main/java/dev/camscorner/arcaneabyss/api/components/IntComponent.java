@@ -1,4 +1,4 @@
-package dev.camscorner.arcaneabyss.core.util.components;
+package dev.camscorner.arcaneabyss.api.components;
 
 import dev.onyxstudios.cca.api.v3.component.Component;
 

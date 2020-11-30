@@ -1,9 +1,15 @@
 {
+  "#group": "creative tabs",
+  "itemGroup.arcaneabyss.general": "Arcane Abyss",
+
+  "#group": "items",
   "item.arcaneabyss.entropic_crystal": "Entropic Crystal",
   "item.arcaneabyss.infused_staff": "Entropy-Infused Staff",
   "item.arcaneabyss.infused_hood": "Entropy-Infused Hood",
   "item.arcaneabyss.infused_robes": "Entropy-Infused Robes",
   "item.arcaneabyss.infused_grieves": "Entropy-Infused Grieves",
+
+  "#group": "blocks",
   "block.arcaneabyss.entropic_stone": "Entropic Stone",
   "block.arcaneabyss.entropic_log": "Entropic Log",
   "block.arcaneabyss.entropic_planks": "Entropic Planks"

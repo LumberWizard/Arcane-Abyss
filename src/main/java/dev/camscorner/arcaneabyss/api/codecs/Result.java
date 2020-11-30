@@ -1,4 +1,4 @@
-package dev.camscorner.arcaneabyss.core.codecs;
+package dev.camscorner.arcaneabyss.api.codecs;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

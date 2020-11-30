@@ -156,26 +156,26 @@ public class InfusedArmourModel<T extends LivingEntity> extends BipedEntityModel
 		{
 			ItemStack hood = entity.getEquippedStack(EquipmentSlot.HEAD);
 
-			leftEyeCrystal.visible = hood.getTag().getBoolean("hasLeftEyeCrystal");
-			rightEyeCrystal.visible = hood.getTag().getBoolean("hasRightEyeCrystal");
+			leftEyeCrystal.visible = hood.getTag().getBoolean("HasLeftEyeCrystal");
+			rightEyeCrystal.visible = hood.getTag().getBoolean("HasRightEyeCrystal");
 		}
 
 		if(entity.getEquippedStack(EquipmentSlot.CHEST).getItem() == ModItems.INFUSED_ROBES)
 		{
 			ItemStack robes = entity.getEquippedStack(EquipmentSlot.CHEST);
 
-			leftGauntletCrystal.visible = robes.getTag().getBoolean("hasLeftGauntletCrystal");
-			leftShoulderCrystal.visible = robes.getTag().getBoolean("hasLeftShoulderCrystal");
-			rightGauntletCrystal.visible = robes.getTag().getBoolean("hasRightGauntletCrystal");
-			rightShoulderCrystal.visible = robes.getTag().getBoolean("hasRightShoulderCrystal");
+			leftGauntletCrystal.visible = robes.getTag().getBoolean("HasLeftGauntletCrystal");
+			leftShoulderCrystal.visible = robes.getTag().getBoolean("HasLeftShoulderCrystal");
+			rightGauntletCrystal.visible = robes.getTag().getBoolean("HasRightGauntletCrystal");
+			rightShoulderCrystal.visible = robes.getTag().getBoolean("HasRightShoulderCrystal");
 		}
 
 		if(entity.getEquippedStack(EquipmentSlot.LEGS).getItem() == ModItems.INFUSED_GRIEVES)
 		{
 			ItemStack legs = entity.getEquippedStack(EquipmentSlot.LEGS);
 
-			leftLegCrystal.visible = legs.getTag().getBoolean("hasLeftLegCrystal");
-			rightLegCrystal.visible = legs.getTag().getBoolean("hasRightLegCrystal");
+			leftLegCrystal.visible = legs.getTag().getBoolean("HasLeftLegCrystal");
+			rightLegCrystal.visible = legs.getTag().getBoolean("HasRightLegCrystal");
 		}
 
 		super.render(stack, buffer, light, overlay, r, g, b, a);

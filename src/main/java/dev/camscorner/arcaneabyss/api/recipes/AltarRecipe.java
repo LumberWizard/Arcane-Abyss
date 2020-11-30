@@ -5,7 +5,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
 import com.mojang.serialization.JsonOps;
-import dev.camscorner.arcaneabyss.core.codecs.Result;
+import dev.camscorner.arcaneabyss.api.codecs.Result;
 import dev.camscorner.arcaneabyss.core.registry.ModRecipes;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
@@ -129,7 +129,7 @@ public class AltarRecipe implements Recipe<Inventory>
 		@Override
 		public AltarRecipe read(Identifier id, JsonObject json)
 		{
-			DefaultedList<Ingredient> additions = getAdditions(JsonHelper.getArray(json, "additions"));
+			DefaultedList<Ingredient> additions = getAdditions(JsonHelper.getArray(json, "aux_ingredients"));
 
 			if(additions.size() > 6)
 			{
@@ -139,7 +139,7 @@ public class AltarRecipe implements Recipe<Inventory>
 			{
 				int flux = JsonHelper.getInt(json, "entropic_flux");
 				ItemStack result = AltarRecipe.getItemStack(JsonHelper.getObject(json, "result"));
-				Ingredient base = Ingredient.fromJson(JsonHelper.getObject(json, "base"));
+				Ingredient base = Ingredient.fromJson(JsonHelper.getObject(json, "base_ingredient"));
 
 				return new AltarRecipe(id, flux, base, additions, result);
 			}

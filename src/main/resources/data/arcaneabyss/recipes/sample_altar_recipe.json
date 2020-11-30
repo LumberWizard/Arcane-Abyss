@@ -1,11 +1,11 @@
 {
   "type": "arcaneabyss:altar",
   "entropic_flux": 500,
-  "base":
+  "base_ingredient":
   {
     "item": "minecraft:leather_helmet"
   },
-  "additions":
+  "aux_ingredients":
   [
     {
       "item": "arcaneabyss:entropic_crystal"
@@ -14,7 +14,10 @@
       "item": "arcaneabyss:entropic_crystal"
     },
     {
-      "item": "minecraft:iron_ingot"
+      "item": "minecraft:gold_ingot"
+    },
+    {
+      "item": "minecraft:gold_ingot"
     }
   ],
   "result":
@@ -22,8 +25,8 @@
     "item": "arcaneabyss:infused_hood",
     "nbt":
     {
-      "hasLeftEyeCrystal": false,
-      "hasRightEyeCrystal": false
+      "HasLeftEyeCrystal": false,
+      "HasRightEyeCrystal": false
     }
   }
 }

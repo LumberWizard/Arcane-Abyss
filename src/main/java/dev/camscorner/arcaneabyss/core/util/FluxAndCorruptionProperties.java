@@ -1,6 +1,6 @@
-package dev.camscorner.arcaneabyss.core.util.interfaces;
+package dev.camscorner.arcaneabyss.core.util;
 
-public interface LivingEntityProperties
+public interface FluxAndCorruptionProperties
 {
 	boolean hasCorruption(CorruptionType type);
 

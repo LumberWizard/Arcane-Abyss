@@ -1,6 +1,6 @@
 package dev.camscorner.arcaneabyss.core.mixin;
 
-import dev.camscorner.arcaneabyss.core.util.interfaces.LivingEntityProperties;
+import dev.camscorner.arcaneabyss.core.util.FluxAndCorruptionProperties;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(LivingEntity.class)
-public abstract class LivingEntityMixin extends Entity implements LivingEntityProperties
+public abstract class LivingEntityMixin extends Entity implements FluxAndCorruptionProperties
 {
 	private static final TrackedData<Integer> SOUL_CORRUPTION = DataTracker.registerData(LivingEntity.class, TrackedDataHandlerRegistry.INTEGER);
 	private static final TrackedData<Integer> BODY_CORRUPTION = DataTracker.registerData(LivingEntity.class, TrackedDataHandlerRegistry.INTEGER);

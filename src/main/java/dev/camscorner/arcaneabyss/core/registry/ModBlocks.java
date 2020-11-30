@@ -4,7 +4,6 @@ import dev.camscorner.arcaneabyss.ArcaneAbyss;
 import net.minecraft.block.*;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
@@ -35,7 +34,7 @@ public class ModBlocks
 
 	private static BlockItem getItem(Block block)
 	{
-		return new BlockItem(block, new Item.Settings().group(ItemGroup.MISC));
+		return new BlockItem(block, new Item.Settings().group(ArcaneAbyss.ITEM_GROUP));
 	}
 
 	private static <T extends Block> T create(String name, T block)
