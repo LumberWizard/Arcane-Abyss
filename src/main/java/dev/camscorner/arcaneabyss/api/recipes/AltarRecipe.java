@@ -166,14 +166,15 @@ public class AltarRecipe implements Recipe<Inventory>
 		@Override
 		public void write(PacketByteBuf buf, AltarRecipe recipe)
 		{
-			buf.writeItemStack(recipe.result);
 			buf.writeInt(recipe.flux);
+			buf.writeItemStack(recipe.result);
 			recipe.base.write(buf);
 
 			buf.writeVarInt(recipe.additions.size());
 
-			for(Ingredient ingredient : recipe.additions)
+			for(int j = 0; j < recipe.additions.size(); ++j)
 			{
+				Ingredient ingredient = recipe.additions.get(j);
 				ingredient.write(buf);
 			}
 		}

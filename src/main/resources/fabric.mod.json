@@ -38,7 +38,9 @@
   },
   "custom": {
     "cardinal-components": [
-      "arcaneabyss:entropic_flux"
+      "arcaneabyss:entropic_flux",
+      "arcaneabyss:temporary_corruption",
+      "arcaneabyss:permanent_corruption"
     ]
   }
 }

@@ -1,6 +1,7 @@
 package dev.camscorner.arcaneabyss.core.registry;
 
 import dev.camscorner.arcaneabyss.ArcaneAbyss;
+import dev.camscorner.arcaneabyss.common.blocks.AltarBlock;
 import net.minecraft.block.*;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -24,6 +25,8 @@ public class ModBlocks
 			MaterialColor.PURPLE).strength(2.0F).sounds(BlockSoundGroup.WOOD)));
 	public static final Block ENTROPIC_PLANKS = create("entropic_planks", new Block(AbstractBlock.Settings.of(Material.WOOD,
 			MaterialColor.PURPLE).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD)));
+	public static final Block ALTAR = create("altar", new AltarBlock(AbstractBlock.Settings.of(Material.STONE,
+			MaterialColor.PURPLE).requiresTool().strength(1.5F, 6.0F)));
 
 	//-----Registry-----//
 	public static void register()
