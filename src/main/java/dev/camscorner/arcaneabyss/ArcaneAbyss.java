@@ -42,6 +42,7 @@ public class ArcaneAbyss implements ModInitializer, EntityComponentInitializer, 
 	{
 		ModBlocks.register();
 		ModItems.register();
+		//ModEntities.register();
 		ModRecipes.registerSerializers();
 		ModRecipes.registerTypes();
 		System.out.println("If you gaze long enough into an abyss, the abyss will gaze back into you...");
