@@ -6,16 +6,16 @@ import net.minecraft.item.Item;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.registry.Registry;
 
-public class Result
+public class TagCodec
 {
 	public Item item;
 	public CompoundTag tag;
-	public static final Codec<Result> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-			Registry.ITEM.fieldOf("item").forGetter(Result::getItem),
-			CompoundTag.CODEC.fieldOf("nbt").forGetter(Result::getTag)
-	).apply(instance, Result::new));
+	public static final Codec<TagCodec> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+			Registry.ITEM.fieldOf("item").forGetter(TagCodec::getItem),
+			CompoundTag.CODEC.fieldOf("nbt").forGetter(TagCodec::getTag)
+	).apply(instance, TagCodec::new));
 
-	public Result(Item item, CompoundTag tag)
+	public TagCodec(Item item, CompoundTag tag)
 	{
 		this.item = item;
 		this.tag = tag;

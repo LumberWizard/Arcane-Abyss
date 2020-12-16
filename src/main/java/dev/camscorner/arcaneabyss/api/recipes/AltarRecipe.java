@@ -5,7 +5,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
 import com.mojang.serialization.JsonOps;
-import dev.camscorner.arcaneabyss.api.recipes.codecs.Result;
+import dev.camscorner.arcaneabyss.api.recipes.codecs.TagCodec;
 import dev.camscorner.arcaneabyss.core.registry.ModRecipes;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
@@ -117,8 +117,8 @@ public class AltarRecipe implements Recipe<Inventory>
 			int count = JsonHelper.getInt(json, "count", 1);
 			ItemStack stack = new ItemStack(item, count);
 
-			Optional<Result> result = Result.CODEC.parse(JsonOps.INSTANCE, json).resultOrPartial(System.out::println);
-			result.ifPresent(value -> stack.getOrCreateTag().copyFrom(value.getTag()));
+			Optional<TagCodec> tagCodec = TagCodec.CODEC.parse(JsonOps.INSTANCE, json).resultOrPartial(System.out::println);
+			tagCodec.ifPresent(value -> stack.getOrCreateTag().copyFrom(value.getTag()));
 
 			return stack;
 		}
