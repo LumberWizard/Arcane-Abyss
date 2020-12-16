@@ -7,10 +7,10 @@ import net.minecraft.world.World;
 
 public abstract class SpellShape implements SpellComponent
 {
-	private double costMultiplier;
+	private float costMultiplier;
 	private boolean isInstant;
 
-	public SpellShape(double costMultiplier, boolean isInstant)
+	public SpellShape(float costMultiplier, boolean isInstant)
 	{
 		this.costMultiplier = costMultiplier;
 		this.isInstant = isInstant;
@@ -18,7 +18,7 @@ public abstract class SpellShape implements SpellComponent
 
 	public abstract void onRightClick(PlayerEntity caster, World world, Hand hand, ItemStack stack);
 
-	public double getCostMultiplier()
+	public float getCostMultiplier()
 	{
 		return this.costMultiplier;
 	}

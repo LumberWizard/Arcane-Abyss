@@ -1,6 +1,7 @@
 package dev.camscorner.arcaneabyss.core.registry;
 
 import dev.camscorner.arcaneabyss.ArcaneAbyss;
+import dev.camscorner.arcaneabyss.api.ArcaneAbyssApi;
 import dev.camscorner.arcaneabyss.common.items.StaffItem;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorItem;
@@ -16,11 +17,11 @@ public class ModItems
 	public static final LinkedHashMap<Item, Identifier> ITEMS = new LinkedHashMap<>();
 
 	//-----Items-----//
-	public static final Item ENTROPIC_CRYSTAL = create("entropic_crystal", new Item(new Item.Settings().group(ArcaneAbyss.ITEM_GROUP)));
-	public static final Item INFUSED_STAFF = create("infused_staff", new StaffItem(new Item.Settings().group(ArcaneAbyss.ITEM_GROUP).maxCount(1), 3.0D, -2.8D));
-	public static final Item INFUSED_HOOD = create("infused_hood", new ArmorItem(ModArmourMaterials.INFUSED, EquipmentSlot.HEAD, new Item.Settings().group(ArcaneAbyss.ITEM_GROUP)));
-	public static final Item INFUSED_ROBES = create("infused_robes", new ArmorItem(ModArmourMaterials.INFUSED, EquipmentSlot.CHEST, new Item.Settings().group(ArcaneAbyss.ITEM_GROUP)));
-	public static final Item INFUSED_GRIEVES = create("infused_grieves", new ArmorItem(ModArmourMaterials.INFUSED, EquipmentSlot.LEGS, new Item.Settings().group(ArcaneAbyss.ITEM_GROUP)));
+	public static final Item ENTROPIC_CRYSTAL = create("entropic_crystal", new Item(new Item.Settings().group(ArcaneAbyssApi.ITEM_GROUP)));
+	public static final Item INFUSED_STAFF = create("infused_staff", new StaffItem(new Item.Settings().group(ArcaneAbyssApi.ITEM_GROUP).maxCount(1), 3.0D, -2.8D));
+	public static final Item INFUSED_HOOD = create("infused_hood", new ArmorItem(ModArmourMaterials.INFUSED, EquipmentSlot.HEAD, new Item.Settings().group(ArcaneAbyssApi.ITEM_GROUP)));
+	public static final Item INFUSED_ROBES = create("infused_robes", new ArmorItem(ModArmourMaterials.INFUSED, EquipmentSlot.CHEST, new Item.Settings().group(ArcaneAbyssApi.ITEM_GROUP)));
+	public static final Item INFUSED_GRIEVES = create("infused_grieves", new ArmorItem(ModArmourMaterials.INFUSED, EquipmentSlot.LEGS, new Item.Settings().group(ArcaneAbyssApi.ITEM_GROUP)));
 
 	//-----Registry-----//
 	public static void register()

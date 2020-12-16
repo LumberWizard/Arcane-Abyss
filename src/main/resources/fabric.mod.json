@@ -22,7 +22,7 @@
       "dev.camscorner.arcaneabyss.client.ArcaneAbyssClient"
     ],
     "cardinal-components": [
-      "dev.camscorner.arcaneabyss.ArcaneAbyss"
+      "dev.camscorner.arcaneabyss.api.ArcaneAbyssApi"
     ]
   },
   "mixins": [

@@ -7,16 +7,16 @@ import net.minecraft.world.World;
 
 public abstract class SpellElement implements SpellComponent
 {
-	public double costMultiplier;
+	public float costMultiplier;
 
-	public SpellElement(double costMultiplier)
+	public SpellElement(float costMultiplier)
 	{
 		this.costMultiplier = costMultiplier;
 	}
 
 	public abstract void onCast(PlayerEntity caster, World world, Hand hand, ItemStack stack);
 
-	public double getCostMultiplier()
+	public float getCostMultiplier()
 	{
 		return this.costMultiplier;
 	}

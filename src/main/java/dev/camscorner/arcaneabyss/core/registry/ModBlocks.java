@@ -1,6 +1,7 @@
 package dev.camscorner.arcaneabyss.core.registry;
 
 import dev.camscorner.arcaneabyss.ArcaneAbyss;
+import dev.camscorner.arcaneabyss.api.ArcaneAbyssApi;
 import dev.camscorner.arcaneabyss.common.blocks.AltarBlock;
 import net.minecraft.block.*;
 import net.minecraft.item.BlockItem;
@@ -37,7 +38,7 @@ public class ModBlocks
 
 	private static BlockItem getItem(Block block)
 	{
-		return new BlockItem(block, new Item.Settings().group(ArcaneAbyss.ITEM_GROUP));
+		return new BlockItem(block, new Item.Settings().group(ArcaneAbyssApi.ITEM_GROUP));
 	}
 
 	private static <T extends Block> T create(String name, T block)

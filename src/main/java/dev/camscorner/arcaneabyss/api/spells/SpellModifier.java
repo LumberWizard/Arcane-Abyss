@@ -7,16 +7,16 @@ import net.minecraft.world.World;
 
 public abstract class SpellModifier implements SpellComponent
 {
-	public double costMultiplier;
+	public float costMultiplier;
 
-	public SpellModifier(double costMultiplier)
+	public SpellModifier(float costMultiplier)
 	{
 		this.costMultiplier = costMultiplier;
 	}
 
 	public abstract void onCast(PlayerEntity caster, World world, Hand hand, ItemStack stack);
 
-	public double getCostMultiplier()
+	public float getCostMultiplier()
 	{
 		return this.costMultiplier;
 	}

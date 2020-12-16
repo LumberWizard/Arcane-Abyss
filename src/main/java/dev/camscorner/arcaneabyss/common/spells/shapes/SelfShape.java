@@ -6,9 +6,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
-public class BeamShape extends SpellShape
+public class SelfShape extends SpellShape
 {
-	public BeamShape(float costMultiplier, boolean isInstant)
+	public SelfShape(float costMultiplier, boolean isInstant)
 	{
 		super(costMultiplier, isInstant);
 	}
