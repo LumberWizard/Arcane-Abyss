@@ -2,6 +2,7 @@ package dev.camscorner.arcaneabyss;
 
 import dev.camscorner.arcaneabyss.api.components.IntComponent;
 import dev.camscorner.arcaneabyss.api.components.SynchedIntComponent;
+import dev.camscorner.arcaneabyss.api.registry.SpellRegistry;
 import dev.camscorner.arcaneabyss.core.registry.ModBlocks;
 import dev.camscorner.arcaneabyss.core.registry.ModItems;
 import dev.camscorner.arcaneabyss.core.registry.ModRecipes;
@@ -50,6 +51,7 @@ public class ArcaneAbyss implements ModInitializer, EntityComponentInitializer, 
 		ModRecipes.registerSerializers();
 		ModRecipes.registerTypes();
 		ModSpellComponents.register();
+		System.out.println(SpellRegistry.COMPONENT.get(0));
 		System.out.println("If you gaze long enough into an abyss, the abyss will gaze back into you...");
 	}
 
