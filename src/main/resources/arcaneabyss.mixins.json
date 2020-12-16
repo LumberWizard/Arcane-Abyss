@@ -4,7 +4,8 @@
   "package": "dev.camscorner.arcaneabyss.core.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "LivingEntityMixin"
+    "LivingEntityMixin",
+    "RegistryAccessor"
   ],
   "client": [
     "ItemRendererMixin",

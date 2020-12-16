@@ -5,6 +5,7 @@ import dev.camscorner.arcaneabyss.api.components.SynchedIntComponent;
 import dev.camscorner.arcaneabyss.core.registry.ModBlocks;
 import dev.camscorner.arcaneabyss.core.registry.ModItems;
 import dev.camscorner.arcaneabyss.core.registry.ModRecipes;
+import dev.camscorner.arcaneabyss.core.registry.ModSpellComponents;
 import dev.onyxstudios.cca.api.v3.block.BlockComponentFactoryRegistry;
 import dev.onyxstudios.cca.api.v3.block.BlockComponentInitializer;
 import dev.onyxstudios.cca.api.v3.chunk.ChunkComponentFactoryRegistry;
@@ -21,10 +22,13 @@ import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class ArcaneAbyss implements ModInitializer, EntityComponentInitializer, ChunkComponentInitializer, ItemComponentInitializer, BlockComponentInitializer
 {
 	public static final String MOD_ID = "arcaneabyss";
+	public static final Logger LOGGER = LogManager.getLogger();
 	public static final ItemGroup ITEM_GROUP = FabricItemGroupBuilder.build(
 			new Identifier(MOD_ID, "general"),
 			() -> new ItemStack(ModItems.ENTROPIC_CRYSTAL));
@@ -45,6 +49,7 @@ public class ArcaneAbyss implements ModInitializer, EntityComponentInitializer, 
 		//ModEntities.register();
 		ModRecipes.registerSerializers();
 		ModRecipes.registerTypes();
+		ModSpellComponents.register();
 		System.out.println("If you gaze long enough into an abyss, the abyss will gaze back into you...");
 	}
 

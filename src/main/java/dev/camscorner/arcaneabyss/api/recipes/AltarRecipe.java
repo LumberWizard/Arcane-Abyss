@@ -5,7 +5,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
 import com.mojang.serialization.JsonOps;
-import dev.camscorner.arcaneabyss.api.codecs.Result;
+import dev.camscorner.arcaneabyss.api.recipes.codecs.Result;
 import dev.camscorner.arcaneabyss.core.registry.ModRecipes;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
