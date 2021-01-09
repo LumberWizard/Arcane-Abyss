@@ -1,5 +1,6 @@
 package dev.camscorner.arcaneabyss.common.blocks;
 
+import dev.camscorner.arcaneabyss.common.blocks.entities.AltarBlockEntity;
 import dev.camscorner.arcaneabyss.common.blocks.enums.AltarPart;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
@@ -105,7 +106,7 @@ public class AltarBlock extends HorizontalFacingBlock implements BlockEntityProv
 	@Override
 	public PistonBehavior getPistonBehavior(BlockState state)
 	{
-		return PistonBehavior.DESTROY;
+		return PistonBehavior.BLOCK;
 	}
 
 	private static Direction getDirectionTowardsOtherPart(AltarPart part, Direction direction)
@@ -122,6 +123,6 @@ public class AltarBlock extends HorizontalFacingBlock implements BlockEntityProv
 	@Override
 	public @Nullable BlockEntity createBlockEntity(BlockView world)
 	{
-		return null;
+		return new AltarBlockEntity();
 	}
 }

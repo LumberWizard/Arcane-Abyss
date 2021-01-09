@@ -8,6 +8,7 @@ import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 
 public class InfusedArmourModel<T extends LivingEntity> extends BipedEntityModel<T>
@@ -116,13 +117,13 @@ public class InfusedArmourModel<T extends LivingEntity> extends BipedEntityModel
 		banner2 = new ModelPart(this);
 		banner2.setPivot(0.0F, 12.0F, -3.0F);
 		torso.addChild(banner2);
-		setRotationAngle(banner2, -0.2618F, 0.0F, 0.0F);
+		setRotationAngle(banner2, -0.25F, 0.0F, 0.0F);
 		banner2.setTextureOffset(60, 93).addCuboid(-4.0F, -0.5F, 0.0F, 8.0F, 9.0F, 1.0F, 0.0F, false);
 
 		banner2Back = new ModelPart(this);
 		banner2Back.setPivot(0.0F, 12.0F, 3.0F);
 		torso.addChild(banner2Back);
-		setRotationAngle(banner2Back, 0.2618F, 0.0F, 0.0F);
+		setRotationAngle(banner2Back, 0.25F, 0.0F, 0.0F);
 		banner2Back.setTextureOffset(48, 124).addCuboid(-4.0F, -0.5F, -1.0F, 8.0F, 9.0F, 1.0F, 0.0F, false);
 
 		// Legs
@@ -152,6 +153,11 @@ public class InfusedArmourModel<T extends LivingEntity> extends BipedEntityModel
 		leftLeg.visible = slot == EquipmentSlot.LEGS;
 		rightLeg.visible = slot == EquipmentSlot.LEGS;
 
+		if(entity instanceof PlayerEntity)
+		{
+
+		}
+
 		if(entity.getEquippedStack(EquipmentSlot.HEAD).getItem() == ModItems.INFUSED_HOOD)
 		{
 			ItemStack hood = entity.getEquippedStack(EquipmentSlot.HEAD);
@@ -177,6 +183,9 @@ public class InfusedArmourModel<T extends LivingEntity> extends BipedEntityModel
 			leftLegCrystal.visible = legs.getTag().getBoolean("HasLeftLegCrystal");
 			rightLegCrystal.visible = legs.getTag().getBoolean("HasRightLegCrystal");
 		}
+
+		banner2.pitch = Math.min(leftLeg.pitch, rightLeg.pitch) - 0.25F;
+		banner2Back.pitch = -Math.min(leftLeg.pitch, rightLeg.pitch) + 0.25F;
 
 		super.render(stack, buffer, light, overlay, r, g, b, a);
 	}

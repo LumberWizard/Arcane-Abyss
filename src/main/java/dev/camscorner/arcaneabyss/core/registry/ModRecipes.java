@@ -1,7 +1,7 @@
 package dev.camscorner.arcaneabyss.core.registry;
 
 import dev.camscorner.arcaneabyss.ArcaneAbyss;
-import dev.camscorner.arcaneabyss.api.recipes.AltarRecipe;
+import dev.camscorner.arcaneabyss.api.recipes.AltarItemRecipe;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
@@ -17,10 +17,10 @@ public class ModRecipes
 	public static final LinkedHashMap<RecipeType, Identifier> TYPES = new LinkedHashMap<>();
 
 	//-----Recipe Serializers-----//
-	public static final RecipeSerializer<AltarRecipe> ALTAR_SERIALIZER = createSerializer("altar", new AltarRecipe.Serializer());
+	public static final RecipeSerializer<AltarItemRecipe> ALTAR_SERIALIZER = createSerializer("altar", new AltarItemRecipe.Serializer());
 
 	//-----Recipe Types-----//
-	public static final RecipeType<AltarRecipe> ALTAR_TYPE = createType("altar");
+	public static final RecipeType<AltarItemRecipe> ALTAR_TYPE = createType("altar");
 
 	//-----Registry-----//
 	public static void registerSerializers()

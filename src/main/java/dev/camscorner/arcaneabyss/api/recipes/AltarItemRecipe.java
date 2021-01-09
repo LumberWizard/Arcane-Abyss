@@ -21,7 +21,7 @@ import net.minecraft.world.World;
 
 import java.util.Optional;
 
-public class AltarRecipe implements Recipe<Inventory>
+public class AltarItemRecipe implements Recipe<Inventory>
 {
 	private final Identifier id;
 	private final int flux;
@@ -29,7 +29,7 @@ public class AltarRecipe implements Recipe<Inventory>
 	private final DefaultedList<Ingredient> additions;
 	private final ItemStack result;
 
-	public AltarRecipe(Identifier id, int flux, Ingredient base, DefaultedList<Ingredient> additions, ItemStack result)
+	public AltarItemRecipe(Identifier id, int flux, Ingredient base, DefaultedList<Ingredient> additions, ItemStack result)
 	{
 		this.id = id;
 		this.flux = flux;
@@ -124,10 +124,10 @@ public class AltarRecipe implements Recipe<Inventory>
 		}
 	}
 
-	public static class Serializer implements RecipeSerializer<AltarRecipe>
+	public static class Serializer implements RecipeSerializer<AltarItemRecipe>
 	{
 		@Override
-		public AltarRecipe read(Identifier id, JsonObject json)
+		public AltarItemRecipe read(Identifier id, JsonObject json)
 		{
 			DefaultedList<Ingredient> additions = getAdditions(JsonHelper.getArray(json, "aux_ingredients"));
 
@@ -138,15 +138,15 @@ public class AltarRecipe implements Recipe<Inventory>
 			else
 			{
 				int flux = JsonHelper.getInt(json, "entropic_flux");
-				ItemStack result = AltarRecipe.getItemStack(JsonHelper.getObject(json, "result"));
+				ItemStack result = AltarItemRecipe.getItemStack(JsonHelper.getObject(json, "result"));
 				Ingredient base = Ingredient.fromJson(JsonHelper.getObject(json, "base_ingredient"));
 
-				return new AltarRecipe(id, flux, base, additions, result);
+				return new AltarItemRecipe(id, flux, base, additions, result);
 			}
 		}
 
 		@Override
-		public AltarRecipe read(Identifier id, PacketByteBuf buf)
+		public AltarItemRecipe read(Identifier id, PacketByteBuf buf)
 		{
 			int flux = buf.readInt();
 			ItemStack result = buf.readItemStack();
@@ -160,11 +160,11 @@ public class AltarRecipe implements Recipe<Inventory>
 				additions.set(j, Ingredient.fromPacket(buf));
 			}
 
-			return new AltarRecipe(id, flux, base, additions, result);
+			return new AltarItemRecipe(id, flux, base, additions, result);
 		}
 
 		@Override
-		public void write(PacketByteBuf buf, AltarRecipe recipe)
+		public void write(PacketByteBuf buf, AltarItemRecipe recipe)
 		{
 			buf.writeInt(recipe.flux);
 			buf.writeItemStack(recipe.result);
