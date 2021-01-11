@@ -17,10 +17,10 @@ public class ModRecipes
 	public static final LinkedHashMap<RecipeType, Identifier> TYPES = new LinkedHashMap<>();
 
 	//-----Recipe Serializers-----//
-	public static final RecipeSerializer<AltarItemRecipe> ALTAR_SERIALIZER = createSerializer("altar", new AltarItemRecipe.Serializer());
-
+	public static final RecipeSerializer<AltarItemRecipe> ALTAR_ITEM_SERIALIZER = createSerializer("altar_item", new AltarItemRecipe.Serializer());
+	
 	//-----Recipe Types-----//
-	public static final RecipeType<AltarItemRecipe> ALTAR_TYPE = createType("altar");
+	public static final RecipeType<AltarItemRecipe> ALTAR_ITEM_TYPE = createType("altar_item");
 
 	//-----Registry-----//
 	public static void registerSerializers()

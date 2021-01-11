@@ -93,13 +93,13 @@ public class AltarItemRecipe implements Recipe<Inventory>
 	@Override
 	public RecipeSerializer<?> getSerializer()
 	{
-		return ModRecipes.ALTAR_SERIALIZER;
+		return ModRecipes.ALTAR_ITEM_SERIALIZER;
 	}
 
 	@Override
 	public RecipeType<?> getType()
 	{
-		return ModRecipes.ALTAR_TYPE;
+		return ModRecipes.ALTAR_ITEM_TYPE;
 	}
 
 	public static ItemStack getItemStack(JsonObject json)

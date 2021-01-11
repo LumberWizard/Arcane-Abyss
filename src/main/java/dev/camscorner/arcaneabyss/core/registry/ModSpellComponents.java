@@ -44,8 +44,8 @@ public class ModSpellComponents
 	public static final SpellComponent SIZE_MODIFIER = create("size_modifier", new SizeModifier(0.5F));
 	public static final SpellComponent SPLIT_MODIFIER = create("split_modifier", new SplitModifier(0.5F));
 	public static final SpellComponent WATER_ELEMENTAL_MODIFIER = create("water_elemental_modifier", new WaterElementalModifier(0.5F));
-	public static final SpellComponent EARTH_ELEMENTAL_MODIFIER = create("earth_elemental_modifier", new EarthElementalModifier(0.5F));
 	public static final SpellComponent FIRE_ELEMENTAL_MODIFIER = create("fire_elemental_modifier", new FireElementalModifier(0.5F));
+	public static final SpellComponent EARTH_ELEMENTAL_MODIFIER = create("earth_elemental_modifier", new EarthElementalModifier(0.5F));
 	public static final SpellComponent AIR_ELEMENTAL_MODIFIER = create("air_elemental_modifier", new AirElementalModifier(0.5F));
 	public static final SpellComponent VOID_ELEMENTAL_MODIFIER = create("void_elemental_modifier", new VoidElementalModifier(0.5F));
 

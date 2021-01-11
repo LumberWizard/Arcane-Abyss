@@ -4,11 +4,12 @@
   "package": "dev.camscorner.arcaneabyss.core.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "LivingEntityMixin"
+    "LivingEntityMixin",
+    "ShapedRecipeMixin"
   ],
   "client": [
-    "ItemRendererMixin",
-    "ArmorFeatureRendererMixin"
+    "ArmorFeatureRendererMixin",
+    "ItemRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1
