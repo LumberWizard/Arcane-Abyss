@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=north,part=left": {
+      "model": "arcaneabyss:block/altar_left"
+    },
+    "facing=north,part=right": {
+      "model": "arcaneabyss:block/altar_right"
+    },
+    "facing=east,part=left": {
+      "model": "arcaneabyss:block/altar_left",
+      "y": 90
+    },
+    "facing=east,part=right": {
+      "model": "arcaneabyss:block/altar_right",
+      "y": 90
+    },
+    "facing=south,part=left": {
+      "model": "arcaneabyss:block/altar_left",
+      "y": 180
+    },
+    "facing=south,part=right": {
+      "model": "arcaneabyss:block/altar_right",
+      "y": 180
+    },
+    "facing=west,part=left": {
+      "model": "arcaneabyss:block/altar_left",
+      "y": 270
+    },
+    "facing=west,part=right": {
+      "model": "arcaneabyss:block/altar_right",
+      "y": 270
+    }
+  }
+}

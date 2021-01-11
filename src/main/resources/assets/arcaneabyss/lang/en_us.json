@@ -11,6 +11,9 @@
 
   "#group": "blocks",
   "block.arcaneabyss.entropic_stone": "Entropic Stone",
+  "block.arcaneabyss.entropic_stone_bricks": "Entropic Stone Bricks",
   "block.arcaneabyss.entropic_log": "Entropic Log",
-  "block.arcaneabyss.entropic_planks": "Entropic Planks"
+  "block.arcaneabyss.entropic_planks": "Entropic Planks",
+  "block.arcaneabyss.altar": "Altar",
+  "block.arcaneabyss.pedestal": "Pedestal"
 }

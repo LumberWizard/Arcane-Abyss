@@ -1,6 +1,7 @@
 package dev.camscorner.arcaneabyss.common.blocks.entities;
 
 import dev.camscorner.arcaneabyss.core.registry.ModBlockEntities;
+import dev.camscorner.arcaneabyss.core.util.HasInventory;
 import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
@@ -13,7 +14,7 @@ import net.minecraft.util.Tickable;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 
-public class AltarBlockEntity extends BlockEntity implements BlockEntityClientSerializable, Tickable, Inventory
+public class AltarBlockEntity extends BlockEntity implements BlockEntityClientSerializable, Tickable, Inventory, HasInventory
 {
 	private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(1, ItemStack.EMPTY);
 	private final BlockPos[] pedestals = { BlockPos.ORIGIN, BlockPos.ORIGIN, BlockPos.ORIGIN, BlockPos.ORIGIN, BlockPos.ORIGIN, BlockPos.ORIGIN };
@@ -105,6 +106,12 @@ public class AltarBlockEntity extends BlockEntity implements BlockEntityClientSe
 	public void clear()
 	{
 		inventory.clear();
+	}
+
+	@Override
+	public DefaultedList<ItemStack> getInventory()
+	{
+		return inventory;
 	}
 
 	public enum Mode

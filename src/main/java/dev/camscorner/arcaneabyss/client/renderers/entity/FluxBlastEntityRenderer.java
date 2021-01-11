@@ -1,4 +1,4 @@
-package dev.camscorner.arcaneabyss.client.renderers;
+package dev.camscorner.arcaneabyss.client.renderers.entity;
 
 import dev.camscorner.arcaneabyss.common.entities.projectiles.FluxBlastEntity;
 import net.minecraft.client.render.entity.EntityRenderDispatcher;

@@ -1,7 +1,9 @@
 package dev.camscorner.arcaneabyss.common.blocks.entities;
 
 import dev.camscorner.arcaneabyss.core.registry.ModBlockEntities;
+import dev.camscorner.arcaneabyss.core.util.HasInventory;
 import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
@@ -11,7 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.collection.DefaultedList;
 
-public class PedestalBlockEntity extends BlockEntity implements BlockEntityClientSerializable, Inventory
+public class PedestalBlockEntity extends BlockEntity implements BlockEntityClientSerializable, Inventory, HasInventory
 {
 	private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(1, ItemStack.EMPTY);
 
@@ -36,6 +38,19 @@ public class PedestalBlockEntity extends BlockEntity implements BlockEntityClien
 	{
 		Inventories.toTag(tag, inventory);
 		return tag;
+	}
+
+	@Override
+	public void fromTag(BlockState state, CompoundTag tag)
+	{
+		super.fromTag(state, tag);
+		fromClientTag(tag);
+	}
+
+	@Override
+	public CompoundTag toTag(CompoundTag tag)
+	{
+		return super.toTag(toClientTag(tag));
 	}
 
 	@Override
@@ -84,5 +99,11 @@ public class PedestalBlockEntity extends BlockEntity implements BlockEntityClien
 	public void clear()
 	{
 		inventory.clear();
+	}
+
+	@Override
+	public DefaultedList<ItemStack> getInventory()
+	{
+		return inventory;
 	}
 }
