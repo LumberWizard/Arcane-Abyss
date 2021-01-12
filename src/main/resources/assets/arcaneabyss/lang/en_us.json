@@ -4,6 +4,7 @@
 
   "#group": "items",
   "item.arcaneabyss.entropic_crystal": "Entropic Crystal",
+  "item.arcaneabyss.fluxthrower": "Fluxthrower",
   "item.arcaneabyss.infused_staff": "Entropy-Infused Staff",
   "item.arcaneabyss.infused_hood": "Entropy-Infused Hood",
   "item.arcaneabyss.infused_robes": "Entropy-Infused Robes",
@@ -14,8 +15,10 @@
   "block.arcaneabyss.entropic_stone_bricks": "Entropic Stone Bricks",
   "block.arcaneabyss.entropic_log": "Entropic Log",
   "block.arcaneabyss.entropic_planks": "Entropic Planks",
+  "block.arcaneabyss.inscription_table": "Inscription Table",
   "block.arcaneabyss.altar": "Altar",
   "block.arcaneabyss.pedestal": "Pedestal",
+  "block.arcaneabyss.entropic_relay": "Flux Relay",
 
   "#group": "status effects",
   "effect.arcaneabyss.entropic_decay": "Entropic Decay",

@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "attachment=floor": {
+      "model": "arcaneabyss:block/entropic_relay"
+    }
+  }
+}

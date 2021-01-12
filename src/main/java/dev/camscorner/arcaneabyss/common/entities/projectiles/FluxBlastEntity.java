@@ -15,7 +15,6 @@ import net.minecraft.network.Packet;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.world.World;
@@ -81,20 +80,10 @@ public class FluxBlastEntity extends PersistentProjectileEntity
 
 		if(world.isClient())
 			for(int i = 0; i < 127; ++i)
-			{
 				world.addParticle(ParticleTypes.WITCH, getPos().x + rand.nextGaussian() / 2, getPos().y + rand.nextGaussian() / 3, getPos().z + rand.nextGaussian() / 2, rand.nextGaussian() / 60, 0D, rand.nextGaussian() / 60);
-				//world.addParticle(ParticleTypes.SMOKE, getPos().x + rand.nextGaussian() / 2, getPos().y + rand.nextGaussian() / 3, getPos().z + rand.nextGaussian() / 2, rand.nextGaussian() / 60, 0D, rand.nextGaussian() / 60);
-			}
 
 		if(age >= MAX_AGE || getOwner() == null)
 			kill();
-	}
-
-	@Override
-	protected void onBlockHit(BlockHitResult blockHitResult)
-	{
-		super.onBlockHit(blockHitResult);
-		kill();
 	}
 
 	@Override

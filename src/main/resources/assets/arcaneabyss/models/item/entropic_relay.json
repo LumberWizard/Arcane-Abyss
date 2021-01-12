@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "arcaneabyss:item/fluxthrower"
+    "layer0": "arcaneabyss:item/entropic_relay"
   }
 }

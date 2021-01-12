@@ -28,18 +28,28 @@ public abstract class ItemRendererMixin
 
 	private final ModelIdentifier staffHandModel = new ModelIdentifier(new Identifier(ArcaneAbyss.MOD_ID, "infused_staff_in_hand"), "inventory");
 	private final ModelIdentifier staffNormalModel = new ModelIdentifier(new Identifier(ArcaneAbyss.MOD_ID, "infused_staff"), "inventory");
+	private final ModelIdentifier fluxThrowerHandModel = new ModelIdentifier(new Identifier(ArcaneAbyss.MOD_ID, "fluxthrower_in_hand"), "inventory");
+	private final ModelIdentifier fluxThrowerNormalModel = new ModelIdentifier(new Identifier(ArcaneAbyss.MOD_ID, "fluxthrower"), "inventory");
 
 	@Shadow public abstract BakedModel getHeldItemModel(ItemStack stack, World world, LivingEntity entity);
 
 	@Inject(method = "getHeldItemModel", at = @At("HEAD"), cancellable = true)
 	public void getModelProxy(ItemStack stack, World world, LivingEntity entity, CallbackInfoReturnable<BakedModel> info)
 	{
-		BakedModel staffModel = models.getModelManager().getModel(staffHandModel);;
 		ClientWorld clientWorld = world instanceof ClientWorld ? (ClientWorld)world : null;
-		BakedModel bakedModel = staffModel.getOverrides().apply(staffModel, stack, clientWorld, entity);
 
 		if(stack.getItem() == ModItems.INFUSED_STAFF)
 		{
+			BakedModel customModel = models.getModelManager().getModel(staffHandModel);;
+			BakedModel bakedModel = customModel.getOverrides().apply(customModel, stack, clientWorld, entity);
+
+			info.setReturnValue(bakedModel == null ? models.getModelManager().getMissingModel() : bakedModel);
+		}
+		else if(stack.getItem() == ModItems.FLUXTHROWER)
+		{
+			BakedModel customModel = models.getModelManager().getModel(fluxThrowerHandModel);;
+			BakedModel bakedModel = customModel.getOverrides().apply(customModel, stack, clientWorld, entity);
+
 			info.setReturnValue(bakedModel == null ? models.getModelManager().getMissingModel() : bakedModel);
 		}
 	}
@@ -47,13 +57,21 @@ public abstract class ItemRendererMixin
 	@Redirect(method = "innerRenderInGui", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/item/ItemRenderer;getHeldItemModel(Lnet/minecraft/item/ItemStack;Lnet/minecraft/world/World;Lnet/minecraft/entity/LivingEntity;)Lnet/minecraft/client/render/model/BakedModel;"))
 	BakedModel getHeldItemModelProxy(final ItemRenderer itemRenderer, final ItemStack stack, final World world, final LivingEntity entity)
 	{
+		final ClientWorld clientWorld = world instanceof ClientWorld ? (ClientWorld) world : null;
+
 		if(stack.getItem() == ModItems.INFUSED_STAFF)
 		{
-			final ClientWorld clientWorld = world instanceof ClientWorld ? (ClientWorld) world : null;
-			final BakedModel model = models.getModelManager().getModel(staffNormalModel);
-			final BakedModel model2 = model.getOverrides().apply(model, stack, clientWorld, entity);
+			final BakedModel customModel = models.getModelManager().getModel(staffNormalModel);
+			final BakedModel bakedModel = customModel.getOverrides().apply(customModel, stack, clientWorld, entity);
 
-			return model2 == null ? models.getModelManager().getMissingModel() : model2;
+			return bakedModel == null ? models.getModelManager().getMissingModel() : bakedModel;
+		}
+		else if(stack.getItem() == ModItems.FLUXTHROWER)
+		{
+			final BakedModel customModel = models.getModelManager().getModel(fluxThrowerNormalModel);
+			final BakedModel bakedModel = customModel.getOverrides().apply(customModel, stack, clientWorld, entity);
+
+			return bakedModel == null ? models.getModelManager().getMissingModel() : bakedModel;
 		}
 
 		return this.getHeldItemModel(stack, world, entity);

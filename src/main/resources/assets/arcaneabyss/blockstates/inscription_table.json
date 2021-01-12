@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "arcaneabyss:block/inscription_table"
+    },
+    "facing=east": {
+      "model": "arcaneabyss:block/inscription_table",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "arcaneabyss:block/inscription_table",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "arcaneabyss:block/inscription_table",
+      "y": 270
+    }
+  }
+}

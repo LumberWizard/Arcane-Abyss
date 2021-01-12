@@ -31,5 +31,6 @@ public class EntropicDecayStatusEffect extends StatusEffect
 	public void applyUpdateEffect(LivingEntity entity, int amplifier)
 	{
 		entity.damage(DamageSource.MAGIC, 2.0F);
+		entity.hurtTime = 0;
 	}
 }
