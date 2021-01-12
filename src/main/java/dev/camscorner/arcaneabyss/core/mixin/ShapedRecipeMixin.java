@@ -27,7 +27,7 @@ public class ShapedRecipeMixin
 		Item item = Registry.ITEM.getOrEmpty(new Identifier(string)).orElseThrow(() -> new JsonSyntaxException("Unknown item '" + string + "'"));
 		int count = JsonHelper.getInt(json, "count", 1);
 		ItemStack stack = new ItemStack(item, count);
-		Optional<TagCodec> tagCodec = TagCodec.CODEC.parse(JsonOps.INSTANCE, json).resultOrPartial(System.out::println);
+		Optional<TagCodec> tagCodec = TagCodec.CODEC.parse(JsonOps.INSTANCE, json).result();
 		tagCodec.ifPresent(value -> stack.getOrCreateTag().copyFrom(value.getTag()));
 
 		info.setReturnValue(stack);
