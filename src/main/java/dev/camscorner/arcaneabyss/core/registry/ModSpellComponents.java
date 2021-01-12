@@ -13,7 +13,7 @@ import java.util.LinkedHashMap;
 
 public class ModSpellComponents
 {
-	//----Spell Component Map----//
+	//-----Spell Component Map-----//
 	public static final LinkedHashMap<SpellComponent, Identifier> COMPONENTS = new LinkedHashMap<>();
 
 	//-----Spell Shapes-----//

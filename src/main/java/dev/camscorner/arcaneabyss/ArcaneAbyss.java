@@ -25,6 +25,7 @@ public class ArcaneAbyss implements ModInitializer
 		ModBlockEntities.register();
 		ModItems.register();
 		ModEntities.register();
+		ModStatusEffects.register();
 		ModRecipes.registerSerializers();
 		ModRecipes.registerTypes();
 		ModSpellComponents.register();

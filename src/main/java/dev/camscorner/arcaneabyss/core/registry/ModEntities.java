@@ -13,7 +13,7 @@ import java.util.LinkedHashMap;
 
 public class ModEntities
 {
-	//----Entity Map----//
+	//-----Entity Map-----//
 	public static final LinkedHashMap<EntityType, Identifier> ENTITIES = new LinkedHashMap<>();
 
 	//-----Entities-----//

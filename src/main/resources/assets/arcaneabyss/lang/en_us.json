@@ -15,5 +15,10 @@
   "block.arcaneabyss.entropic_log": "Entropic Log",
   "block.arcaneabyss.entropic_planks": "Entropic Planks",
   "block.arcaneabyss.altar": "Altar",
-  "block.arcaneabyss.pedestal": "Pedestal"
+  "block.arcaneabyss.pedestal": "Pedestal",
+
+  "#group": "status effects",
+  "effect.arcaneabyss.entropic_decay": "Entropic Decay",
+
+  "#group": "entities"
 }
