@@ -28,7 +28,7 @@ public class FluxthrowerItem extends Item
 		if(!world.isClient())
 		{
 			FluxBlastEntity fluxBlast = new FluxBlastEntity(ModEntities.FLUX_BLAST, user, stack, world);
-			fluxBlast.setProperties(user, user.pitch, user.yaw, 0.0F, 5.0F, 1.0F);
+			fluxBlast.setProperties(user, user.pitch, user.yaw, 0.0F, 2.5F, 1.0F);
 			world.spawnEntity(fluxBlast);
 		}
 
