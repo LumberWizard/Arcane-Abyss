@@ -32,7 +32,7 @@ public class FluxthrowerItem extends Item
 			world.spawnEntity(fluxBlast);
 		}
 
-		return TypedActionResult.success(stack, world.isClient());
+		return TypedActionResult.consume(stack);
 	}
 
 	public void setConsecutiveHit(boolean isConsecutiveHit, ItemStack stack)

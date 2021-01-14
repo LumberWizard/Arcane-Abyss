@@ -7,11 +7,13 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
+import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
@@ -178,6 +180,22 @@ public class AltarBlock extends HorizontalFacingBlock implements BlockEntityProv
 	public @Nullable BlockEntity createBlockEntity(BlockView world)
 	{
 		return new AltarBlockEntity();
+	}
+
+	@Override
+	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved)
+	{
+		if(!world.isClient() && state.getBlock() != newState.getBlock())
+		{
+			BlockEntity blockEntity = world.getBlockEntity(pos);
+
+			if(blockEntity instanceof Inventory)
+			{
+				ItemScatterer.spawn(world, pos, (Inventory) blockEntity);
+			}
+		}
+
+		super.onStateReplaced(state, world, pos, newState, moved);
 	}
 
 	public static Direction getOppositePartDirection(BlockState state)

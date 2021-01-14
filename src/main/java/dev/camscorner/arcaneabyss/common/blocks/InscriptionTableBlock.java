@@ -2,12 +2,14 @@ package dev.camscorner.arcaneabyss.common.blocks;
 
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
+import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
@@ -95,6 +97,22 @@ public class InscriptionTableBlock extends HorizontalFacingBlock implements Bloc
 	public @Nullable BlockEntity createBlockEntity(BlockView world)
 	{
 		return null;
+	}
+
+	@Override
+	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved)
+	{
+		if(!world.isClient() && state.getBlock() != newState.getBlock())
+		{
+			BlockEntity blockEntity = world.getBlockEntity(pos);
+
+			if(blockEntity instanceof Inventory)
+			{
+				ItemScatterer.spawn(world, pos, (Inventory) blockEntity);
+			}
+		}
+
+		super.onStateReplaced(state, world, pos, newState, moved);
 	}
 
 	private void spawnParticle(World world, BlockPos pos, double xOffset, double yOffset, double zOffset)

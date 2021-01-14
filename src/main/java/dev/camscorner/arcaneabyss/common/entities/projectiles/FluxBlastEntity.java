@@ -3,6 +3,7 @@ package dev.camscorner.arcaneabyss.common.entities.projectiles;
 import dev.camscorner.arcaneabyss.client.network.packets.CreateProjectileEntityMessage;
 import dev.camscorner.arcaneabyss.common.items.FluxthrowerItem;
 import dev.camscorner.arcaneabyss.core.registry.ModEntities;
+import dev.camscorner.arcaneabyss.core.registry.ModParticleTypes;
 import dev.camscorner.arcaneabyss.core.registry.ModStatusEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -12,7 +13,7 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.Packet;
-import net.minecraft.particle.ParticleTypes;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.hit.EntityHitResult;
@@ -23,7 +24,7 @@ import java.util.Random;
 
 public class FluxBlastEntity extends PersistentProjectileEntity
 {
-	public static final int MAX_AGE = 2;
+	public static final int MAX_AGE = 5;
 	private boolean hitEntity = false;
 	private Random rand = new Random();
 	private ItemStack stack;
@@ -80,7 +81,7 @@ public class FluxBlastEntity extends PersistentProjectileEntity
 
 		if(world.isClient())
 			for(int i = 0; i < 127; ++i)
-				world.addParticle(ParticleTypes.WITCH, getPos().x + rand.nextGaussian() / 2, getPos().y + rand.nextGaussian() / 3, getPos().z + rand.nextGaussian() / 2, rand.nextGaussian() / 60, 0D, rand.nextGaussian() / 60);
+				world.addParticle((ParticleEffect) ModParticleTypes.ENTROPIC_FLUX, getPos().x + rand.nextGaussian() / 2, getPos().y + rand.nextGaussian() / 3, getPos().z + rand.nextGaussian() / 2, 0D, 0D, 0D);
 
 		if(age >= MAX_AGE || getOwner() == null)
 			kill();
