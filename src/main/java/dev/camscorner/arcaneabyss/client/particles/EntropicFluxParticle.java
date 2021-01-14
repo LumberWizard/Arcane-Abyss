@@ -32,7 +32,7 @@ public class EntropicFluxParticle extends SpriteBillboardParticle
 	{
 		super.buildGeometry(vertexConsumer, camera, tickDelta);
 
-		MinecraftClient.getInstance().getTextureManager().getTexture(SpriteAtlasTexture.PARTICLE_ATLAS_TEXTURE).setFilter(true, false);
+		MinecraftClient.getInstance().getTextureManager().getTexture(SpriteAtlasTexture.PARTICLE_ATLAS_TEXTURE).setFilter(false, false);
 		RenderSystem.depthMask(false);
 		RenderSystem.enableBlend();
 		RenderSystem.blendFunc(GlStateManager.SrcFactor.SRC_ALPHA, GlStateManager.DstFactor.ONE);
