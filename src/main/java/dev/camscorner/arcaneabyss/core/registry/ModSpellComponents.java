@@ -28,6 +28,7 @@ public class ModSpellComponents
 	//-----Spell Elements-----//
 	public static final SpellComponent DAMAGE_ELEMENT = create("damage_element", new DamageElement(0.5F));
 	public static final SpellComponent MINE_ELEMENT = create("mine_element", new MineElement(0.5F));
+	public static final SpellComponent HEAL_ELEMENT = create("heal_element", new HealElement(0.5F));
 	public static final SpellComponent SHIELD_ELEMENT = create("shield_element", new ShieldElement(0.5F));
 	public static final SpellComponent TELEPORT_ELEMENT = create("teleport_element", new TeleportElement(0.5F));
 	public static final SpellComponent SWAP_ELEMENT = create("swap_element", new SwapElement(0.5F));
@@ -38,7 +39,7 @@ public class ModSpellComponents
 	public static final SpellComponent TEMPORAL_ELEMENT = create("temporal_element", new TemporalElement(0.5F));
 
 	//-----Spell Modifiers-----//
-	public static final SpellComponent DAMAGE_MODIFIER = create("damage_modifier", new DamageModifier(0.5F));
+	public static final SpellComponent POTENCY_MODIFIER = create("potency_modifier", new PotencyModifier(0.5F));
 	public static final SpellComponent DURATION_MODIFIER = create("duration_modifier", new DurationModifier(0.5F));
 	public static final SpellComponent RANGE_MODIFIER = create("range_modifier", new RangeModifier(0.5F));
 	public static final SpellComponent SIZE_MODIFIER = create("size_modifier", new SizeModifier(0.5F));

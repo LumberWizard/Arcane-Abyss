@@ -43,7 +43,12 @@ public class EntropicFluxParticle extends SpriteBillboardParticle
 	@Override
 	public void tick()
 	{
-		super.tick();
+		this.prevPosX = this.x;
+		this.prevPosY = this.y;
+		this.prevPosZ = this.z;
+
+		if(this.age++ >= this.maxAge)
+			this.markDead();
 
 		float lifeRatio = (float) age / (float) maxAge;
 		scale = scale - (lifeRatio * scale);

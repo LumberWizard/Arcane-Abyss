@@ -1,6 +1,6 @@
-package dev.camscorner.arcaneabyss.common.spells.modifiers;
+package dev.camscorner.arcaneabyss.common.spells.elements;
 
-import dev.camscorner.arcaneabyss.api.spells.SpellModifier;
+import dev.camscorner.arcaneabyss.api.spells.SpellElement;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -8,9 +8,9 @@ import net.minecraft.item.Items;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
-public class FireElementalModifier extends SpellModifier
+public class HealElement extends SpellElement
 {
-	public FireElementalModifier(float costMultiplier)
+	public HealElement(float costMultiplier)
 	{
 		super(costMultiplier);
 	}
@@ -18,7 +18,7 @@ public class FireElementalModifier extends SpellModifier
 	@Override
 	public Item getItemCost()
 	{
-		return Items.FIRE_CHARGE;
+		return Items.GOLDEN_APPLE;
 	}
 
 	@Override
