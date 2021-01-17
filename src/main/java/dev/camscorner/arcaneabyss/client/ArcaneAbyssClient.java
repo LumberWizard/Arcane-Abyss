@@ -7,6 +7,7 @@ import dev.camscorner.arcaneabyss.client.network.packets.SyncBlockEntityMessage;
 import dev.camscorner.arcaneabyss.client.particles.EntropicFluxParticle;
 import dev.camscorner.arcaneabyss.client.renderers.blockentity.PedestalBlockEntityRenderer;
 import dev.camscorner.arcaneabyss.client.renderers.entity.FluxBlastEntityRenderer;
+import dev.camscorner.arcaneabyss.core.registry.ModEvents;
 import dev.camscorner.arcaneabyss.core.registry.*;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
@@ -51,5 +52,11 @@ public class ArcaneAbyssClient implements ClientModInitializer
 		//-----Custom Armour Model Registry-----//
 		ArmorRenderingRegistry.registerModel((entity, stack, slot, model) -> new InfusedArmourModel<>(slot), ModItems.INFUSED_HOOD, ModItems.INFUSED_ROBES, ModItems.INFUSED_GRIEVES);
 		ArmorRenderingRegistry.registerTexture((entity, stack, slot, layer2, suffix, texture) -> new Identifier(ArcaneAbyss.MOD_ID, "textures/models/armour/infused_armour.png"), ModItems.INFUSED_HOOD, ModItems.INFUSED_ROBES, ModItems.INFUSED_GRIEVES);
+
+		//-----Keybinding Registry-----//
+		ModKeybinds.register();
+
+		//-----Event Registry-----//
+		ModEvents.clientEvents();
 	}
 }

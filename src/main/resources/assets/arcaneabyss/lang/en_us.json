@@ -23,5 +23,11 @@
   "#group": "status effects",
   "effect.arcaneabyss.entropic_decay": "Entropic Decay",
 
-  "#group": "entities"
+  "#group": "entities",
+
+  "#group": "keybind categories",
+  "category.arcaneabyss.general": "Arcane Abyss",
+
+  "#group": "keybinds",
+  "key.arcaneabyss.spell_menu": "Spell Menu"
 }
