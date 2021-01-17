@@ -65,7 +65,7 @@ public class FluxBlastEntity extends PersistentProjectileEntity
 	@Override
 	protected SoundEvent getHitSound()
 	{
-		return SoundEvents.BLOCK_LAVA_POP;
+		return SoundEvents.BLOCK_BUBBLE_COLUMN_WHIRLPOOL_INSIDE;
 	}
 
 	@Override

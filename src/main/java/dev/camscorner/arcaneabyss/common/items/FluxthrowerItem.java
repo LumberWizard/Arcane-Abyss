@@ -5,6 +5,8 @@ import dev.camscorner.arcaneabyss.core.registry.ModEntities;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
@@ -24,6 +26,8 @@ public class FluxthrowerItem extends Item
 		ItemStack stack = user.getStackInHand(hand);
 		int cooldown = consecutiveHit ? 10 : 16;
 		user.getItemCooldownManager().set(this, cooldown);
+		world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ITEM_FIRECHARGE_USE, SoundCategory.PLAYERS,
+				1.0F, 1.0F / (RANDOM.nextFloat() * 0.4F + 1.2F));
 
 		if(!world.isClient())
 		{
