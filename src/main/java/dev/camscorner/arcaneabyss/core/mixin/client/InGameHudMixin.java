@@ -18,10 +18,14 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Mixin(InGameHud.class)
 public abstract class InGameHudMixin extends DrawableHelper
 {
 	private static final Identifier ARCANE_ABYSS_HUD_ELEMENTS = new Identifier(ArcaneAbyss.MOD_ID, "textures/gui/hud_elements.png");
+	private static final double TAU = Math.PI * 2.0F;
 
 	@Shadow
 	protected abstract PlayerEntity getCameraPlayer();
@@ -42,6 +46,8 @@ public abstract class InGameHudMixin extends DrawableHelper
 
 		if(player != null)
 		{
+			List<ItemStack> filteredItems = filteredPlayerItems(player);
+
 			if(spellMenuTicks > 1)
 			{
 				client.getTextureManager().bindTexture(ARCANE_ABYSS_HUD_ELEMENTS);
@@ -56,25 +62,30 @@ public abstract class InGameHudMixin extends DrawableHelper
 				RenderSystem.scalef(0.5F * scale, 0.5F * scale, 1F);
 				RenderSystem.translatef(24, 24, 0);
 
-				for(int i = 0; i < player.inventory.size(); ++i)
-				{
-					ItemStack stack = player.inventory.getStack(i);
+				double angleSize = TAU / filteredItems.size();
+				int i = 0;
 
-					if(stack.getItem() instanceof EnderPearlItem)
-					{
-						/** TODO
-						 * all that needs to be done here is get the x and y coords to make a circle
-						 * and then add the hitbox shenanigans so you can select an item from the wheel
-						 */
-						RenderSystem.translatef(0F, 0F, 0F);
-						client.getItemRenderer().renderInGui(stack, 0, 0);
-					}
+				for(ItemStack stack : filteredItems)
+				{
+					i++;
+					double angleRad = (i * angleSize - (0.5 * Math.PI)) % TAU;
+					client.getItemRenderer().renderInGui(stack, (int) (Math.cos(angleRad) * 26), (int) (Math.sin(angleRad) * 26));
 				}
 
 				RenderSystem.popMatrix();
-
 				client.getTextureManager().bindTexture(GUI_ICONS_TEXTURE);
 			}
 		}
+	}
+
+	public List<ItemStack> filteredPlayerItems(PlayerEntity player)
+	{
+		List<ItemStack> list = new ArrayList<>();
+
+		for(int i = 0; i < player.inventory.size(); i++)
+			if(player.inventory.getStack(i).getItem() instanceof EnderPearlItem)
+				list.add(player.inventory.getStack(i));
+
+		return list;
 	}
 }
