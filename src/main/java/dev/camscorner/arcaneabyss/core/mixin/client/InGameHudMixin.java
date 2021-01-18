@@ -3,12 +3,12 @@ package dev.camscorner.arcaneabyss.core.mixin.client;
 import com.mojang.blaze3d.systems.RenderSystem;
 import dev.camscorner.arcaneabyss.ArcaneAbyss;
 import dev.camscorner.arcaneabyss.core.registry.ModEvents;
+import dev.camscorner.arcaneabyss.core.registry.ModKeybinds;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.EnderPearlItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Final;
@@ -18,7 +18,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Mixin(InGameHud.class)
@@ -37,6 +36,8 @@ public abstract class InGameHudMixin extends DrawableHelper
 	@Final
 	private MinecraftClient client;
 
+	@Shadow private int ticks;
+
 	@Inject(method = "render", at = @At(value = "INVOKE", shift = At.Shift.BEFORE, target = "Lnet/minecraft/client/gui/hud/InGameHud;renderCrosshair(Lnet/minecraft/client/util/math/MatrixStack;)V", ordinal = 0))
 	private void render(MatrixStack matrices, float tickDelta, CallbackInfo callbackInfo)
 	{
@@ -47,7 +48,7 @@ public abstract class InGameHudMixin extends DrawableHelper
 
 		if(player != null)
 		{
-			List<ItemStack> filteredItems = filteredPlayerItems(player);
+			List<ItemStack> filteredItems = ModEvents.filteredPlayerItems(player);
 
 			if(spellMenuTicks > 1)
 			{
@@ -69,16 +70,20 @@ public abstract class InGameHudMixin extends DrawableHelper
 				for(ItemStack stack : filteredItems)
 				{
 					i++;
-					double angleRad = (i * angleSize - (0.5 * Math.PI)) % TAU;
+					double angleRad = (i * angleSize + TAU) % TAU - (0.5 * Math.PI);
 					double x = Math.cos(angleRad) * 26;
 					double y = Math.sin(angleRad) * 26;
 
-					if(Math.abs(mouseAngle - angleRad) < angleSize && isValidDistanceFromMid(10))
+					RenderSystem.pushMatrix();
+					if(Math.abs(mouseAngle - angleRad) < angleSize / 2 && isValidDistFromMid(2))
 					{
 						RenderSystem.scalef(1.25F, 1.25F, 0F);
-					}
 
+						if(!ModKeybinds.SPELL_MENU.isPressed() && ModKeybinds.SPELL_MENU.wasPressed())
+							ModEvents.setStack(stack);
+					}
 					client.getItemRenderer().renderInGui(stack, (int) x, (int) y);
+					RenderSystem.popMatrix();
 				}
 
 				RenderSystem.popMatrix();
@@ -87,26 +92,15 @@ public abstract class InGameHudMixin extends DrawableHelper
 		}
 	}
 
-	public boolean isValidDistanceFromMid(float value)
+	public boolean isValidDistFromMid(float value)
 	{
-		return client.mouse.getX() - (client.getWindow().getWidth() / 2F) > value &&
-				client.mouse.getY() - (client.getWindow().getHeight() / 2F) > value;
+		return Math.abs(client.mouse.getX() - (client.getWindow().getWidth() / 2F)) > value &&
+				Math.abs(client.mouse.getY() - (client.getWindow().getHeight() / 2F)) > value;
 	}
 
 	public double mouseAngle()
 	{
 		return (Math.atan2(client.mouse.getX() - (client.getWindow().getWidth() / 2F),
-				client.mouse.getY() - (client.getWindow().getHeight() / 2F)) - (0.5 * Math.PI)) % TAU;
-	}
-
-	public List<ItemStack> filteredPlayerItems(PlayerEntity player)
-	{
-		List<ItemStack> list = new ArrayList<>();
-
-		for(int i = 0; i < player.inventory.size(); i++)
-			if(player.inventory.getStack(i).getItem() instanceof EnderPearlItem)
-				list.add(player.inventory.getStack(i));
-
-		return list;
+				(client.getWindow().getHeight() / 2F) - client.mouse.getY()) + TAU) % TAU - (0.5 * Math.PI);
 	}
 }
