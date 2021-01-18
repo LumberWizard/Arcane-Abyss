@@ -2,43 +2,28 @@ package dev.camscorner.arcaneabyss.core.registry;
 
 import dev.camscorner.arcaneabyss.common.items.StaffItem;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.minecraft.client.MinecraftClient;
 
 public class ModEvents
 {
+	public static int spellMenuTicks = 0;
+
 	public static void clientEvents()
 	{
-		//-----Tick Event-----//
-		ClientTickEvents.END_CLIENT_TICK.register(new ClientTickEvents.EndTick()
+		//-----Client Tick Event-----//
+		ClientTickEvents.END_CLIENT_TICK.register(client ->
 		{
-			private int spellMenuTicks = 0;
-
-			@Override
-			public void onEndTick(MinecraftClient client)
+			if(client.player != null && client.currentScreen == null)
 			{
-				if(client.player != null && client.currentScreen == null)
+				if(client.player.getMainHandStack().getItem() instanceof StaffItem ||
+						client.player.getOffHandStack().getItem() instanceof StaffItem)
 				{
-					if(client.player.getMainHandStack().getItem() instanceof StaffItem ||
-							client.player.getOffHandStack().getItem() instanceof StaffItem)
+					if(ModKeybinds.SPELL_MENU.isPressed())
 					{
-						if(ModKeybinds.SPELL_MENU.isPressed())
-						{
-							if(client.mouse.isCursorLocked())
-								client.mouse.unlockCursor();
+						if(client.mouse.isCursorLocked())
+							client.mouse.unlockCursor();
 
-							if(spellMenuTicks < 10)
-								++spellMenuTicks;
-						}
-						else
-						{
-							if(!client.mouse.isCursorLocked())
-							{
-								client.mouse.lockCursor();
-							}
-
-							if(spellMenuTicks > 0)
-								--spellMenuTicks;
-						}
+						if(spellMenuTicks < 5)
+							++spellMenuTicks;
 					}
 					else
 					{
@@ -50,6 +35,16 @@ public class ModEvents
 						if(spellMenuTicks > 0)
 							--spellMenuTicks;
 					}
+				}
+				else
+				{
+					if(!client.mouse.isCursorLocked())
+					{
+						client.mouse.lockCursor();
+					}
+
+					if(spellMenuTicks > 0)
+						--spellMenuTicks;
 				}
 			}
 		});

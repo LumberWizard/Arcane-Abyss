@@ -1,4 +1,4 @@
-package dev.camscorner.arcaneabyss.core.mixin;
+package dev.camscorner.arcaneabyss.core.mixin.client;
 
 import dev.camscorner.arcaneabyss.ArcaneAbyss;
 import dev.camscorner.arcaneabyss.core.registry.ModItems;

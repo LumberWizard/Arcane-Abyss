@@ -28,6 +28,8 @@ public class FluxthrowerItem extends Item
 		user.getItemCooldownManager().set(this, cooldown);
 		world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ITEM_FIRECHARGE_USE, SoundCategory.PLAYERS,
 				1.0F, 1.0F / (RANDOM.nextFloat() * 0.4F + 1.2F));
+		world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.BLOCK_BUBBLE_COLUMN_UPWARDS_INSIDE, SoundCategory.PLAYERS,
+				1.0F, 1.0F / (RANDOM.nextFloat() * 0.4F + 1.2F));
 
 		if(!world.isClient())
 		{

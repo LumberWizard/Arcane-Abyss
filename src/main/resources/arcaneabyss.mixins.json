@@ -8,8 +8,9 @@
     "ShapedRecipeMixin"
   ],
   "client": [
-    "ArmorFeatureRendererMixin",
-    "ItemRendererMixin"
+    "client.ArmorFeatureRendererMixin",
+    "client.ItemRendererMixin",
+    "client.InGameHudMixin"
   ],
   "injectors": {
     "defaultRequire": 1

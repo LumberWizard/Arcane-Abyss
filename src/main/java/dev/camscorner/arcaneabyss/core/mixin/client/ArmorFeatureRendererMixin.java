@@ -1,4 +1,4 @@
-package dev.camscorner.arcaneabyss.core.mixin;
+package dev.camscorner.arcaneabyss.core.mixin.client;
 
 import dev.camscorner.arcaneabyss.client.models.InfusedArmourModel;
 import net.minecraft.client.render.VertexConsumerProvider;
