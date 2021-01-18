@@ -10,9 +10,9 @@ import net.minecraft.world.World;
 
 public class RangeModifier extends SpellModifier
 {
-	public RangeModifier(float costMultiplier)
+	public RangeModifier(float costMultiplier, int maxLevel)
 	{
-		super(costMultiplier);
+		super(costMultiplier, maxLevel, "k");
 	}
 
 	@Override

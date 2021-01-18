@@ -10,9 +10,9 @@ import net.minecraft.world.World;
 
 public class PotencyModifier extends SpellModifier
 {
-	public PotencyModifier(float costMultiplier)
+	public PotencyModifier(float costMultiplier, int maxLevel)
 	{
-		super(costMultiplier);
+		super(costMultiplier, maxLevel, "i");
 	}
 
 	@Override

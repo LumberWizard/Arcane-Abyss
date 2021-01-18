@@ -12,7 +12,7 @@ public class JammerElement extends SpellElement
 {
 	public JammerElement(float costMultiplier)
 	{
-		super(costMultiplier);
+		super(costMultiplier, "g");
 	}
 
 	@Override

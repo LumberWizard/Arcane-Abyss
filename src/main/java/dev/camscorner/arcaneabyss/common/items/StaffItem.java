@@ -2,19 +2,24 @@ package dev.camscorner.arcaneabyss.common.items;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
+import dev.camscorner.arcaneabyss.ArcaneAbyss;
 import net.minecraft.block.BlockState;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class StaffItem extends Item
 {
 	private final Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers;
+	private static final Identifier ICONS = new Identifier(ArcaneAbyss.MOD_ID, "textures/gui/hud_elements.png");
+	private final MinecraftClient client = MinecraftClient.getInstance();
 
 	public StaffItem(Item.Settings settings, double attackDamage, double attackSpeed)
 	{

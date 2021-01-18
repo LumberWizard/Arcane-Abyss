@@ -12,7 +12,7 @@ public class TrapShape extends SpellShape
 {
 	public TrapShape(float costMultiplier, boolean isInstant)
 	{
-		super(costMultiplier, isInstant);
+		super(costMultiplier, isInstant, "3");
 	}
 
 	@Override

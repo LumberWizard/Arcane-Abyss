@@ -10,9 +10,9 @@ import net.minecraft.world.World;
 
 public class VoidElementalModifier extends SpellModifier
 {
-	public VoidElementalModifier(float costMultiplier)
+	public VoidElementalModifier(float costMultiplier, int maxLevel)
 	{
-		super(costMultiplier);
+		super(costMultiplier, maxLevel, "r");
 	}
 
 	@Override

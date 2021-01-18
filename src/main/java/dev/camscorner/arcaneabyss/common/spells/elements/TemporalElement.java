@@ -12,7 +12,7 @@ public class TemporalElement extends SpellElement
 {
 	public TemporalElement(float costMultiplier)
 	{
-		super(costMultiplier);
+		super(costMultiplier, "h");
 	}
 
 	@Override

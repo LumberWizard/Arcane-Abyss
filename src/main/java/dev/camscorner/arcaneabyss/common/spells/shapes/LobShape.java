@@ -12,7 +12,7 @@ public class LobShape extends SpellShape
 {
 	public LobShape(float costMultiplier, boolean isInstant)
 	{
-		super(costMultiplier, isInstant);
+		super(costMultiplier, isInstant, "5");
 	}
 
 	@Override

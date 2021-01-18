@@ -12,7 +12,7 @@ public class ProjectileShape extends SpellShape
 {
 	public ProjectileShape(float costMultiplier, boolean isInstant)
 	{
-		super(costMultiplier, isInstant);
+		super(costMultiplier, isInstant, "1");
 	}
 
 	@Override

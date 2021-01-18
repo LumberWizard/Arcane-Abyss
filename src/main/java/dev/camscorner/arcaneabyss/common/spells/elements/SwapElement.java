@@ -12,7 +12,7 @@ public class SwapElement extends SpellElement
 {
 	public SwapElement(float costMultiplier)
 	{
-		super(costMultiplier);
+		super(costMultiplier, "c");
 	}
 
 	@Override

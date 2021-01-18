@@ -10,9 +10,9 @@ import net.minecraft.world.World;
 
 public class WaterElementalModifier extends SpellModifier
 {
-	public WaterElementalModifier(float costMultiplier)
+	public WaterElementalModifier(float costMultiplier, int maxLevel)
 	{
-		super(costMultiplier);
+		super(costMultiplier, maxLevel, "n");
 	}
 
 	@Override

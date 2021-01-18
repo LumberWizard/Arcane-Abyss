@@ -12,7 +12,7 @@ public class MineElement extends SpellElement
 {
 	public MineElement(float costMultiplier)
 	{
-		super(costMultiplier);
+		super(costMultiplier, "8");
 	}
 
 	@Override

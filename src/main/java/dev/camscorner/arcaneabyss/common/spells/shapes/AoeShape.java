@@ -12,7 +12,7 @@ public class AoeShape extends SpellShape
 {
 	public AoeShape(float costMultiplier, boolean isInstant)
 	{
-		super(costMultiplier, isInstant);
+		super(costMultiplier, isInstant, "4");
 	}
 
 	@Override

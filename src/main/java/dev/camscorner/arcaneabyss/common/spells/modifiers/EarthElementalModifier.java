@@ -10,9 +10,9 @@ import net.minecraft.world.World;
 
 public class EarthElementalModifier extends SpellModifier
 {
-	public EarthElementalModifier(float costMultiplier)
+	public EarthElementalModifier(float costMultiplier, int maxLevel)
 	{
-		super(costMultiplier);
+		super(costMultiplier, maxLevel, "p");
 	}
 
 	@Override

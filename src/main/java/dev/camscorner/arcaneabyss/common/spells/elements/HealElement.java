@@ -12,7 +12,7 @@ public class HealElement extends SpellElement
 {
 	public HealElement(float costMultiplier)
 	{
-		super(costMultiplier);
+		super(costMultiplier, "9");
 	}
 
 	@Override

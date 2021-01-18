@@ -41,7 +41,7 @@ public class ModEvents
 
 				if(stack != null)
 				{
-					player.sendMessage(stack.getName(), false);
+					//player.sendMessage(stack.getName(), false);
 					stack = null;
 				}
 

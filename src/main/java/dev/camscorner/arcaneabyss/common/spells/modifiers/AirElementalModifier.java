@@ -10,9 +10,9 @@ import net.minecraft.world.World;
 
 public class AirElementalModifier extends SpellModifier
 {
-	public AirElementalModifier(float costMultiplier)
+	public AirElementalModifier(float costMultiplier, int maxLevel)
 	{
-		super(costMultiplier);
+		super(costMultiplier, maxLevel, "q");
 	}
 
 	@Override

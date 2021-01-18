@@ -10,9 +10,9 @@ import net.minecraft.world.World;
 
 public class FireElementalModifier extends SpellModifier
 {
-	public FireElementalModifier(float costMultiplier)
+	public FireElementalModifier(float costMultiplier, int maxLevel)
 	{
-		super(costMultiplier);
+		super(costMultiplier, maxLevel, "o");
 	}
 
 	@Override

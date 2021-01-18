@@ -12,7 +12,7 @@ public class ConjureElementalElement extends SpellElement
 {
 	public ConjureElementalElement(float costMultiplier)
 	{
-		super(costMultiplier);
+		super(costMultiplier, "d");
 	}
 
 	@Override

@@ -12,7 +12,7 @@ public class BeamShape extends SpellShape
 {
 	public BeamShape(float costMultiplier, boolean isInstant)
 	{
-		super(costMultiplier, isInstant);
+		super(costMultiplier, isInstant, "0");
 	}
 
 	@Override

@@ -12,7 +12,7 @@ public class SelfShape extends SpellShape
 {
 	public SelfShape(float costMultiplier, boolean isInstant)
 	{
-		super(costMultiplier, isInstant);
+		super(costMultiplier, isInstant, "6");
 	}
 
 	@Override

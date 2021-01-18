@@ -10,9 +10,9 @@ import net.minecraft.world.World;
 
 public class SizeModifier extends SpellModifier
 {
-	public SizeModifier(float costMultiplier)
+	public SizeModifier(float costMultiplier, int maxLevel)
 	{
-		super(costMultiplier);
+		super(costMultiplier, maxLevel, "l");
 	}
 
 	@Override

@@ -12,7 +12,7 @@ public class TouchShape extends SpellShape
 {
 	public TouchShape(float costMultiplier, boolean isInstant)
 	{
-		super(costMultiplier, isInstant);
+		super(costMultiplier, isInstant, "2");
 	}
 
 	@Override

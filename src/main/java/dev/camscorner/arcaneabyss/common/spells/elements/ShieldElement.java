@@ -12,7 +12,7 @@ public class ShieldElement extends SpellElement
 {
 	public ShieldElement(float costMultiplier)
 	{
-		super(costMultiplier);
+		super(costMultiplier, "a");
 	}
 
 	@Override

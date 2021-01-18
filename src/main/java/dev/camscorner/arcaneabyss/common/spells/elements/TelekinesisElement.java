@@ -12,7 +12,7 @@ public class TelekinesisElement extends SpellElement
 {
 	public TelekinesisElement(float costMultiplier)
 	{
-		super(costMultiplier);
+		super(costMultiplier, "e");
 	}
 
 	@Override

@@ -12,7 +12,7 @@ public class ResistanceElement extends SpellElement
 {
 	public ResistanceElement(float costMultiplier)
 	{
-		super(costMultiplier);
+		super(costMultiplier, "f");
 	}
 
 	@Override

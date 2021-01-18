@@ -12,7 +12,7 @@ public class DamageElement extends SpellElement
 {
 	public DamageElement(float costMultiplier)
 	{
-		super(costMultiplier);
+		super(costMultiplier, "7");
 	}
 
 	@Override

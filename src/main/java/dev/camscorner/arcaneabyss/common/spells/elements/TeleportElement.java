@@ -12,7 +12,7 @@ public class TeleportElement extends SpellElement
 {
 	public TeleportElement(float costMultiplier)
 	{
-		super(costMultiplier);
+		super(costMultiplier, "b");
 	}
 
 	@Override

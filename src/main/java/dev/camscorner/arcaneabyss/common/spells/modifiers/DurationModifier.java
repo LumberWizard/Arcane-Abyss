@@ -10,9 +10,9 @@ import net.minecraft.world.World;
 
 public class DurationModifier extends SpellModifier
 {
-	public DurationModifier(float costMultiplier)
+	public DurationModifier(float costMultiplier, int maxLevel)
 	{
-		super(costMultiplier);
+		super(costMultiplier, maxLevel, "j");
 	}
 
 	@Override

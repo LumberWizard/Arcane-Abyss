@@ -10,9 +10,9 @@ import net.minecraft.world.World;
 
 public class SplitModifier extends SpellModifier
 {
-	public SplitModifier(float costMultiplier)
+	public SplitModifier(float costMultiplier, int maxLevel)
 	{
-		super(costMultiplier);
+		super(costMultiplier, maxLevel, "m");
 	}
 
 	@Override
