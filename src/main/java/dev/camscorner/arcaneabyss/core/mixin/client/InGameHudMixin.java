@@ -43,6 +43,7 @@ public abstract class InGameHudMixin extends DrawableHelper
 		PlayerEntity player = getCameraPlayer();
 		float spellMenuTicks = ModEvents.spellMenuTicks;
 		float scale = 1F;
+		double mouseAngle = mouseAngle();
 
 		if(player != null)
 		{
@@ -69,13 +70,33 @@ public abstract class InGameHudMixin extends DrawableHelper
 				{
 					i++;
 					double angleRad = (i * angleSize - (0.5 * Math.PI)) % TAU;
-					client.getItemRenderer().renderInGui(stack, (int) (Math.cos(angleRad) * 26), (int) (Math.sin(angleRad) * 26));
+					double x = Math.cos(angleRad) * 26;
+					double y = Math.sin(angleRad) * 26;
+
+					if(Math.abs(mouseAngle - angleRad) < angleSize && isValidDistanceFromMid(10))
+					{
+						RenderSystem.scalef(1.25F, 1.25F, 0F);
+					}
+
+					client.getItemRenderer().renderInGui(stack, (int) x, (int) y);
 				}
 
 				RenderSystem.popMatrix();
 				client.getTextureManager().bindTexture(GUI_ICONS_TEXTURE);
 			}
 		}
+	}
+
+	public boolean isValidDistanceFromMid(float value)
+	{
+		return client.mouse.getX() - (client.getWindow().getWidth() / 2F) > value &&
+				client.mouse.getY() - (client.getWindow().getHeight() / 2F) > value;
+	}
+
+	public double mouseAngle()
+	{
+		return (Math.atan2(client.mouse.getX() - (client.getWindow().getWidth() / 2F),
+				client.mouse.getY() - (client.getWindow().getHeight() / 2F)) - (0.5 * Math.PI)) % TAU;
 	}
 
 	public List<ItemStack> filteredPlayerItems(PlayerEntity player)
