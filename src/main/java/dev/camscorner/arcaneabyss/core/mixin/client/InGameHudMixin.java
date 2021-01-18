@@ -1,16 +1,23 @@
 package dev.camscorner.arcaneabyss.core.mixin.client;
 
+import com.google.common.collect.Lists;
 import com.mojang.blaze3d.systems.RenderSystem;
 import dev.camscorner.arcaneabyss.ArcaneAbyss;
 import dev.camscorner.arcaneabyss.core.registry.ModEvents;
 import dev.camscorner.arcaneabyss.core.registry.ModKeybinds;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.gui.hud.InGameHud;
+import net.minecraft.client.item.TooltipContext;
+import net.minecraft.client.render.*;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.text.OrderedText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.Matrix4f;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -36,7 +43,8 @@ public abstract class InGameHudMixin extends DrawableHelper
 	@Final
 	private MinecraftClient client;
 
-	@Shadow private int ticks;
+	@Shadow
+	public abstract TextRenderer getFontRenderer();
 
 	@Inject(method = "render", at = @At(value = "INVOKE", shift = At.Shift.BEFORE, target = "Lnet/minecraft/client/gui/hud/InGameHud;renderCrosshair(Lnet/minecraft/client/util/math/MatrixStack;)V", ordinal = 0))
 	private void render(MatrixStack matrices, float tickDelta, CallbackInfo callbackInfo)
@@ -44,7 +52,9 @@ public abstract class InGameHudMixin extends DrawableHelper
 		PlayerEntity player = getCameraPlayer();
 		float spellMenuTicks = ModEvents.spellMenuTicks;
 		float scale = 1F;
-		double mouseAngle = mouseAngle();
+		double mouseX = client.mouse.getX();
+		double mouseY = client.mouse.getY();
+		double mouseAngle = mouseAngle(mouseX, mouseY);
 
 		if(player != null)
 		{
@@ -75,8 +85,10 @@ public abstract class InGameHudMixin extends DrawableHelper
 					double y = Math.sin(angleRad) * 26;
 
 					RenderSystem.pushMatrix();
-					if(Math.abs(mouseAngle - angleRad) < angleSize / 2 && isValidDistFromMid(2))
+					if(Math.abs(mouseAngle - angleRad) < angleSize / 2 && isValidDistFromMid(0.1F))
 					{
+						renderTooltip(matrices, stack, (int) ((mouseX * scaledWidth / client.getWindow().getWidth()) - (scaledWidth / 2.04D)),
+								(int) ((mouseY * scaledHeight / client.getWindow().getHeight()) - (scaledHeight / 2.09F)));
 						RenderSystem.scalef(1.25F, 1.25F, 0F);
 
 						if(!ModKeybinds.SPELL_MENU.isPressed() && ModKeybinds.SPELL_MENU.wasPressed())
@@ -92,15 +104,101 @@ public abstract class InGameHudMixin extends DrawableHelper
 		}
 	}
 
+	public void renderTooltip(MatrixStack matrices, ItemStack stack, int x, int y)
+	{
+		List<OrderedText> lines = Lists.transform(stack.getTooltip(this.client.player, this.client.options.advancedItemTooltips ? TooltipContext.Default.ADVANCED : TooltipContext.Default.NORMAL), Text::asOrderedText);
+
+		if(!lines.isEmpty())
+		{
+			int i = 0;
+
+			for(OrderedText orderedText : lines)
+			{
+				int j = this.getFontRenderer().getWidth(orderedText);
+
+				if(j > i)
+				{
+					i = j;
+				}
+			}
+
+			int k = x + 12;
+			int l = y - 12;
+			int n = 8;
+
+			if(lines.size() > 1)
+			{
+				n += 2 + (lines.size() - 1) * 10;
+			}
+
+			if(k + i > 256)
+			{
+				k -= 28 + i;
+			}
+
+			if(l + n + 6 > 256)
+			{
+				l = 256 - n - 6;
+			}
+
+			matrices.push();
+			Tessellator tessellator = Tessellator.getInstance();
+			BufferBuilder bufferBuilder = tessellator.getBuffer();
+			bufferBuilder.begin(7, VertexFormats.POSITION_COLOR);
+			Matrix4f matrix4f = matrices.peek().getModel();
+			fillGradient(matrix4f, bufferBuilder, k - 3, l - 4, k + i + 3, l - 3, 400, -267386864, -267386864);
+			fillGradient(matrix4f, bufferBuilder, k - 3, l + n + 3, k + i + 3, l + n + 4, 400, -267386864, -267386864);
+			fillGradient(matrix4f, bufferBuilder, k - 3, l - 3, k + i + 3, l + n + 3, 400, -267386864, -267386864);
+			fillGradient(matrix4f, bufferBuilder, k - 4, l - 3, k - 3, l + n + 3, 400, -267386864, -267386864);
+			fillGradient(matrix4f, bufferBuilder, k + i + 3, l - 3, k + i + 4, l + n + 3, 400, -267386864, -267386864);
+			fillGradient(matrix4f, bufferBuilder, k - 3, l - 3 + 1, k - 3 + 1, l + n + 3 - 1, 400, 1347420415, 1344798847);
+			fillGradient(matrix4f, bufferBuilder, k + i + 2, l - 3 + 1, k + i + 3, l + n + 3 - 1, 400, 1347420415, 1344798847);
+			fillGradient(matrix4f, bufferBuilder, k - 3, l - 3, k + i + 3, l - 3 + 1, 400, 1347420415, 1347420415);
+			fillGradient(matrix4f, bufferBuilder, k - 3, l + n + 2, k + i + 3, l + n + 3, 400, 1344798847, 1344798847);
+			RenderSystem.enableDepthTest();
+			RenderSystem.disableTexture();
+			RenderSystem.enableBlend();
+			RenderSystem.defaultBlendFunc();
+			RenderSystem.shadeModel(7425);
+			bufferBuilder.end();
+			BufferRenderer.draw(bufferBuilder);
+			RenderSystem.shadeModel(7424);
+			RenderSystem.disableBlend();
+			RenderSystem.enableTexture();
+			VertexConsumerProvider.Immediate immediate = VertexConsumerProvider.immediate(Tessellator.getInstance().getBuffer());
+			matrices.translate(0.0D, 0.0D, 400.0D);
+
+			for(int s = 0; s < lines.size(); ++s)
+			{
+				OrderedText orderedText2 = lines.get(s);
+
+				if(orderedText2 != null)
+				{
+					this.getFontRenderer().draw(orderedText2, (float)k, (float)l, -1, true, matrix4f, immediate, false, 0, 15728880);
+				}
+
+				if(s == 0)
+				{
+					l += 2;
+				}
+
+				l += 10;
+			}
+
+			immediate.draw();
+			matrices.pop();
+		}
+	}
+
 	public boolean isValidDistFromMid(float value)
 	{
 		return Math.abs(client.mouse.getX() - (client.getWindow().getWidth() / 2F)) > value &&
 				Math.abs(client.mouse.getY() - (client.getWindow().getHeight() / 2F)) > value;
 	}
 
-	public double mouseAngle()
+	public double mouseAngle(double mouseX, double mouseY)
 	{
-		return (Math.atan2(client.mouse.getX() - (client.getWindow().getWidth() / 2F),
-				(client.getWindow().getHeight() / 2F) - client.mouse.getY()) + TAU) % TAU - (0.5 * Math.PI);
+		return (Math.atan2(mouseX - (client.getWindow().getWidth() / 2F),
+				(client.getWindow().getHeight() / 2F) - mouseY) + TAU) % TAU - (0.5 * Math.PI);
 	}
 }
