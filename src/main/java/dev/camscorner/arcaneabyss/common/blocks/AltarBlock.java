@@ -1,19 +1,26 @@
 package dev.camscorner.arcaneabyss.common.blocks;
 
+import dev.camscorner.arcaneabyss.client.network.packets.SyncBlockEntityMessage;
 import dev.camscorner.arcaneabyss.common.blocks.entities.AltarBlockEntity;
 import dev.camscorner.arcaneabyss.common.blocks.enums.AltarPart;
+import dev.camscorner.arcaneabyss.common.items.StaffItem;
+import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;
+import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
@@ -36,6 +43,38 @@ public class AltarBlock extends HorizontalFacingBlock implements BlockEntityProv
 	{
 		super(settings);
 		this.setDefaultState(this.stateManager.getDefaultState().with(PART, AltarPart.LEFT));
+	}
+
+	@Override
+	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit)
+	{
+		boolean client = world.isClient;
+		ItemStack stack = player.getStackInHand(hand);
+		AltarBlockEntity blockEntity = state.get(PART) == AltarPart.LEFT ? (AltarBlockEntity) world.getBlockEntity(pos) :
+				(AltarBlockEntity) world.getBlockEntity(pos.offset(getOppositePartDirection(state)));
+
+		if(!client)
+		{
+			if(!stack.isEmpty())
+			{
+				Item item = stack.getItem();
+
+				if(!(item instanceof StaffItem) && item != blockEntity.getStack(0).getItem())
+				{
+					ItemScatterer.spawn(world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, blockEntity.removeStack(0, 1));
+					blockEntity.setStack(0, stack.split(1));
+					blockEntity.sync();
+				}
+			}
+			else
+			{
+				ItemScatterer.spawn(world, pos.add(0, 1, 0), blockEntity);
+				blockEntity.sync();
+				PlayerLookup.tracking(blockEntity).forEach(playerEntity -> SyncBlockEntityMessage.send(player, blockEntity));
+			}
+		}
+
+		return ActionResult.success(client);
 	}
 
 	@Override

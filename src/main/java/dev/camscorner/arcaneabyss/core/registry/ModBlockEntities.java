@@ -2,6 +2,7 @@ package dev.camscorner.arcaneabyss.core.registry;
 
 import dev.camscorner.arcaneabyss.ArcaneAbyss;
 import dev.camscorner.arcaneabyss.common.blocks.entities.AltarBlockEntity;
+import dev.camscorner.arcaneabyss.common.blocks.entities.InscriptionTableBlockEntity;
 import dev.camscorner.arcaneabyss.common.blocks.entities.PedestalBlockEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
@@ -19,6 +20,7 @@ public class ModBlockEntities
 	//-----Block Entity Types-----//
 	public static final BlockEntityType<AltarBlockEntity> ALTAR = create("altar", BlockEntityType.Builder.create(AltarBlockEntity::new, ModBlocks.ALTAR).build(null));
 	public static final BlockEntityType<PedestalBlockEntity> PEDESTAL = create("pedestal", BlockEntityType.Builder.create(PedestalBlockEntity::new, ModBlocks.PEDESTAL).build(null));
+	public static final BlockEntityType<InscriptionTableBlockEntity> INSCRIPTION_TABLE = create("inscription_table", BlockEntityType.Builder.create(InscriptionTableBlockEntity::new, ModBlocks.INSCRIPTION_TABLE).build(null));
 
 	//-----Registry-----//
 	public static void register()

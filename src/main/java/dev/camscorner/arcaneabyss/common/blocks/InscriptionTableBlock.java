@@ -1,15 +1,17 @@
 package dev.camscorner.arcaneabyss.common.blocks;
 
+import dev.camscorner.arcaneabyss.common.blocks.entities.InscriptionTableBlockEntity;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
-import net.minecraft.util.BlockMirror;
-import net.minecraft.util.BlockRotation;
-import net.minecraft.util.ItemScatterer;
+import net.minecraft.util.*;
+import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
@@ -26,6 +28,22 @@ public class InscriptionTableBlock extends HorizontalFacingBlock implements Bloc
 	{
 		super(settings);
 		this.setDefaultState(getDefaultState().with(FACING, Direction.NORTH));
+	}
+
+	@Override
+	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit)
+	{
+		boolean client = world.isClient;
+
+		if(!client)
+		{
+			NamedScreenHandlerFactory screenHandlerFactory = state.createScreenHandlerFactory(world, pos);
+
+			if(screenHandlerFactory != null)
+				player.openHandledScreen(screenHandlerFactory);
+		}
+
+		return ActionResult.success(client);
 	}
 
 	@Override
@@ -96,7 +114,7 @@ public class InscriptionTableBlock extends HorizontalFacingBlock implements Bloc
 	@Override
 	public @Nullable BlockEntity createBlockEntity(BlockView world)
 	{
-		return null;
+		return new InscriptionTableBlockEntity();
 	}
 
 	@Override

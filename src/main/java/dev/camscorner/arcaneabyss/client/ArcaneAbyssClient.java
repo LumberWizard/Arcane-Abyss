@@ -5,9 +5,9 @@ import dev.camscorner.arcaneabyss.client.models.InfusedArmourModel;
 import dev.camscorner.arcaneabyss.client.network.packets.CreateProjectileEntityMessage;
 import dev.camscorner.arcaneabyss.client.network.packets.SyncBlockEntityMessage;
 import dev.camscorner.arcaneabyss.client.particles.EntropicFluxParticle;
+import dev.camscorner.arcaneabyss.client.renderers.blockentity.AltarBlockEntityRenderer;
 import dev.camscorner.arcaneabyss.client.renderers.blockentity.PedestalBlockEntityRenderer;
 import dev.camscorner.arcaneabyss.client.renderers.entity.FluxBlastEntityRenderer;
-import dev.camscorner.arcaneabyss.core.registry.ModEvents;
 import dev.camscorner.arcaneabyss.core.registry.*;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
@@ -44,6 +44,7 @@ public class ArcaneAbyssClient implements ClientModInitializer
 		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), ModBlocks.INSCRIPTION_TABLE, ModBlocks.RELAY);
 
 		//-----Block Entity Renderer Registry-----//
+		BlockEntityRendererRegistry.INSTANCE.register(ModBlockEntities.ALTAR, AltarBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.INSTANCE.register(ModBlockEntities.PEDESTAL, PedestalBlockEntityRenderer::new);
 
 		//-----Entity Renderer Registry-----//
