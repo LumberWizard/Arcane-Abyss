@@ -22,6 +22,12 @@ public class SelfShape extends SpellShape
 	}
 
 	@Override
+	public int getColour()
+	{
+		return 0x169C9C;
+	}
+
+	@Override
 	public void onRightClick(PlayerEntity caster, World world, Hand hand, ItemStack stack)
 	{
 

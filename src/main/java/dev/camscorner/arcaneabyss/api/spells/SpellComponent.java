@@ -13,4 +13,9 @@ public interface SpellComponent
 	{
 		return Items.AIR;
 	}
+
+	default int getColour()
+	{
+		return 0xFFFFFF;
+	}
 }

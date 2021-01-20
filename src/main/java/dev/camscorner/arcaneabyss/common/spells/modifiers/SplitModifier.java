@@ -22,6 +22,12 @@ public class SplitModifier extends SpellModifier
 	}
 
 	@Override
+	public int getColour()
+	{
+		return 0x008B64;
+	}
+
+	@Override
 	public void onCast(PlayerEntity caster, World world, Hand hand, ItemStack stack)
 	{
 

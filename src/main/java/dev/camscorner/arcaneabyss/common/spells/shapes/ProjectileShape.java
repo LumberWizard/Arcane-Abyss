@@ -22,6 +22,12 @@ public class ProjectileShape extends SpellShape
 	}
 
 	@Override
+	public int getColour()
+	{
+		return 0xC74EBD;
+	}
+
+	@Override
 	public void onRightClick(PlayerEntity caster, World world, Hand hand, ItemStack stack)
 	{
 

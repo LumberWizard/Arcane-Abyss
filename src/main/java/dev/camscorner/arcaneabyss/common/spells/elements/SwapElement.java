@@ -22,6 +22,12 @@ public class SwapElement extends SpellElement
 	}
 
 	@Override
+	public int getColour()
+	{
+		return 0xFF974E;
+	}
+
+	@Override
 	public void onCast(PlayerEntity caster, World world, Hand hand, ItemStack stack)
 	{
 

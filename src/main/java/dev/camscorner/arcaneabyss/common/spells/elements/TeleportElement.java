@@ -22,6 +22,12 @@ public class TeleportElement extends SpellElement
 	}
 
 	@Override
+	public int getColour()
+	{
+		return 0xA40190;
+	}
+
+	@Override
 	public void onCast(PlayerEntity caster, World world, Hand hand, ItemStack stack)
 	{
 

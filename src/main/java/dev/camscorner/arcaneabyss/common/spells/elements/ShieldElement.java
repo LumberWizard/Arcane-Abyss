@@ -22,6 +22,12 @@ public class ShieldElement extends SpellElement
 	}
 
 	@Override
+	public int getColour()
+	{
+		return 0x8A0A09;
+	}
+
+	@Override
 	public void onCast(PlayerEntity caster, World world, Hand hand, ItemStack stack)
 	{
 

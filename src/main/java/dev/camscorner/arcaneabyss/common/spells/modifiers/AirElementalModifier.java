@@ -22,6 +22,12 @@ public class AirElementalModifier extends SpellModifier
 	}
 
 	@Override
+	public int getColour()
+	{
+		return 0xE45200;
+	}
+
+	@Override
 	public void onCast(PlayerEntity caster, World world, Hand hand, ItemStack stack)
 	{
 

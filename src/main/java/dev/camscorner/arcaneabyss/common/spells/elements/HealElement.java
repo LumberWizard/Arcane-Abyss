@@ -22,6 +22,12 @@ public class HealElement extends SpellElement
 	}
 
 	@Override
+	public int getColour()
+	{
+		return 0x5E7C16;
+	}
+
+	@Override
 	public void onCast(PlayerEntity caster, World world, Hand hand, ItemStack stack)
 	{
 

@@ -22,6 +22,12 @@ public class VoidElementalModifier extends SpellModifier
 	}
 
 	@Override
+	public int getColour()
+	{
+		return 0x252525;
+	}
+
+	@Override
 	public void onCast(PlayerEntity caster, World world, Hand hand, ItemStack stack)
 	{
 

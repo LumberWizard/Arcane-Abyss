@@ -1,6 +1,7 @@
 package dev.camscorner.arcaneabyss.client;
 
 import dev.camscorner.arcaneabyss.ArcaneAbyss;
+import dev.camscorner.arcaneabyss.api.ArcaneAbyssApi;
 import dev.camscorner.arcaneabyss.client.gui.screen.InscriptionTableScreen;
 import dev.camscorner.arcaneabyss.client.models.InfusedArmourModel;
 import dev.camscorner.arcaneabyss.client.network.packets.CreateProjectileEntityMessage;
@@ -20,10 +21,13 @@ import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderingRegistry;
 import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
 import net.fabricmc.fabric.impl.client.particle.ParticleFactoryRegistryImpl;
+import net.fabricmc.fabric.impl.client.rendering.ColorProviderRegistryImpl;
 import net.fabricmc.fabric.impl.networking.ClientSidePacketRegistryImpl;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.util.ModelIdentifier;
 import net.minecraft.util.Identifier;
+
+import static dev.camscorner.arcaneabyss.core.registry.ModItems.RUNIC_STONE;
 
 @Environment(EnvType.CLIENT)
 public class ArcaneAbyssClient implements ClientModInitializer
@@ -64,5 +68,9 @@ public class ArcaneAbyssClient implements ClientModInitializer
 
 		//-----Event Registry-----//
 		ModEvents.clientEvents();
+
+		//-----Colour Registry-----//
+		ColorProviderRegistryImpl.ITEM.register(((stack, tintIndex) -> tintIndex == 0 ? 0xFFFFFF :
+				ArcaneAbyssApi.COMPONENT.get(new Identifier(stack.getOrCreateTag().getString("Component"))).getColour()), RUNIC_STONE);
 	}
 }

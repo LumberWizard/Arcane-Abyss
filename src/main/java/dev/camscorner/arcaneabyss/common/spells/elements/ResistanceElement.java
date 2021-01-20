@@ -22,6 +22,12 @@ public class ResistanceElement extends SpellElement
 	}
 
 	@Override
+	public int getColour()
+	{
+		return 0x05F3CF;
+	}
+
+	@Override
 	public void onCast(PlayerEntity caster, World world, Hand hand, ItemStack stack)
 	{
 

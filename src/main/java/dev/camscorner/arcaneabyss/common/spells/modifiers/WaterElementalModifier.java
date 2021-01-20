@@ -22,6 +22,12 @@ public class WaterElementalModifier extends SpellModifier
 	}
 
 	@Override
+	public int getColour()
+	{
+		return 0x101A79;
+	}
+
+	@Override
 	public void onCast(PlayerEntity caster, World world, Hand hand, ItemStack stack)
 	{
 

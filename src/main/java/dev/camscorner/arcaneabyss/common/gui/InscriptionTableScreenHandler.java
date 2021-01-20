@@ -1,7 +1,7 @@
 package dev.camscorner.arcaneabyss.common.gui;
 
 import dev.camscorner.arcaneabyss.ArcaneAbyss;
-import dev.camscorner.arcaneabyss.common.gui.slot.FancySlot;
+import dev.camscorner.arcaneabyss.common.gui.slot.HideableSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
@@ -38,7 +38,7 @@ public class InscriptionTableScreenHandler extends ScreenHandler
 		{
 			for(l = 0; l < 6; ++l)
 			{
-				addSlot(new FancySlot(inventory, (l + 2) + m * 3, 35 + l * 18, 101 + m * 18));
+				addSlot(new HideableSlot(inventory, (l + 2) + m * 3, 35 + l * 18, 101 + m * 18));
 			}
 		}
 

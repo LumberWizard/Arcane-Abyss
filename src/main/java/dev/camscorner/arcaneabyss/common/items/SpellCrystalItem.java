@@ -47,7 +47,10 @@ public class SpellCrystalItem extends Item
 			}
 		}
 
-		tooltip.add(text);
-		tooltip.add(new LiteralText(""));
+		if(text.asString() != "")
+		{
+			tooltip.add(text);
+			tooltip.add(new LiteralText(""));
+		}
 	}
 }

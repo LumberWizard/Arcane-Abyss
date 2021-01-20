@@ -22,6 +22,12 @@ public class SizeModifier extends SpellModifier
 	}
 
 	@Override
+	public int getColour()
+	{
+		return 0xB41467;
+	}
+
+	@Override
 	public void onCast(PlayerEntity caster, World world, Hand hand, ItemStack stack)
 	{
 

@@ -22,6 +22,12 @@ public class AoeShape extends SpellShape
 	}
 
 	@Override
+	public int getColour()
+	{
+		return 0x80C71F;
+	}
+
+	@Override
 	public void onRightClick(PlayerEntity caster, World world, Hand hand, ItemStack stack)
 	{
 

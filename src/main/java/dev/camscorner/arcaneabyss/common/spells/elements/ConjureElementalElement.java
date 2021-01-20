@@ -22,6 +22,12 @@ public class ConjureElementalElement extends SpellElement
 	}
 
 	@Override
+	public int getColour()
+	{
+		return 0x8932B8;
+	}
+
+	@Override
 	public void onCast(PlayerEntity caster, World world, Hand hand, ItemStack stack)
 	{
 

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures":
+  {
+    "layer0": "arcaneabyss:item/runic_stone",
+    "layer1": "arcaneabyss:item/runic_stone_overlay"
+  }
+}

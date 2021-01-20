@@ -22,6 +22,12 @@ public class RangeModifier extends SpellModifier
 	}
 
 	@Override
+	public int getColour()
+	{
+		return 0xDE3163;
+	}
+
+	@Override
 	public void onCast(PlayerEntity caster, World world, Hand hand, ItemStack stack)
 	{
 

@@ -22,6 +22,12 @@ public class TrapShape extends SpellShape
 	}
 
 	@Override
+	public int getColour()
+	{
+		return 0xFED83D;
+	}
+
+	@Override
 	public void onRightClick(PlayerEntity caster, World world, Hand hand, ItemStack stack)
 	{
 

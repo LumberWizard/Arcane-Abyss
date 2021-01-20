@@ -3,6 +3,7 @@ package dev.camscorner.arcaneabyss.core.registry;
 import dev.camscorner.arcaneabyss.ArcaneAbyss;
 import dev.camscorner.arcaneabyss.api.ArcaneAbyssApi;
 import dev.camscorner.arcaneabyss.common.items.FluxthrowerItem;
+import dev.camscorner.arcaneabyss.common.items.RunicStoneItem;
 import dev.camscorner.arcaneabyss.common.items.SpellCrystalItem;
 import dev.camscorner.arcaneabyss.common.items.StaffItem;
 import net.minecraft.entity.EquipmentSlot;
@@ -26,6 +27,7 @@ public class ModItems
 	public static final Item INFUSED_ROBES = create("infused_robes", new ArmorItem(ModArmourMaterials.INFUSED, EquipmentSlot.CHEST, new Item.Settings().group(ArcaneAbyssApi.ITEM_GROUP)));
 	public static final Item INFUSED_GRIEVES = create("infused_grieves", new ArmorItem(ModArmourMaterials.INFUSED, EquipmentSlot.LEGS, new Item.Settings().group(ArcaneAbyssApi.ITEM_GROUP)));
 	public static final Item SPELL_CRYSTAL = create("spell_crystal", new SpellCrystalItem(new Item.Settings().group(ArcaneAbyssApi.ITEM_GROUP).maxCount(1)));
+	public static final Item RUNIC_STONE = create("runic_stone", new RunicStoneItem(new Item.Settings().group(ArcaneAbyssApi.ITEM_GROUP).maxCount(1)));
 
 	//-----Registry-----//
 	public static void register()

@@ -22,6 +22,12 @@ public class LobShape extends SpellShape
 	}
 
 	@Override
+	public int getColour()
+	{
+		return 0xF38BAA;
+	}
+
+	@Override
 	public void onRightClick(PlayerEntity caster, World world, Hand hand, ItemStack stack)
 	{
 

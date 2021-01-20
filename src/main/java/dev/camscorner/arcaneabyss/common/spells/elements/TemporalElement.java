@@ -22,6 +22,12 @@ public class TemporalElement extends SpellElement
 	}
 
 	@Override
+	public int getColour()
+	{
+		return 0xE3A51E;
+	}
+
+	@Override
 	public void onCast(PlayerEntity caster, World world, Hand hand, ItemStack stack)
 	{
 

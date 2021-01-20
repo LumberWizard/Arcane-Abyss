@@ -22,6 +22,12 @@ public class JammerElement extends SpellElement
 	}
 
 	@Override
+	public int getColour()
+	{
+		return 0xB02E26;
+	}
+
+	@Override
 	public void onCast(PlayerEntity caster, World world, Hand hand, ItemStack stack)
 	{
 

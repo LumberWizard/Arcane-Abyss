@@ -22,6 +22,12 @@ public class FireElementalModifier extends SpellModifier
 	}
 
 	@Override
+	public int getColour()
+	{
+		return 0xFE2224;
+	}
+
+	@Override
 	public void onCast(PlayerEntity caster, World world, Hand hand, ItemStack stack)
 	{
 

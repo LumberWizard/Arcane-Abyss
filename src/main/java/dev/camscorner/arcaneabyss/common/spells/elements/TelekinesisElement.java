@@ -22,6 +22,12 @@ public class TelekinesisElement extends SpellElement
 	}
 
 	@Override
+	public int getColour()
+	{
+		return 0xFEAA8E;
+	}
+
+	@Override
 	public void onCast(PlayerEntity caster, World world, Hand hand, ItemStack stack)
 	{
 

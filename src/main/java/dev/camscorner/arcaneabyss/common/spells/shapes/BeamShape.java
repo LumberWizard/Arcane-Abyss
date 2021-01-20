@@ -22,6 +22,12 @@ public class BeamShape extends SpellShape
 	}
 
 	@Override
+	public int getColour()
+	{
+		return 0xF9801D;
+	}
+
+	@Override
 	public void onRightClick(PlayerEntity caster, World world, Hand hand, ItemStack stack)
 	{
 

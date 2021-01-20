@@ -22,6 +22,12 @@ public class TouchShape extends SpellShape
 	}
 
 	@Override
+	public int getColour()
+	{
+		return 0x3AB3DA;
+	}
+
+	@Override
 	public void onRightClick(PlayerEntity caster, World world, Hand hand, ItemStack stack)
 	{
 

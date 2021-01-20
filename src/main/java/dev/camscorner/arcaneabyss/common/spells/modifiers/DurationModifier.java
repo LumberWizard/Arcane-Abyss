@@ -22,6 +22,12 @@ public class DurationModifier extends SpellModifier
 	}
 
 	@Override
+	public int getColour()
+	{
+		return 0x2C0F7C;
+	}
+
+	@Override
 	public void onCast(PlayerEntity caster, World world, Hand hand, ItemStack stack)
 	{
 
