@@ -9,8 +9,8 @@
   ],
   "client": [
     "client.ArmorFeatureRendererMixin",
-    "client.ItemRendererMixin",
-    "client.InGameHudMixin"
+    "client.InGameHudMixin",
+    "client.ItemRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

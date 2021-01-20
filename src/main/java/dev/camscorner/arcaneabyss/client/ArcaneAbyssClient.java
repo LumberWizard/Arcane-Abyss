@@ -1,6 +1,7 @@
 package dev.camscorner.arcaneabyss.client;
 
 import dev.camscorner.arcaneabyss.ArcaneAbyss;
+import dev.camscorner.arcaneabyss.client.gui.screen.InscriptionTableScreen;
 import dev.camscorner.arcaneabyss.client.models.InfusedArmourModel;
 import dev.camscorner.arcaneabyss.client.network.packets.CreateProjectileEntityMessage;
 import dev.camscorner.arcaneabyss.client.network.packets.SyncBlockEntityMessage;
@@ -17,6 +18,7 @@ import net.fabricmc.fabric.api.client.model.ModelLoadingRegistry;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderingRegistry;
+import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
 import net.fabricmc.fabric.impl.client.particle.ParticleFactoryRegistryImpl;
 import net.fabricmc.fabric.impl.networking.ClientSidePacketRegistryImpl;
 import net.minecraft.client.render.RenderLayer;
@@ -56,6 +58,9 @@ public class ArcaneAbyssClient implements ClientModInitializer
 
 		//-----Keybinding Registry-----//
 		ModKeybinds.register();
+
+		//-----Screen Registry-----//
+		ScreenRegistry.register(ArcaneAbyss.INSCRIPTION_TABLE_SCREEN_HANDLER, InscriptionTableScreen::new);
 
 		//-----Event Registry-----//
 		ModEvents.clientEvents();

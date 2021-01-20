@@ -1,9 +1,9 @@
 package dev.camscorner.arcaneabyss.core.registry;
 
+import dev.camscorner.arcaneabyss.common.items.SpellCrystalItem;
 import dev.camscorner.arcaneabyss.common.items.StaffItem;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.EnderPearlItem;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ public class ModEvents
 		List<ItemStack> list = new ArrayList<>();
 
 		for(int i = 0; i < player.inventory.size(); i++)
-			if(player.inventory.getStack(i).getItem() instanceof EnderPearlItem)
+			if(player.inventory.getStack(i).getItem() instanceof SpellCrystalItem)
 				list.add(player.inventory.getStack(i));
 
 		return list;

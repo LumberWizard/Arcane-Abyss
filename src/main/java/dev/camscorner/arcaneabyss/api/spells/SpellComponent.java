@@ -7,7 +7,7 @@ import net.minecraft.util.Identifier;
 
 public interface SpellComponent
 {
-	Identifier DEFAULT_FONT = new Identifier(ArcaneAbyss.MOD_ID, "spell_components");
+	Identifier DEFAULT_FONT = new Identifier(ArcaneAbyss.MOD_ID, "spell_icons");
 
 	default Item getItemCost()
 	{

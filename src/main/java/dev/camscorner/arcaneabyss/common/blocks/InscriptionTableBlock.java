@@ -20,7 +20,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 
-public class InscriptionTableBlock extends HorizontalFacingBlock implements BlockEntityProvider
+public class InscriptionTableBlock extends BlockWithEntity
 {
 	public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
 
@@ -43,7 +43,7 @@ public class InscriptionTableBlock extends HorizontalFacingBlock implements Bloc
 				player.openHandledScreen(screenHandlerFactory);
 		}
 
-		return ActionResult.success(client);
+		return ActionResult.SUCCESS;
 	}
 
 	@Override

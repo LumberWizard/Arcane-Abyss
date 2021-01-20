@@ -1,5 +1,6 @@
 package dev.camscorner.arcaneabyss.common.blocks.entities;
 
+import dev.camscorner.arcaneabyss.common.gui.InscriptionTableScreenHandler;
 import dev.camscorner.arcaneabyss.core.registry.ModBlockEntities;
 import dev.camscorner.arcaneabyss.core.util.HasInventory;
 import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
@@ -22,6 +23,7 @@ import org.jetbrains.annotations.Nullable;
 public class InscriptionTableBlockEntity extends BlockEntity implements BlockEntityClientSerializable, NamedScreenHandlerFactory, Inventory, HasInventory
 {
 	private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(8, ItemStack.EMPTY);
+	private InscriptionTableScreenHandler handler;
 
 	public InscriptionTableBlockEntity(BlockEntityType<?> type)
 	{
@@ -31,6 +33,13 @@ public class InscriptionTableBlockEntity extends BlockEntity implements BlockEnt
 	public InscriptionTableBlockEntity()
 	{
 		this(ModBlockEntities.INSCRIPTION_TABLE);
+	}
+
+	@Override
+	public void markDirty()
+	{
+		super.markDirty();
+		handler.onContentChanged(this);
 	}
 
 	@Override
@@ -123,6 +132,7 @@ public class InscriptionTableBlockEntity extends BlockEntity implements BlockEnt
 	@Override
 	public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player)
 	{
-		return null;
+		handler = new InscriptionTableScreenHandler(syncId, player.inventory, this);
+		return handler;
 	}
 }
