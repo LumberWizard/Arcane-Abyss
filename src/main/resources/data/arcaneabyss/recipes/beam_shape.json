@@ -19,7 +19,7 @@
   },
   "result":
   {
-    "item": "arcaneabyss:entropic_crystal",
+    "item": "arcaneabyss:runic_stone",
     "nbt":
     {
       "ShapeComponent": "arcaneabyss:beam_shape"
