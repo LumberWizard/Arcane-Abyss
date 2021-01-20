@@ -1,18 +1,72 @@
 {
   "variants": {
-    "facing=north": {
-      "model": "arcaneabyss:block/inscription_table"
+    "facing=north,has_ink=false,has_paper=false": {
+      "model": "arcaneabyss:block/inscription_table_with_nothing"
     },
-    "facing=east": {
-      "model": "arcaneabyss:block/inscription_table",
+    "facing=east,has_ink=false,has_paper=false": {
+      "model": "arcaneabyss:block/inscription_table_with_nothing",
       "y": 90
     },
-    "facing=south": {
-      "model": "arcaneabyss:block/inscription_table",
+    "facing=south,has_ink=false,has_paper=false": {
+      "model": "arcaneabyss:block/inscription_table_with_nothing",
       "y": 180
     },
-    "facing=west": {
-      "model": "arcaneabyss:block/inscription_table",
+    "facing=west,has_ink=false,has_paper=false": {
+      "model": "arcaneabyss:block/inscription_table_with_nothing",
+      "y": 270
+    },
+
+
+
+    "facing=north,has_ink=true,has_paper=false": {
+      "model": "arcaneabyss:block/inscription_table_with_ink"
+    },
+    "facing=east,has_ink=true,has_paper=false": {
+      "model": "arcaneabyss:block/inscription_table_with_ink",
+      "y": 90
+    },
+    "facing=south,has_ink=true,has_paper=false": {
+      "model": "arcaneabyss:block/inscription_table_with_ink",
+      "y": 180
+    },
+    "facing=west,has_ink=true,has_paper=false": {
+      "model": "arcaneabyss:block/inscription_table_with_ink",
+      "y": 270
+    },
+
+
+
+    "facing=north,has_ink=false,has_paper=true": {
+      "model": "arcaneabyss:block/inscription_table_with_paper"
+    },
+    "facing=east,has_ink=false,has_paper=true": {
+      "model": "arcaneabyss:block/inscription_table_with_paper",
+      "y": 90
+    },
+    "facing=south,has_ink=false,has_paper=true": {
+      "model": "arcaneabyss:block/inscription_table_with_paper",
+      "y": 180
+    },
+    "facing=west,has_ink=false,has_paper=true": {
+      "model": "arcaneabyss:block/inscription_table_with_paper",
+      "y": 270
+    },
+
+
+
+    "facing=north,has_ink=true,has_paper=true": {
+      "model": "arcaneabyss:block/inscription_table_with_both"
+    },
+    "facing=east,has_ink=true,has_paper=true": {
+      "model": "arcaneabyss:block/inscription_table_with_both",
+      "y": 90
+    },
+    "facing=south,has_ink=true,has_paper=true": {
+      "model": "arcaneabyss:block/inscription_table_with_both",
+      "y": 180
+    },
+    "facing=west,has_ink=true,has_paper=true": {
+      "model": "arcaneabyss:block/inscription_table_with_both",
       "y": 270
     }
   }

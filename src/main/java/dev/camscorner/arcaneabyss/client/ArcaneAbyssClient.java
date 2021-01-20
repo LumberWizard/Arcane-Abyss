@@ -20,6 +20,7 @@ import net.fabricmc.fabric.api.client.rendereregistry.v1.BlockEntityRendererRegi
 import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderingRegistry;
 import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
+import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
 import net.fabricmc.fabric.impl.client.particle.ParticleFactoryRegistryImpl;
 import net.fabricmc.fabric.impl.client.rendering.ColorProviderRegistryImpl;
 import net.fabricmc.fabric.impl.networking.ClientSidePacketRegistryImpl;
@@ -38,6 +39,9 @@ public class ArcaneAbyssClient implements ClientModInitializer
 		//-----Packet Registry-----//
 		ClientSidePacketRegistryImpl.INSTANCE.register(SyncBlockEntityMessage.ID, SyncBlockEntityMessage::handle);
 		ClientSidePacketRegistryImpl.INSTANCE.register(CreateProjectileEntityMessage.ID, CreateProjectileEntityMessage::handle);
+
+		//-----Predicate Registry-----//
+		registerPredicates();
 
 		//-----Particle Registry-----//
 		ParticleFactoryRegistryImpl.INSTANCE.register(ModParticleTypes.ENTROPIC_FLUX, EntropicFluxParticle.Factory::new);
@@ -72,5 +76,12 @@ public class ArcaneAbyssClient implements ClientModInitializer
 		//-----Colour Registry-----//
 		ColorProviderRegistryImpl.ITEM.register(((stack, tintIndex) -> tintIndex == 0 ? 0xFFFFFF :
 				ArcaneAbyssApi.COMPONENT.get(new Identifier(stack.getOrCreateTag().getString("Component"))).getColour()), RUNIC_STONE);
+	}
+
+	public void registerPredicates()
+	{
+		FabricModelPredicateProviderRegistry.register(new Identifier(ArcaneAbyss.MOD_ID, "complexity"), (stack, world, entity) -> stack.getOrCreateTag().getShort("Complexity"));
+
+		FabricModelPredicateProviderRegistry.register(new Identifier(ArcaneAbyss.MOD_ID, "known"), (stack, world, entity) -> Boolean.compare(stack.getOrCreateTag().getBoolean("Known"), false));
 	}
 }

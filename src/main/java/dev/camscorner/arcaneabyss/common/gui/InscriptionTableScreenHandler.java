@@ -2,6 +2,8 @@ package dev.camscorner.arcaneabyss.common.gui;
 
 import dev.camscorner.arcaneabyss.ArcaneAbyss;
 import dev.camscorner.arcaneabyss.common.gui.slot.HideableSlot;
+import dev.camscorner.arcaneabyss.common.gui.slot.ItemSpecificSlot;
+import dev.camscorner.arcaneabyss.core.registry.ModItems;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
@@ -26,13 +28,11 @@ public class InscriptionTableScreenHandler extends ScreenHandler
 		this.inventory = inventory;
 		inventory.onOpen(playerInventory.player);
 
-		//This will place the slot in the correct locations for a 3x3 Grid. The slots exist on both server and client!
-		//This will not render the background of the slots however, this is the Screens job
 		int m;
 		int l;
 
-		addSlot(new Slot(inventory, 0, 8, 7));
-		addSlot(new Slot(inventory, 1, 152, 7));
+		addSlot(new ItemSpecificSlot(inventory, 0, 8, 7, ModItems.INK_POT));
+		addSlot(new ItemSpecificSlot(inventory, 1, 152, 7, ModItems.RESEARCH_SCROLL, ModItems.SPELL_PAPER));
 
 		for(m = 0; m < 1; ++m)
 		{
@@ -64,7 +64,6 @@ public class InscriptionTableScreenHandler extends ScreenHandler
 		return this.inventory.canPlayerUse(player);
 	}
 
-	// Shift + Player Inv Slot
 	@Override
 	public ItemStack transferSlot(PlayerEntity player, int invSlot)
 	{

@@ -73,4 +73,9 @@ public class RunicStoneItem extends Item
 			});
 		}
 	}
+
+	public SpellComponent getSpellComponent(ItemStack stack)
+	{
+		return ArcaneAbyssApi.COMPONENT.get(new Identifier(stack.getOrCreateTag().getString("Component")));
+	}
 }

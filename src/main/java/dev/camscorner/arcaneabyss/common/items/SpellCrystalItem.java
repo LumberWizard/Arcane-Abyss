@@ -21,12 +21,6 @@ public class SpellCrystalItem extends Item
 	public SpellCrystalItem(Settings settings)
 	{
 		super(settings);
-		/*spellComponents[0] = ModSpellComponents.BEAM_SHAPE;
-		spellComponents[1] = ModSpellComponents.DAMAGE_ELEMENT;
-		spellComponents[2] = ModSpellComponents.FIRE_ELEMENTAL_MODIFIER;
-		spellComponents[3] = ModSpellComponents.AOE_SHAPE;
-		spellComponents[4] = ModSpellComponents.TEMPORAL_ELEMENT;
-		spellComponents[5] = ModSpellComponents.POTENCY_MODIFIER;*/
 	}
 
 	@Override

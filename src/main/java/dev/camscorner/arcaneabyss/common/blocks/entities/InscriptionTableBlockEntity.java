@@ -1,5 +1,6 @@
 package dev.camscorner.arcaneabyss.common.blocks.entities;
 
+import dev.camscorner.arcaneabyss.common.blocks.InscriptionTableBlock;
 import dev.camscorner.arcaneabyss.common.gui.InscriptionTableScreenHandler;
 import dev.camscorner.arcaneabyss.core.registry.ModBlockEntities;
 import dev.camscorner.arcaneabyss.core.util.HasInventory;
@@ -39,6 +40,8 @@ public class InscriptionTableBlockEntity extends BlockEntity implements BlockEnt
 	public void markDirty()
 	{
 		super.markDirty();
+		world.setBlockState(pos, world.getBlockState(pos).with(InscriptionTableBlock.HAS_INK, !inventory.get(0).isEmpty()));
+		world.setBlockState(pos, world.getBlockState(pos).with(InscriptionTableBlock.HAS_PAPER, !inventory.get(1).isEmpty()));
 		handler.onContentChanged(this);
 	}
 

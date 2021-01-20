@@ -9,6 +9,7 @@ import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.state.StateManager;
+import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
@@ -23,11 +24,13 @@ import java.util.Random;
 public class InscriptionTableBlock extends BlockWithEntity
 {
 	public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
+	public static final BooleanProperty HAS_INK = BooleanProperty.of("has_ink");
+	public static final BooleanProperty HAS_PAPER = BooleanProperty.of("has_paper");
 
 	public InscriptionTableBlock(Settings settings)
 	{
 		super(settings);
-		this.setDefaultState(getDefaultState().with(FACING, Direction.NORTH));
+		this.setDefaultState(getDefaultState().with(FACING, Direction.NORTH).with(HAS_INK, false).with(HAS_PAPER, false));
 	}
 
 	@Override
@@ -71,7 +74,7 @@ public class InscriptionTableBlock extends BlockWithEntity
 	@Override
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder)
 	{
-		builder.add(FACING);
+		builder.add(FACING, HAS_INK, HAS_PAPER);
 	}
 
 	@Override
@@ -96,7 +99,7 @@ public class InscriptionTableBlock extends BlockWithEntity
 	@Override
 	public BlockState getPlacementState(ItemPlacementContext ctx)
 	{
-		return getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite());
+		return getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite()).with(HAS_INK, false).with(HAS_PAPER, false);
 	}
 
 	@Override

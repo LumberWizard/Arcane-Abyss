@@ -1,0 +1,79 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "arcaneabyss:item/novice_research_scroll"
+  },
+
+  "overrides": [
+    {
+      "predicate": {
+        "arcaneabyss:known": 0,
+        "arcaneabyss:complexity": 0
+      },
+      "model": "arcaneabyss:item/scrolls/novice_research_scroll_unknown"
+    },
+    {
+      "predicate": {
+        "arcaneabyss:known": 1,
+        "arcaneabyss:complexity": 0
+      },
+      "model": "arcaneabyss:item/scrolls/novice_research_scroll_known"
+    },
+    {
+      "predicate": {
+        "arcaneabyss:known": 0,
+        "arcaneabyss:complexity": 1
+      },
+      "model": "arcaneabyss:item/scrolls/apprentice_research_scroll_unknown"
+    },
+    {
+      "predicate": {
+        "arcaneabyss:known": 1,
+        "arcaneabyss:complexity": 1
+      },
+      "model": "arcaneabyss:item/scrolls/apprentice_research_scroll_known"
+    },
+    {
+      "predicate": {
+        "arcaneabyss:known": 0,
+        "arcaneabyss:complexity": 2
+      },
+      "model": "arcaneabyss:item/scrolls/journeyman_research_scroll_unknown"
+    },
+    {
+      "predicate": {
+        "arcaneabyss:known": 1,
+        "arcaneabyss:complexity": 2
+      },
+      "model": "arcaneabyss:item/scrolls/journeyman_research_scroll_known"
+    },
+    {
+      "predicate": {
+        "arcaneabyss:known": 0,
+        "arcaneabyss:complexity": 3
+      },
+      "model": "arcaneabyss:item/scrolls/expert_research_scroll_unknown"
+    },
+    {
+      "predicate": {
+        "arcaneabyss:known": 1,
+        "arcaneabyss:complexity": 3
+      },
+      "model": "arcaneabyss:item/scrolls/expert_research_scroll_known"
+    },
+    {
+      "predicate": {
+        "arcaneabyss:known": 0,
+        "arcaneabyss:complexity": 4
+      },
+      "model": "arcaneabyss:item/scrolls/master_research_scroll_unknown"
+    },
+    {
+      "predicate": {
+        "arcaneabyss:known": 1,
+        "arcaneabyss:complexity": 4
+      },
+      "model": "arcaneabyss:item/scrolls/master_research_scroll_known"
+    }
+  ]
+}
