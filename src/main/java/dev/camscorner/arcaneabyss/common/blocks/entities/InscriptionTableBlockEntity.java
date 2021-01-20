@@ -16,6 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandler;
+import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.collection.DefaultedList;
@@ -135,7 +136,7 @@ public class InscriptionTableBlockEntity extends BlockEntity implements BlockEnt
 	@Override
 	public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player)
 	{
-		handler = new InscriptionTableScreenHandler(syncId, player.inventory, this);
+		handler = new InscriptionTableScreenHandler(syncId, player.inventory, this, ScreenHandlerContext.create(world, pos));
 		return handler;
 	}
 }

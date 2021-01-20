@@ -25,7 +25,8 @@ public class ModEvents
 
 		for(int i = 0; i < player.inventory.size(); i++)
 			if(player.inventory.getStack(i).getItem() instanceof SpellCrystalItem)
-				list.add(player.inventory.getStack(i));
+				if(player.inventory.getStack(i).getOrCreateTag().contains("Component_1"))
+					list.add(player.inventory.getStack(i));
 
 		return list;
 	}

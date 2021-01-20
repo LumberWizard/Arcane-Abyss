@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "AAA",
+    "ABA",
+    "AAA"
+  ],
+  "key":
+  {
+    "A":
+    {
+      "item": "arcaneabyss:entropic_stone"
+    },
+    "B":
+    {
+      "item": "minecraft:arrow"
+    }
+  },
+  "result":
+  {
+    "item": "arcaneabyss:runic_stone",
+    "nbt":
+    {
+      "Component": "arcaneabyss:projectile_shape"
+    }
+  }
+}

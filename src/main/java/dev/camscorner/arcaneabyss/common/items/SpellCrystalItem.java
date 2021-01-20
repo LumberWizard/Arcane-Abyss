@@ -1,5 +1,6 @@
 package dev.camscorner.arcaneabyss.common.items;
 
+import dev.camscorner.arcaneabyss.api.ArcaneAbyssApi;
 import dev.camscorner.arcaneabyss.api.spells.SpellComponent;
 import dev.camscorner.arcaneabyss.api.spells.SpellElement;
 import dev.camscorner.arcaneabyss.api.spells.SpellModifier;
@@ -9,6 +10,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -16,7 +18,8 @@ import java.util.List;
 
 public class SpellCrystalItem extends Item
 {
-	private SpellComponent[] spellComponents = new SpellComponent[6];
+	public SpellComponent[] spellComponents = new SpellComponent[6];
+	public boolean isBlank = true;
 
 	public SpellCrystalItem(Settings settings)
 	{
@@ -26,6 +29,11 @@ public class SpellCrystalItem extends Item
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context)
 	{
+		for(int i = 0; i < spellComponents.length; i++)
+		{
+			spellComponents[i] = ArcaneAbyssApi.COMPONENT.get(new Identifier(stack.getOrCreateTag().getString("Component_" + i)));
+		}
+
 		LiteralText text = new LiteralText("");
 
 		for(SpellComponent component : spellComponents)
@@ -41,7 +49,7 @@ public class SpellCrystalItem extends Item
 			}
 		}
 
-		if(text.asString() != "")
+		if(!text.equals(new LiteralText("")))
 		{
 			tooltip.add(text);
 			tooltip.add(new LiteralText(""));

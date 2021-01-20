@@ -10,11 +10,11 @@
   {
     "A":
     {
-      "item": "minecraft:diamond"
+      "item": "arcaneabyss:entropic_stone"
     },
     "B":
     {
-      "item": "minecraft:diamond_block"
+      "item": "minecraft:glowstone_dust"
     }
   },
   "result":
@@ -22,7 +22,7 @@
     "item": "arcaneabyss:runic_stone",
     "nbt":
     {
-      "ShapeComponent": "arcaneabyss:beam_shape"
+      "Component": "arcaneabyss:potency_modifier"
     }
   }
 }
