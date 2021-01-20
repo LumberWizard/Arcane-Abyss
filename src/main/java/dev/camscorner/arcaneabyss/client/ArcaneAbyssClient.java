@@ -81,7 +81,7 @@ public class ArcaneAbyssClient implements ClientModInitializer
 	public void registerPredicates()
 	{
 		FabricModelPredicateProviderRegistry.register(new Identifier(ArcaneAbyss.MOD_ID, "complexity"), (stack, world, entity) -> stack.getOrCreateTag().getShort("Complexity"));
-
 		FabricModelPredicateProviderRegistry.register(new Identifier(ArcaneAbyss.MOD_ID, "known"), (stack, world, entity) -> Boolean.compare(stack.getOrCreateTag().getBoolean("Known"), false));
+		FabricModelPredicateProviderRegistry.register(new Identifier(ArcaneAbyss.MOD_ID, "written"), ((stack, world, entity) -> Boolean.compare(stack.getOrCreateTag().contains("Component_1"), false)));
 	}
 }

@@ -73,11 +73,12 @@ public class InscriptionTableScreenHandler extends ScreenHandler
 	{
 		int count = inventory.getStack(2).getCount() + inventory.getStack(3).getCount() + inventory.getStack(4).getCount() +
 				inventory.getStack(5).getCount() + inventory.getStack(6).getCount() + inventory.getStack(7).getCount();
-		boolean beepBoop = inventory.getStack(1).getItem() == ModItems.SPELL_PAPER &&
+		boolean stacksAreValid = inventory.getStack(1).getItem() == ModItems.SPELL_PAPER &&
 				inventory.getStack(0).getItem() == ModItems.INK_POT &&
 				inventory.getStack(0).getMaxDamage() - inventory.getStack(0).getDamage() >= count * 10;
 
-		if(beepBoop)
+		// TODO make sure the spell order is valid
+		if(stacksAreValid)
 		{
 			ItemStack stack = new ItemStack(ModItems.SPELL_CRYSTAL);
 
@@ -93,7 +94,7 @@ public class InscriptionTableScreenHandler extends ScreenHandler
 			inventory.setStack(1, stack);
 		}
 
-		return beepBoop;
+		return stacksAreValid;
 	}
 
 	@Override
