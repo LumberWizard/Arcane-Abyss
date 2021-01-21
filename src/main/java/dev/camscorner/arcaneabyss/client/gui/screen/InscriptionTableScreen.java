@@ -53,7 +53,7 @@ public class InscriptionTableScreen extends HandledScreen<InscriptionTableScreen
 	{
 		ItemStack stack = handler.inventory.getStack(1);
 		RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-		client.getTextureManager().bindTexture(stack.isEmpty() ? TEXTURE_IDLE : stack.getItem() == ModItems.SPELL_PAPER ? TEXTURE_SPELL : TEXTURE_RESEARCH);
+		client.getTextureManager().bindTexture(stack.getItem() == ModItems.SPELL_PAPER ? TEXTURE_SPELL : (stack.getItem() == ModItems.RESEARCH_SCROLL && !stack.getOrCreateTag().getBoolean("Known")) ? TEXTURE_RESEARCH : TEXTURE_IDLE);
 		int x = (width - backgroundWidth) / 2;
 		int y = (height - backgroundHeight) / 2;
 		drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);

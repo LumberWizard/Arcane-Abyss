@@ -2,6 +2,7 @@ package dev.camscorner.arcaneabyss.core.registry;
 
 import dev.camscorner.arcaneabyss.common.items.SpellCrystalItem;
 import dev.camscorner.arcaneabyss.common.items.StaffItem;
+import dev.camscorner.arcaneabyss.common.network.packets.SetStaffItemMessage;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -25,7 +26,7 @@ public class ModEvents
 
 		for(int i = 0; i < player.inventory.size(); i++)
 			if(player.inventory.getStack(i).getItem() instanceof SpellCrystalItem)
-				if(player.inventory.getStack(i).getOrCreateTag().contains("Component_1"))
+				if(player.inventory.getStack(i).getOrCreateTag().contains("Component_0"))
 					list.add(player.inventory.getStack(i));
 
 		return list;
@@ -42,7 +43,14 @@ public class ModEvents
 
 				if(stack != null)
 				{
-					//player.sendMessage(stack.getName(), false);
+					ItemStack staff = ItemStack.EMPTY;
+
+					if(player.getMainHandStack().getItem() instanceof StaffItem)
+						staff = player.getMainHandStack();
+					else if(player.getOffHandStack().getItem() instanceof StaffItem)
+						staff = player.getOffHandStack();
+
+					SetStaffItemMessage.send(player.inventory.getSlotWithStack(staff), player.inventory.getSlotWithStack(stack), true);
 					stack = null;
 				}
 
@@ -53,6 +61,13 @@ public class ModEvents
 					{
 						if(ModKeybinds.SPELL_MENU.isPressed())
 						{
+							ItemStack staff = ItemStack.EMPTY;
+
+							if(player.getMainHandStack().getItem() instanceof StaffItem)
+								staff = player.getMainHandStack();
+							else if(player.getOffHandStack().getItem() instanceof StaffItem)
+								staff = player.getOffHandStack();
+
 							if(!player.isSneaking() && !filteredPlayerItems(player).isEmpty())
 							{
 								if(client.mouse.isCursorLocked())
@@ -61,6 +76,8 @@ public class ModEvents
 								if(spellMenuTicks < 5)
 									++spellMenuTicks;
 							}
+							else if(player.isSneaking())
+								SetStaffItemMessage.send(player.inventory.getSlotWithStack(staff), 0, false);
 						}
 						else
 						{

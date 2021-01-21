@@ -26,7 +26,7 @@ public class ModItems
 	public static final Item INFUSED_ROBES = create("infused_robes", new ArmorItem(ModArmourMaterials.INFUSED, EquipmentSlot.CHEST, new Item.Settings().group(ArcaneAbyssApi.ITEM_GROUP)));
 	public static final Item INFUSED_GRIEVES = create("infused_grieves", new ArmorItem(ModArmourMaterials.INFUSED, EquipmentSlot.LEGS, new Item.Settings().group(ArcaneAbyssApi.ITEM_GROUP)));
 	public static final Item SPELL_CRYSTAL = create("spell_crystal", new SpellCrystalItem(new Item.Settings().group(ArcaneAbyssApi.ITEM_GROUP).maxCount(1)));
-	public static final Item INK_POT = create("ink_pot_and_quill", new Item(new Item.Settings().group(ArcaneAbyssApi.ITEM_GROUP).maxCount(1).maxDamage(100)));
+	public static final Item INK_POT = create("ink_pot_and_quill", new Item(new Item.Settings().group(ArcaneAbyssApi.ITEM_GROUP).maxCount(1).maxDamage(64)));
 	public static final Item RUNIC_STONE = create("runic_stone", new RunicStoneItem(new Item.Settings().group(ArcaneAbyssApi.ITEM_GROUP).maxCount(1)));
 	public static final Item RESEARCH_SCROLL = create("research_scroll", new ResearchScrollItem(new Item.Settings().maxCount(16)));
 

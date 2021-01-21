@@ -1,6 +1,6 @@
 package dev.camscorner.arcaneabyss.common.blocks;
 
-import dev.camscorner.arcaneabyss.client.network.packets.SyncBlockEntityMessage;
+import dev.camscorner.arcaneabyss.common.network.packets.SyncBlockEntityMessage;
 import dev.camscorner.arcaneabyss.common.blocks.entities.PedestalBlockEntity;
 import dev.camscorner.arcaneabyss.common.items.StaffItem;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;

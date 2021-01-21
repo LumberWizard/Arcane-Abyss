@@ -3,6 +3,7 @@ package dev.camscorner.arcaneabyss.common.blocks.entities;
 import dev.camscorner.arcaneabyss.core.registry.ModBlockEntities;
 import dev.camscorner.arcaneabyss.core.util.HasInventory;
 import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
@@ -58,6 +59,19 @@ public class AltarBlockEntity extends BlockEntity implements BlockEntityClientSe
 			tag.putLong("PedestalPos" + i, pedestals[i].asLong());
 
 		return tag;
+	}
+
+	@Override
+	public void fromTag(BlockState state, CompoundTag tag)
+	{
+		super.fromTag(state, tag);
+		fromClientTag(tag);
+	}
+
+	@Override
+	public CompoundTag toTag(CompoundTag tag)
+	{
+		return super.toTag(toClientTag(tag));
 	}
 
 	@Override

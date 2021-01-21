@@ -1,6 +1,6 @@
 package dev.camscorner.arcaneabyss.common.entities.projectiles;
 
-import dev.camscorner.arcaneabyss.client.network.packets.CreateProjectileEntityMessage;
+import dev.camscorner.arcaneabyss.common.network.packets.CreateProjectileEntityMessage;
 import dev.camscorner.arcaneabyss.common.items.FluxthrowerItem;
 import dev.camscorner.arcaneabyss.core.registry.ModEntities;
 import dev.camscorner.arcaneabyss.core.registry.ModParticleTypes;

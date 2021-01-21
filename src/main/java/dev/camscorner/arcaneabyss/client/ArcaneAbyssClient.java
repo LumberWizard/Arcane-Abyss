@@ -4,8 +4,8 @@ import dev.camscorner.arcaneabyss.ArcaneAbyss;
 import dev.camscorner.arcaneabyss.api.ArcaneAbyssApi;
 import dev.camscorner.arcaneabyss.client.gui.screen.InscriptionTableScreen;
 import dev.camscorner.arcaneabyss.client.models.InfusedArmourModel;
-import dev.camscorner.arcaneabyss.client.network.packets.CreateProjectileEntityMessage;
-import dev.camscorner.arcaneabyss.client.network.packets.SyncBlockEntityMessage;
+import dev.camscorner.arcaneabyss.common.network.packets.CreateProjectileEntityMessage;
+import dev.camscorner.arcaneabyss.common.network.packets.SyncBlockEntityMessage;
 import dev.camscorner.arcaneabyss.client.particles.EntropicFluxParticle;
 import dev.camscorner.arcaneabyss.client.renderers.blockentity.AltarBlockEntityRenderer;
 import dev.camscorner.arcaneabyss.client.renderers.blockentity.PedestalBlockEntityRenderer;
@@ -82,6 +82,6 @@ public class ArcaneAbyssClient implements ClientModInitializer
 	{
 		FabricModelPredicateProviderRegistry.register(new Identifier(ArcaneAbyss.MOD_ID, "complexity"), (stack, world, entity) -> stack.getOrCreateTag().getShort("Complexity"));
 		FabricModelPredicateProviderRegistry.register(new Identifier(ArcaneAbyss.MOD_ID, "known"), (stack, world, entity) -> Boolean.compare(stack.getOrCreateTag().getBoolean("Known"), false));
-		FabricModelPredicateProviderRegistry.register(new Identifier(ArcaneAbyss.MOD_ID, "written"), ((stack, world, entity) -> Boolean.compare(stack.getOrCreateTag().contains("Component_1"), false)));
+		FabricModelPredicateProviderRegistry.register(new Identifier(ArcaneAbyss.MOD_ID, "written"), ((stack, world, entity) -> Boolean.compare(stack.getOrCreateTag().contains("Component_0"), false)));
 	}
 }

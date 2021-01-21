@@ -1,7 +1,7 @@
 package dev.camscorner.arcaneabyss.common.gui;
 
 import dev.camscorner.arcaneabyss.ArcaneAbyss;
-import dev.camscorner.arcaneabyss.common.gui.slot.HideableSlot;
+import dev.camscorner.arcaneabyss.common.gui.slot.SpellComponentSlot;
 import dev.camscorner.arcaneabyss.common.gui.slot.ItemSpecificSlot;
 import dev.camscorner.arcaneabyss.core.registry.ModItems;
 import net.minecraft.entity.player.PlayerEntity;
@@ -44,12 +44,9 @@ public class InscriptionTableScreenHandler extends ScreenHandler
 		addSlot(new ItemSpecificSlot(inventory, 0, 8, 7, ModItems.INK_POT));
 		addSlot(new ItemSpecificSlot(inventory, 1, 152, 7, ModItems.RESEARCH_SCROLL, ModItems.SPELL_PAPER));
 
-		for(m = 0; m < 1; ++m)
+		for(l = 0; l < 6; ++l)
 		{
-			for(l = 0; l < 6; ++l)
-			{
-				addSlot(new HideableSlot(inventory, (l + 2) + m * 3, 35 + l * 18, 101 + m * 18));
-			}
+			addSlot(new SpellComponentSlot(inventory, l + 2, 35 + l * 18, 101));
 		}
 
 		//The player inventory
@@ -75,7 +72,7 @@ public class InscriptionTableScreenHandler extends ScreenHandler
 				inventory.getStack(5).getCount() + inventory.getStack(6).getCount() + inventory.getStack(7).getCount();
 		boolean stacksAreValid = inventory.getStack(1).getItem() == ModItems.SPELL_PAPER &&
 				inventory.getStack(0).getItem() == ModItems.INK_POT &&
-				inventory.getStack(0).getMaxDamage() - inventory.getStack(0).getDamage() >= count * 10;
+				inventory.getStack(0).getMaxDamage() - inventory.getStack(0).getDamage() >= count;
 
 		// TODO make sure the spell order is valid
 		if(stacksAreValid)
@@ -89,7 +86,7 @@ public class InscriptionTableScreenHandler extends ScreenHandler
 			}
 
 			if(!player.world.isClient())
-				inventory.getStack(0).damage(count * 10, player.world.random, (ServerPlayerEntity) player);
+				inventory.getStack(0).damage(count, player.world.random, (ServerPlayerEntity) player);
 
 			inventory.setStack(1, stack);
 		}
@@ -104,22 +101,20 @@ public class InscriptionTableScreenHandler extends ScreenHandler
 
 		for(Slot slot : slots)
 		{
-			if(!slot.doDrawHoveringEffect())
+			if(!slot.doDrawHoveringEffect() || (!slot.getStack().isEmpty() && !slot.canInsert(slot.getStack())))
 			{
-				context.run((BiConsumer<World, BlockPos>) (world, blockPos) -> dropInventory(player, player.world, inventory));
-				break;
+				context.run((BiConsumer<World, BlockPos>) (world, blockPos) -> dropInventory(player, player.world, inventory, slot.id));
 			}
 		}
 	}
 
-	@Override
-	protected void dropInventory(PlayerEntity player, World world, Inventory inventory)
+	protected void dropInventory(PlayerEntity player, World world, Inventory inventory, int offset)
 	{
 		int j;
 
 		if(!player.isAlive() || player instanceof ServerPlayerEntity && ((ServerPlayerEntity)player).isDisconnected())
 		{
-			for(j = 2; j < inventory.size(); ++j)
+			for(j = offset; j < inventory.size(); ++j)
 			{
 				player.dropItem(inventory.removeStack(j), false);
 			}
@@ -127,7 +122,7 @@ public class InscriptionTableScreenHandler extends ScreenHandler
 		}
 		else
 		{
-			for(j = 2; j < inventory.size(); ++j)
+			for(j = offset; j < inventory.size(); ++j)
 			{
 				player.inventory.offerOrDrop(world, inventory.removeStack(j));
 			}

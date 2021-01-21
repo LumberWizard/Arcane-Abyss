@@ -1,11 +1,13 @@
 package dev.camscorner.arcaneabyss;
 
 import dev.camscorner.arcaneabyss.common.gui.InscriptionTableScreenHandler;
+import dev.camscorner.arcaneabyss.common.network.packets.SetStaffItemMessage;
 import dev.camscorner.arcaneabyss.core.config.ArcaneAbyssConfig;
 import dev.camscorner.arcaneabyss.core.registry.*;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import me.sargunvohra.mcmods.autoconfig1u.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.util.Identifier;
@@ -24,6 +26,8 @@ public class ArcaneAbyss implements ModInitializer
 	{
 		AutoConfig.register(ArcaneAbyssConfig.class, GsonConfigSerializer::new);
 		config = AutoConfig.getConfigHolder(ArcaneAbyssConfig.class).getConfig();
+
+		ServerPlayNetworking.registerGlobalReceiver(SetStaffItemMessage.ID, SetStaffItemMessage::handle);
 
 		ModShaders.register();
 		ModBlocks.register();

@@ -19,7 +19,6 @@ import java.util.List;
 public class SpellCrystalItem extends Item
 {
 	public SpellComponent[] spellComponents = new SpellComponent[6];
-	public boolean isBlank = true;
 
 	public SpellCrystalItem(Settings settings)
 	{
@@ -54,5 +53,11 @@ public class SpellCrystalItem extends Item
 			tooltip.add(text);
 			tooltip.add(new LiteralText(""));
 		}
+	}
+
+	@Override
+	public boolean hasGlint(ItemStack stack)
+	{
+		return stack.getOrCreateTag().contains("Component_0");
 	}
 }

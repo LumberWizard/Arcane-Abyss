@@ -1,6 +1,6 @@
 package dev.camscorner.arcaneabyss.common.blocks;
 
-import dev.camscorner.arcaneabyss.client.network.packets.SyncBlockEntityMessage;
+import dev.camscorner.arcaneabyss.common.network.packets.SyncBlockEntityMessage;
 import dev.camscorner.arcaneabyss.common.blocks.entities.AltarBlockEntity;
 import dev.camscorner.arcaneabyss.common.blocks.enums.AltarPart;
 import dev.camscorner.arcaneabyss.common.items.StaffItem;

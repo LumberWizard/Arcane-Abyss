@@ -1,4 +1,4 @@
-package dev.camscorner.arcaneabyss.client.network.packets;
+package dev.camscorner.arcaneabyss.common.network.packets;
 
 import dev.camscorner.arcaneabyss.ArcaneAbyss;
 import dev.camscorner.arcaneabyss.core.util.HasInventory;
