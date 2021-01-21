@@ -1,6 +1,6 @@
-package dev.camscorner.arcaneabyss.common.spells.elements;
+package dev.camscorner.arcaneabyss.common.spells.effects;
 
-import dev.camscorner.arcaneabyss.api.spells.SpellElement;
+import dev.camscorner.arcaneabyss.api.spells.SpellEffect;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -8,23 +8,23 @@ import net.minecraft.item.Items;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
-public class SwapElement extends SpellElement
+public class ResistanceEffect extends SpellEffect
 {
-	public SwapElement(float costMultiplier)
+	public ResistanceEffect(float costMultiplier)
 	{
-		super(costMultiplier, "c");
+		super(costMultiplier, "f");
 	}
 
 	@Override
 	public Item getItemCost()
 	{
-		return Items.CHORUS_FLOWER;
+		return Items.SHULKER_SHELL;
 	}
 
 	@Override
 	public int getColour()
 	{
-		return 0xFF974E;
+		return 0x05F3CF;
 	}
 
 	@Override

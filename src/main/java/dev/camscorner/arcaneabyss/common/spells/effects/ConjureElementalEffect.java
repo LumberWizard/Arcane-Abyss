@@ -1,6 +1,6 @@
-package dev.camscorner.arcaneabyss.common.spells.elements;
+package dev.camscorner.arcaneabyss.common.spells.effects;
 
-import dev.camscorner.arcaneabyss.api.spells.SpellElement;
+import dev.camscorner.arcaneabyss.api.spells.SpellEffect;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -8,23 +8,23 @@ import net.minecraft.item.Items;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
-public class TelekinesisElement extends SpellElement
+public class ConjureElementalEffect extends SpellEffect
 {
-	public TelekinesisElement(float costMultiplier)
+	public ConjureElementalEffect(float costMultiplier)
 	{
-		super(costMultiplier, "e");
+		super(costMultiplier, "d");
 	}
 
 	@Override
 	public Item getItemCost()
 	{
-		return Items.ENDER_EYE;
+		return Items.SOUL_SOIL;
 	}
 
 	@Override
 	public int getColour()
 	{
-		return 0xFEAA8E;
+		return 0x8932B8;
 	}
 
 	@Override

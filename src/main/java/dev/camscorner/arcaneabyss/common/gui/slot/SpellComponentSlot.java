@@ -1,6 +1,6 @@
 package dev.camscorner.arcaneabyss.common.gui.slot;
 
-import dev.camscorner.arcaneabyss.api.spells.SpellElement;
+import dev.camscorner.arcaneabyss.api.spells.SpellEffect;
 import dev.camscorner.arcaneabyss.api.spells.SpellModifier;
 import dev.camscorner.arcaneabyss.api.spells.SpellShape;
 import dev.camscorner.arcaneabyss.common.items.RunicStoneItem;
@@ -23,7 +23,8 @@ public class SpellComponentSlot extends Slot
 	{
 		ItemStack lastStack = inventory.getStack(id - 1);
 
-		if(!(stack.getItem() instanceof RunicStoneItem) || lastStack.getItem() == Items.AIR)
+		if(!(stack.getItem() instanceof RunicStoneItem) || lastStack.getItem() == Items.AIR ||
+				(lastStack.getItem() != ModItems.SPELL_PAPER || !(lastStack.getItem() instanceof RunicStoneItem)))
 			return false;
 
 		RunicStoneItem newItem = (RunicStoneItem) stack.getItem();
@@ -31,8 +32,8 @@ public class SpellComponentSlot extends Slot
 
 		return (inventory.getStack(1).getItem() == ModItems.SPELL_PAPER && stack.getItem() == ModItems.RUNIC_STONE) &&
 				lastStack.getItem() == ModItems.SPELL_PAPER ? newItem.getSpellComponent(stack) instanceof SpellShape :
-				((RunicStoneItem) lastItem).getSpellComponent(lastStack) instanceof SpellShape ? newItem.getSpellComponent(stack) instanceof SpellElement :
-				((RunicStoneItem) lastItem).getSpellComponent(lastStack) instanceof SpellElement ? (newItem.getSpellComponent(stack) instanceof SpellShape ||
+				((RunicStoneItem) lastItem).getSpellComponent(lastStack) instanceof SpellShape ? newItem.getSpellComponent(stack) instanceof SpellEffect :
+				((RunicStoneItem) lastItem).getSpellComponent(lastStack) instanceof SpellEffect ? (newItem.getSpellComponent(stack) instanceof SpellShape ||
 				newItem.getSpellComponent(stack) instanceof SpellModifier) : ((RunicStoneItem) lastItem).getSpellComponent(lastStack) instanceof SpellModifier &&
 				(newItem.getSpellComponent(stack) instanceof SpellModifier || newItem.getSpellComponent(stack) instanceof SpellShape);
 	}

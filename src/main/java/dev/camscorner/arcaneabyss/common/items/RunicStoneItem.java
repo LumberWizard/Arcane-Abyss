@@ -2,7 +2,7 @@ package dev.camscorner.arcaneabyss.common.items;
 
 import dev.camscorner.arcaneabyss.api.ArcaneAbyssApi;
 import dev.camscorner.arcaneabyss.api.spells.SpellComponent;
-import dev.camscorner.arcaneabyss.api.spells.SpellElement;
+import dev.camscorner.arcaneabyss.api.spells.SpellEffect;
 import dev.camscorner.arcaneabyss.api.spells.SpellModifier;
 import dev.camscorner.arcaneabyss.api.spells.SpellShape;
 import net.minecraft.client.item.TooltipContext;
@@ -36,8 +36,8 @@ public class RunicStoneItem extends Item
 		{
 			if(component instanceof SpellShape)
 				text.append(((SpellShape) component).getShapeIcon());
-			else if(component instanceof SpellElement)
-				text.append(((SpellElement) component).getElementIcon());
+			else if(component instanceof SpellEffect)
+				text.append(((SpellEffect) component).getElementIcon());
 			else
 				text.append(((SpellModifier) component).getModifierIcon());
 		}

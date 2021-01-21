@@ -1,6 +1,6 @@
-package dev.camscorner.arcaneabyss.common.spells.elements;
+package dev.camscorner.arcaneabyss.common.spells.effects;
 
-import dev.camscorner.arcaneabyss.api.spells.SpellElement;
+import dev.camscorner.arcaneabyss.api.spells.SpellEffect;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -8,23 +8,23 @@ import net.minecraft.item.Items;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
-public class DamageElement extends SpellElement
+public class MineEffect extends SpellEffect
 {
-	public DamageElement(float costMultiplier)
+	public MineEffect(float costMultiplier)
 	{
-		super(costMultiplier, "7");
+		super(costMultiplier, "8");
 	}
 
 	@Override
 	public Item getItemCost()
 	{
-		return Items.IRON_AXE;
+		return Items.DIAMOND;
 	}
 
 	@Override
 	public int getColour()
 	{
-		return 0x3C44AA;
+		return 0x0E395B;
 	}
 
 	@Override

@@ -8,12 +8,12 @@ import net.minecraft.text.Style;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
-public abstract class SpellElement implements SpellComponent
+public abstract class SpellEffect implements SpellComponent
 {
 	private float costMultiplier;
 	private String componentIcon;
 
-	public SpellElement(float costMultiplier, String componentIcon)
+	public SpellEffect(float costMultiplier, String componentIcon)
 	{
 		this.costMultiplier = costMultiplier;
 		this.componentIcon = componentIcon;

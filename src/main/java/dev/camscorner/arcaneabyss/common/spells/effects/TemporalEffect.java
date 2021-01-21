@@ -1,6 +1,6 @@
-package dev.camscorner.arcaneabyss.common.spells.elements;
+package dev.camscorner.arcaneabyss.common.spells.effects;
 
-import dev.camscorner.arcaneabyss.api.spells.SpellElement;
+import dev.camscorner.arcaneabyss.api.spells.SpellEffect;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -8,23 +8,23 @@ import net.minecraft.item.Items;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
-public class MineElement extends SpellElement
+public class TemporalEffect extends SpellEffect
 {
-	public MineElement(float costMultiplier)
+	public TemporalEffect(float costMultiplier)
 	{
-		super(costMultiplier, "8");
+		super(costMultiplier, "h");
 	}
 
 	@Override
 	public Item getItemCost()
 	{
-		return Items.DIAMOND;
+		return Items.CLOCK;
 	}
 
 	@Override
 	public int getColour()
 	{
-		return 0x0E395B;
+		return 0xE3A51E;
 	}
 
 	@Override
