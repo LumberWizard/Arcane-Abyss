@@ -32,12 +32,7 @@
     "fabricloader": ">=0.7.4",
     "fabric": "*",
     "minecraft": "1.16.5",
-    "patchouli": ">=1.16.2-44-FABRIC",
-    "cardinal-components-base": ">=2.7.3",
-    "cardinal-components-chunk": ">=2.7.3",
-    "cardinal-components-block": ">=2.7.3",
-    "cardinal-components-entity": ">=2.7.3",
-    "cardinal-components-item": ">=2.7.3"
+    "patchouli": ">=1.16.2-44-FABRIC"
   },
   "suggests": {
     "flamingo": "*"
