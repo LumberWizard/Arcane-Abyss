@@ -1,7 +1,8 @@
 package dev.camscorner.arcaneabyss.common.blocks.entities;
 
+import dev.camscorner.arcaneabyss.api.util.EntropicFluxProvider;
 import dev.camscorner.arcaneabyss.core.registry.ModBlockEntities;
-import dev.camscorner.arcaneabyss.core.util.HasInventory;
+import dev.camscorner.arcaneabyss.api.util.HasInventory;
 import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -15,10 +16,11 @@ import net.minecraft.util.Tickable;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 
-public class AltarBlockEntity extends BlockEntity implements BlockEntityClientSerializable, Tickable, Inventory, HasInventory
+public class AltarBlockEntity extends BlockEntity implements BlockEntityClientSerializable, Tickable, Inventory, HasInventory, EntropicFluxProvider
 {
 	private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(1, ItemStack.EMPTY);
 	private final BlockPos[] pedestals = { BlockPos.ORIGIN, BlockPos.ORIGIN, BlockPos.ORIGIN, BlockPos.ORIGIN, BlockPos.ORIGIN, BlockPos.ORIGIN };
+	private int entropic_flux = 0;
 	public boolean active = false;
 	public Mode mode = Mode.IDLE;
 
@@ -37,6 +39,22 @@ public class AltarBlockEntity extends BlockEntity implements BlockEntityClientSe
 	{
 		if(!active)
 			return;
+
+		switch(mode)
+		{
+			case IDLE:
+				active = false;
+				break;
+			case ITEM_CRAFTING:
+				System.out.println("Altar at " + getPos() + "is crafting an item.");
+				break;
+			case SPELL_CRAFTING:
+				System.out.println("Altar at " + getPos() + "is crafting a spell.");
+				break;
+			case RITUAL:
+				System.out.println("Altar at " + getPos() + "is doing a ritual.");
+				break;
+		}
 	}
 
 	@Override
@@ -44,6 +62,7 @@ public class AltarBlockEntity extends BlockEntity implements BlockEntityClientSe
 	{
 		Inventories.fromTag(tag, inventory);
 		mode = Mode.valueOf(tag.getString("Mode"));
+		entropic_flux = tag.getInt("EntropicFlux");
 
 		for(int i = 0; i < pedestals.length; ++i)
 			pedestals[i] = BlockPos.fromLong(tag.getLong("PedestalPos" + i));
@@ -54,6 +73,7 @@ public class AltarBlockEntity extends BlockEntity implements BlockEntityClientSe
 	{
 		Inventories.toTag(tag, inventory);
 		tag.putString("Mode", mode.name);
+		tag.putInt("EntropicFlux", entropic_flux);
 
 		for(int i = 0; i < pedestals.length; i++)
 			tag.putLong("PedestalPos" + i, pedestals[i].asLong());
@@ -126,6 +146,18 @@ public class AltarBlockEntity extends BlockEntity implements BlockEntityClientSe
 	public DefaultedList<ItemStack> getInventory()
 	{
 		return inventory;
+	}
+
+	@Override
+	public int getEntropicFlux()
+	{
+		return entropic_flux;
+	}
+
+	@Override
+	public void setEntropicFlux(int amount)
+	{
+		entropic_flux = amount;
 	}
 
 	public enum Mode

@@ -1,6 +1,6 @@
 package dev.camscorner.arcaneabyss.core.mixin;
 
-import dev.camscorner.arcaneabyss.core.util.FluxAndCorruptionProperties;
+import dev.camscorner.arcaneabyss.api.util.TempCorruptionProvider;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -15,11 +15,9 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(LivingEntity.class)
-public abstract class LivingEntityMixin extends Entity implements FluxAndCorruptionProperties
+public abstract class LivingEntityMixin extends Entity implements TempCorruptionProvider
 {
-	private static final TrackedData<Integer> SOUL_CORRUPTION = DataTracker.registerData(LivingEntity.class, TrackedDataHandlerRegistry.INTEGER);
-	private static final TrackedData<Integer> BODY_CORRUPTION = DataTracker.registerData(LivingEntity.class, TrackedDataHandlerRegistry.INTEGER);
-	private static final TrackedData<Integer> ENTROPIC_FLUX = DataTracker.registerData(LivingEntity.class, TrackedDataHandlerRegistry.INTEGER);
+	private static final TrackedData<Integer> TEMP_CORRUPTION = DataTracker.registerData(LivingEntity.class, TrackedDataHandlerRegistry.INTEGER);
 
 	public LivingEntityMixin(EntityType<?> type, World world)
 	{
@@ -29,60 +27,30 @@ public abstract class LivingEntityMixin extends Entity implements FluxAndCorrupt
 	@Inject(method = "readCustomDataFromTag", at = @At("TAIL"))
 	public void readNbt(CompoundTag tag, CallbackInfo info)
 	{
-		dataTracker.set(SOUL_CORRUPTION, tag.getInt("SoulCorruption"));
-		dataTracker.set(BODY_CORRUPTION, tag.getInt("BodyCorruption"));
-		dataTracker.set(ENTROPIC_FLUX, tag.getInt("EntropicFlux"));
+		dataTracker.set(TEMP_CORRUPTION, tag.getInt("TempCorruption"));
 	}
 
 	@Inject(method = "writeCustomDataToTag", at = @At("TAIL"))
 	public void writeNbt(CompoundTag tag, CallbackInfo info)
 	{
-		tag.putInt("SoulCorruption", dataTracker.get(SOUL_CORRUPTION));
-		tag.putInt("BodyCorruption", dataTracker.get(BODY_CORRUPTION));
-		tag.putInt("EntropicFlux", dataTracker.get(ENTROPIC_FLUX));
+		tag.putInt("TempCorruption", dataTracker.get(TEMP_CORRUPTION));
 	}
 
 	@Inject(method = "initDataTracker", at = @At("TAIL"))
 	public void initTracker(CallbackInfo info)
 	{
-		dataTracker.startTracking(SOUL_CORRUPTION, 0);
-		dataTracker.startTracking(BODY_CORRUPTION, 0);
-		dataTracker.startTracking(ENTROPIC_FLUX, 0);
+		dataTracker.startTracking(TEMP_CORRUPTION, 0);
 	}
 
 	@Override
-	public boolean hasCorruption(CorruptionType type)
+	public int getTemporaryCorruption()
 	{
-		return getCorruption(type) > 0;
+		return dataTracker.get(TEMP_CORRUPTION);
 	}
 
 	@Override
-	public boolean hasEntropicFlux()
+	public void setTemporaryCorruption(int amount)
 	{
-		return dataTracker.get(ENTROPIC_FLUX) > 0;
-	}
-
-	@Override
-	public int getCorruption(CorruptionType type)
-	{
-		return dataTracker.get(type == CorruptionType.SOUL ? SOUL_CORRUPTION : BODY_CORRUPTION);
-	}
-
-	@Override
-	public void setCorruption(CorruptionType type, int amount)
-	{
-		dataTracker.set(type == CorruptionType.SOUL ? SOUL_CORRUPTION : BODY_CORRUPTION, amount);
-	}
-
-	@Override
-	public int getEntropicFlux()
-	{
-		return dataTracker.get(ENTROPIC_FLUX);
-	}
-
-	@Override
-	public void setEntropicFlux(int amount)
-	{
-		dataTracker.set(ENTROPIC_FLUX, amount);
+		dataTracker.set(TEMP_CORRUPTION, amount);
 	}
 }

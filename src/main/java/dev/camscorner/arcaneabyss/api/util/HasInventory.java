@@ -1,4 +1,4 @@
-package dev.camscorner.arcaneabyss.core.util;
+package dev.camscorner.arcaneabyss.api.util;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.collection.DefaultedList;

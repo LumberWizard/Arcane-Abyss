@@ -1,7 +1,7 @@
 package dev.camscorner.arcaneabyss.common.network.packets;
 
 import dev.camscorner.arcaneabyss.ArcaneAbyss;
-import dev.camscorner.arcaneabyss.core.util.HasInventory;
+import dev.camscorner.arcaneabyss.api.util.HasInventory;
 import io.netty.buffer.Unpooled;
 import net.fabricmc.fabric.api.network.PacketContext;
 import net.fabricmc.fabric.api.network.ServerSidePacketRegistry;

@@ -1,7 +1,7 @@
 package dev.camscorner.arcaneabyss.common.blocks.entities;
 
 import dev.camscorner.arcaneabyss.core.registry.ModBlockEntities;
-import dev.camscorner.arcaneabyss.core.util.HasInventory;
+import dev.camscorner.arcaneabyss.api.util.HasInventory;
 import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
