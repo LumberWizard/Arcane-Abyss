@@ -2,10 +2,7 @@ package dev.camscorner.arcaneabyss.core.registry;
 
 import dev.camscorner.arcaneabyss.ArcaneAbyss;
 import dev.camscorner.arcaneabyss.api.ArcaneAbyssApi;
-import dev.camscorner.arcaneabyss.common.blocks.AltarBlock;
-import dev.camscorner.arcaneabyss.common.blocks.InscriptionTableBlock;
-import dev.camscorner.arcaneabyss.common.blocks.PedestalBlock;
-import dev.camscorner.arcaneabyss.common.blocks.RelayBlock;
+import dev.camscorner.arcaneabyss.common.blocks.*;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.minecraft.block.*;
 import net.minecraft.item.BlockItem;
@@ -24,6 +21,8 @@ public class ModBlocks
 	public static final LinkedHashMap<Block, Identifier> BLOCKS = new LinkedHashMap<>();
 
 	//-----Blocks-----//
+	public static final Block ENTROPIC_RIFT = create("entropic_rift", new EntropicRiftBlock(AbstractBlock.Settings.of(Material.AIR,
+			MaterialColor.BLACK).strength(-1, 3600000.0F).luminance((state) -> 5).noCollision()));
 	public static final Block ENTROPIC_STONE = create("entropic_stone", new Block(AbstractBlock.Settings.of(Material.STONE,
 			MaterialColor.GRAY).requiresTool().strength(1.5F, 6.0F)));
 	public static final Block ENTROPIC_STONE_BRICKS = create("entropic_stone_bricks", new Block(AbstractBlock.Settings.of(Material.STONE,
@@ -47,7 +46,14 @@ public class ModBlocks
 	public static void register()
 	{
 		BLOCKS.keySet().forEach(block -> Registry.register(Registry.BLOCK, BLOCKS.get(block), block));
-		BLOCKS.keySet().forEach(block -> Registry.register(Registry.ITEM, BLOCKS.get(block), getItem(block)));
+
+		for(Block block : BLOCKS.keySet())
+		{
+			if(!(block instanceof EntropicRiftBlock))
+			{
+				Registry.register(Registry.ITEM, BLOCKS.get(block), getItem(block));
+			}
+		}
 
 		FlammableBlockRegistry flammableRegistry = FlammableBlockRegistry.getDefaultInstance();
 		flammableRegistry.add(ENTROPIC_PLANKS, 5, 20);

@@ -8,8 +8,10 @@ import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -17,6 +19,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity implements TempCorruptionProvider
 {
+	@Unique
+	private static final int MAX_TEMP_CORRUPTION = 1000;
+	@Unique
 	private static final TrackedData<Integer> TEMP_CORRUPTION = DataTracker.registerData(LivingEntity.class, TrackedDataHandlerRegistry.INTEGER);
 
 	public LivingEntityMixin(EntityType<?> type, World world)
@@ -42,15 +47,17 @@ public abstract class LivingEntityMixin extends Entity implements TempCorruption
 		dataTracker.startTracking(TEMP_CORRUPTION, 0);
 	}
 
+	@Unique
 	@Override
 	public int getTemporaryCorruption()
 	{
 		return dataTracker.get(TEMP_CORRUPTION);
 	}
 
+	@Unique
 	@Override
 	public void setTemporaryCorruption(int amount)
 	{
-		dataTracker.set(TEMP_CORRUPTION, amount);
+		dataTracker.set(TEMP_CORRUPTION,  MathHelper.clamp(dataTracker.get(TEMP_CORRUPTION) + amount, 0, MAX_TEMP_CORRUPTION));
 	}
 }

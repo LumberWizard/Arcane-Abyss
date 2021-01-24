@@ -18,7 +18,10 @@ public class EntropicFluxParticle extends SpriteBillboardParticle
 {
 	protected EntropicFluxParticle(ClientWorld clientWorld, double posX, double posY, double posZ, double velocityX, double velocityY, double velocityZ)
 	{
-		super(clientWorld, posX, posY, posZ, velocityX, velocityY, velocityZ);
+		super(clientWorld, posX, posY, posZ, 0, 0, 0);
+		this.velocityX = velocityX;
+		this.velocityY = velocityY;
+		this.velocityZ = velocityZ;
 	}
 
 	@Override
@@ -43,15 +46,17 @@ public class EntropicFluxParticle extends SpriteBillboardParticle
 	@Override
 	public void tick()
 	{
-		this.prevPosX = this.x;
-		this.prevPosY = this.y;
-		this.prevPosZ = this.z;
+		prevPosX = x;
+		prevPosY = y;
+		prevPosZ = z;
 
-		if(this.age++ >= this.maxAge)
-			this.markDead();
+		if(age++ >= maxAge)
+			markDead();
 
 		float lifeRatio = (float) age / (float) maxAge;
 		scale = scale - (lifeRatio * scale);
+
+		move(velocityX, velocityY, velocityZ);
 	}
 
 	@Environment(EnvType.CLIENT)

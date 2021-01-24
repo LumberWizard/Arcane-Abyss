@@ -21,6 +21,7 @@ import net.minecraft.util.math.Matrix4f;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -30,7 +31,9 @@ import java.util.List;
 @Mixin(InGameHud.class)
 public abstract class InGameHudMixin extends DrawableHelper
 {
+	@Unique
 	private static final Identifier ARCANE_ABYSS_HUD_ELEMENTS = new Identifier(ArcaneAbyss.MOD_ID, "textures/gui/hud_elements.png");
+	@Unique
 	private static final double TAU = Math.PI * 2.0F;
 
 	@Shadow
@@ -104,6 +107,7 @@ public abstract class InGameHudMixin extends DrawableHelper
 		}
 	}
 
+	@Unique
 	public void renderTooltip(MatrixStack matrices, ItemStack stack, int x, int y)
 	{
 		List<OrderedText> lines = Lists.transform(stack.getTooltip(this.client.player, this.client.options.advancedItemTooltips ? TooltipContext.Default.ADVANCED : TooltipContext.Default.NORMAL), Text::asOrderedText);
@@ -190,12 +194,14 @@ public abstract class InGameHudMixin extends DrawableHelper
 		}
 	}
 
+	@Unique
 	public boolean isValidDistFromMid(float value)
 	{
 		return Math.abs(client.mouse.getX() - (client.getWindow().getWidth() / 2F)) > value &&
 				Math.abs(client.mouse.getY() - (client.getWindow().getHeight() / 2F)) > value;
 	}
 
+	@Unique
 	public double mouseAngle(double mouseX, double mouseY)
 	{
 		return (Math.atan2(mouseX - (client.getWindow().getWidth() / 2F),

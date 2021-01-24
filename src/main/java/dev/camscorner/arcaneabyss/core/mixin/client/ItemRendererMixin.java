@@ -14,6 +14,7 @@ import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -26,9 +27,13 @@ public abstract class ItemRendererMixin
 	@Final
 	private ItemModels models;
 
+	@Unique
 	private final ModelIdentifier staffHandModel = new ModelIdentifier(new Identifier(ArcaneAbyss.MOD_ID, "infused_staff_in_hand"), "inventory");
+	@Unique
 	private final ModelIdentifier staffNormalModel = new ModelIdentifier(new Identifier(ArcaneAbyss.MOD_ID, "infused_staff"), "inventory");
+	@Unique
 	private final ModelIdentifier fluxThrowerHandModel = new ModelIdentifier(new Identifier(ArcaneAbyss.MOD_ID, "fluxthrower_in_hand"), "inventory");
+	@Unique
 	private final ModelIdentifier fluxThrowerNormalModel = new ModelIdentifier(new Identifier(ArcaneAbyss.MOD_ID, "fluxthrower"), "inventory");
 
 	@Shadow public abstract BakedModel getHeldItemModel(ItemStack stack, World world, LivingEntity entity);

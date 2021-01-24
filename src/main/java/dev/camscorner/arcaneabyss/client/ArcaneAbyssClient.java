@@ -51,7 +51,7 @@ public class ArcaneAbyssClient implements ClientModInitializer
 		ModelLoadingRegistry.INSTANCE.registerAppender((resourceManager, out) -> out.accept(new ModelIdentifier(new Identifier(ArcaneAbyss.MOD_ID, "fluxthrower_in_hand"), "inventory")));
 
 		//-----Block Layers Registry-----//
-		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), ModBlocks.INSCRIPTION_TABLE, ModBlocks.RELAY);
+		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), ModBlocks.INSCRIPTION_TABLE, ModBlocks.RELAY, ModBlocks.ENTROPIC_RIFT);
 
 		//-----Block Entity Renderer Registry-----//
 		BlockEntityRendererRegistry.INSTANCE.register(ModBlockEntities.ALTAR, AltarBlockEntityRenderer::new);
