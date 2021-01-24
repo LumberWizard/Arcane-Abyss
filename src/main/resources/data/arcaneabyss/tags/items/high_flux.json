@@ -1,0 +1,10 @@
+{
+	"replace": false,
+	"values": [
+		"minecraft:end_crystal",
+		"minecraft:dragon_breath",
+		"minecraft:dragon_head",
+		"minecraft:ender_chest",
+		"minecraft:elytra"
+	]
+}

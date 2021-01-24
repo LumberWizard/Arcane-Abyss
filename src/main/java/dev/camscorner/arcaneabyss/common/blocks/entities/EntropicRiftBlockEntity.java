@@ -1,24 +1,36 @@
 package dev.camscorner.arcaneabyss.common.blocks.entities;
 
+import dev.camscorner.arcaneabyss.ArcaneAbyss;
 import dev.camscorner.arcaneabyss.api.util.EntropicFluxProvider;
 import dev.camscorner.arcaneabyss.core.registry.ModBlockEntities;
 import dev.camscorner.arcaneabyss.core.registry.ModParticleTypes;
 import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
+import net.fabricmc.fabric.api.tag.TagRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.entity.EntityType;
+import net.minecraft.item.Item;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.particle.ParticleEffect;
+import net.minecraft.tag.Tag;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.Tickable;
+import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;
 
 import java.util.Random;
 
 public class EntropicRiftBlockEntity extends BlockEntity implements BlockEntityClientSerializable, Tickable, EntropicFluxProvider
 {
+	private static final Tag<Item> LOW_FLUX = TagRegistry.item(new Identifier(ArcaneAbyss.MOD_ID, "low_flux"));
+	private static final Tag<Item> MODERATE_FLUX = TagRegistry.item(new Identifier(ArcaneAbyss.MOD_ID, "moderate_flux"));
+	private static final Tag<Item> HIGH_FLUX = TagRegistry.item(new Identifier(ArcaneAbyss.MOD_ID, "high_flux"));
+	private static final Tag<Item> VERY_HIGH_FLUX = TagRegistry.item(new Identifier(ArcaneAbyss.MOD_ID, "very_high_flux"));
 	private static final int MAX_FLUX = 1000;
 	private Random rand = new Random();
 	private int entropic_flux;
+	private boolean stabilized = false;
 
 	public EntropicRiftBlockEntity(BlockEntityType<?> type)
 	{
@@ -77,7 +89,38 @@ public class EntropicRiftBlockEntity extends BlockEntity implements BlockEntityC
 
 		if(!world.isClient())
 		{
-			// TODO zuccing logic
+			world.getEntitiesByType(EntityType.ITEM, new Box(pos).contract(0.75), entity -> true).forEach(itemEntity ->
+			{
+				if(itemEntity.hasNoGravity())
+				{
+					Item item = itemEntity.getStack().getItem();
+					int count = itemEntity.getStack().getCount();
+
+					if(LOW_FLUX.contains(item))
+					{
+						setEntropicFlux(10 * count);
+					}
+					else if(MODERATE_FLUX.contains(item))
+					{
+						setEntropicFlux(50 * count);
+					}
+					else if(HIGH_FLUX.contains(item))
+					{
+						setEntropicFlux(150 * count);
+					}
+					else if(VERY_HIGH_FLUX.contains(item))
+					{
+						setEntropicFlux(1000 * count);
+					}
+
+					itemEntity.kill();
+				}
+			});
+
+			if(!stabilized)
+			{
+				// TODO zuccening
+			}
 		}
 
 		if(world.isClient())

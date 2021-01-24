@@ -5,6 +5,7 @@ import dev.camscorner.arcaneabyss.api.ArcaneAbyssApi;
 import dev.camscorner.arcaneabyss.common.blocks.*;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.minecraft.block.*;
+import net.minecraft.entity.EntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.sound.BlockSoundGroup;
@@ -21,8 +22,8 @@ public class ModBlocks
 	public static final LinkedHashMap<Block, Identifier> BLOCKS = new LinkedHashMap<>();
 
 	//-----Blocks-----//
-	public static final Block ENTROPIC_RIFT = create("entropic_rift", new EntropicRiftBlock(AbstractBlock.Settings.of(Material.AIR,
-			MaterialColor.BLACK).strength(-1, 3600000.0F).luminance((state) -> 5).noCollision()));
+	public static final Block ENTROPIC_RIFT = create("entropic_rift", new EntropicRiftBlock(AbstractBlock.Settings.of(Material.BARRIER,
+			MaterialColor.BLACK).strength(-1, 3600000F).luminance((state) -> 5).noCollision().dropsNothing().allowsSpawning(ModBlocks::never).air()));
 	public static final Block ENTROPIC_STONE = create("entropic_stone", new Block(AbstractBlock.Settings.of(Material.STONE,
 			MaterialColor.GRAY).requiresTool().strength(1.5F, 6.0F)));
 	public static final Block ENTROPIC_STONE_BRICKS = create("entropic_stone_bricks", new Block(AbstractBlock.Settings.of(Material.STONE,
@@ -72,6 +73,11 @@ public class ModBlocks
 
 	//-----Predicates-----//
 	public static boolean never(BlockState state, BlockView world, BlockPos pos)
+	{
+		return false;
+	}
+
+	public static boolean never(BlockState state, BlockView world, BlockPos pos, EntityType<?> type)
 	{
 		return false;
 	}

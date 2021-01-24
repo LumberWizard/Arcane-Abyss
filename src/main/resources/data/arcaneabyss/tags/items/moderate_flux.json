@@ -1,0 +1,10 @@
+{
+	"replace": false,
+	"values": [
+		"minecraft:obsidian",
+		"minecraft:ender_pearl",
+		"minecraft:ender_eye",
+		"arcaneabyss:entropic_crystal",
+		"arcaneabyss:infused_cloth"
+	]
+}

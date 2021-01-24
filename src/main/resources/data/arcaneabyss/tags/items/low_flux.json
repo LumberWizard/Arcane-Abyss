@@ -1,0 +1,15 @@
+{
+	"replace": false,
+	"values": [
+		"minecraft:chorus_fruit",
+		"minecraft:popped_chorus_fruit",
+		"minecraft:chorus_flower",
+		"minecraft:purpur_block",
+		"minecraft:purpur_pillar",
+		"minecraft:end_stone",
+		"minecraft:end_stone_bricks",
+		"arcaneabyss:entropic_stone",
+		"arcaneabyss:entropic_stone_bricks",
+		"arcaneabyss:entropic_log"
+	]
+}
