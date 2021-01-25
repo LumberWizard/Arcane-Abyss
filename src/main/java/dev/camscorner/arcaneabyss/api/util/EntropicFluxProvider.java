@@ -4,5 +4,5 @@ public interface EntropicFluxProvider
 {
 	int getEntropicFlux();
 
-	void setEntropicFlux(int amount);
+	void addEntropicFlux(int amount);
 }
