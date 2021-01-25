@@ -39,6 +39,7 @@ public class ArcaneAbyss implements ModInitializer
 		AARecipes.registerSerializers();
 		AARecipes.registerTypes();
 		AASpellComponents.register();
+		AASoundEvents.register();
 
 		LOGGER.info("If you gaze long enough into an abyss, the abyss will gaze back into you...");
 	}

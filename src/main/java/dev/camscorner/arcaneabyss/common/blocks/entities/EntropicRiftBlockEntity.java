@@ -5,6 +5,7 @@ import dev.camscorner.arcaneabyss.api.util.EntropicFluxProvider;
 import dev.camscorner.arcaneabyss.core.registry.AABlockEntities;
 import dev.camscorner.arcaneabyss.core.registry.AADamageSource;
 import dev.camscorner.arcaneabyss.core.registry.AAParticleTypes;
+import dev.camscorner.arcaneabyss.core.registry.AASoundEvents;
 import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.fabricmc.fabric.api.tag.TagRegistry;
 import net.minecraft.block.BlockState;
@@ -16,6 +17,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.particle.ParticleEffect;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.tag.Tag;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Tickable;
@@ -98,7 +100,7 @@ public class EntropicRiftBlockEntity extends BlockEntity implements BlockEntityC
 			return;
 
 		if(entropicFlux <= -1)
-			entropicFlux = world.random.nextInt(501) + 500;
+			entropicFlux = world.random.nextInt(234) + 100;
 
 		if(box == null)
 			box = new Box(pos);
@@ -113,6 +115,7 @@ public class EntropicRiftBlockEntity extends BlockEntity implements BlockEntityC
 					createList();
 
 				manageBlockDestruction();
+				manageSound();
 			}
 		}
 
@@ -161,7 +164,7 @@ public class EntropicRiftBlockEntity extends BlockEntity implements BlockEntityC
 
 	public void manageBlockDestruction()
 	{
-		int time = 60;
+		int time = 80;
 		int i = (int) (world.getTime() % time);
 		int j = posList.size() / time;
 
@@ -178,7 +181,8 @@ public class EntropicRiftBlockEntity extends BlockEntity implements BlockEntityC
 		{
 			for(int k = i * j; k < (i + 1) * j; k++)
 			{
-				if(!world.isAir(posList.get(k)) && world.getBlockState(posList.get(k)).getHardness(world, posList.get(k)) < 50)
+				if(!world.isAir(posList.get(k)) && (world.getBlockState(posList.get(k)).getHardness(world, posList.get(k)) < 50 &&
+						world.getBlockState(posList.get(k)).getHardness(world, posList.get(k)) >= 0))
 				{
 					breakPos = posList.get(k);
 					break;
@@ -190,7 +194,8 @@ public class EntropicRiftBlockEntity extends BlockEntity implements BlockEntityC
 		{
 			for(int k = i * j; k < posList.size(); k++)
 			{
-				if(!world.isAir(posList.get(k)) && world.getBlockState(posList.get(k)).getHardness(world, posList.get(k)) < 50)
+				if(!world.isAir(posList.get(k)) && (world.getBlockState(posList.get(k)).getHardness(world, posList.get(k)) < 50 &&
+						world.getBlockState(posList.get(k)).getHardness(world, posList.get(k)) >= 0))
 				{
 					breakPos = posList.get(k);
 					break;
@@ -219,6 +224,12 @@ public class EntropicRiftBlockEntity extends BlockEntity implements BlockEntityC
 				}
 			}
 		});
+	}
+
+	public void manageSound()
+	{
+		if(world.getTime() % 170 == 0)
+			world.playSound(null, pos, AASoundEvents.RIFT_WARBLE, SoundCategory.BLOCKS, (getEntropicFlux() * 0.015F), 1F);
 	}
 
 	public void manageParticleEffects()

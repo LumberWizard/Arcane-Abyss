@@ -1,0 +1,8 @@
+{
+	"rift_warble": {
+		"subtitle": "subtitles.arcaneabyss.rift_warble",
+		"sounds": [
+			"arcaneabyss:rift_warble"
+		]
+	}
+}
