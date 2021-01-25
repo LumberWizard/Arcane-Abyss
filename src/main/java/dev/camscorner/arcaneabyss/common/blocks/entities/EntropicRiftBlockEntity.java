@@ -26,7 +26,6 @@ import net.minecraft.util.math.Vec3d;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class EntropicRiftBlockEntity extends BlockEntity implements BlockEntityClientSerializable, Tickable, EntropicFluxProvider
 {
@@ -35,17 +34,15 @@ public class EntropicRiftBlockEntity extends BlockEntity implements BlockEntityC
 	private static final Tag<Item> HIGH_FLUX = TagRegistry.item(new Identifier(ArcaneAbyss.MOD_ID, "high_flux"));
 	private static final Tag<Item> VERY_HIGH_FLUX = TagRegistry.item(new Identifier(ArcaneAbyss.MOD_ID, "very_high_flux"));
 	private static final int MAX_FLUX = 1000;
-	private Random rand = new Random();
 	private List<BlockPos> posList = new ArrayList<>();
 	private BlockPos breakPos;
 	private Box box;
-	private int entropicFlux;
+	private int entropicFlux = -1;
 	private boolean stabilized = false;
 
 	public EntropicRiftBlockEntity(BlockEntityType<?> type)
 	{
 		super(type);
-		addEntropicFlux(rand.nextInt(501) + 500);
 	}
 
 	public EntropicRiftBlockEntity()
@@ -56,14 +53,14 @@ public class EntropicRiftBlockEntity extends BlockEntity implements BlockEntityC
 	@Override
 	public void fromClientTag(CompoundTag tag)
 	{
-		addEntropicFlux(tag.getInt("EntropicFlux"));
+		entropicFlux = tag.getInt("EntropicFlux");
 		stabilized = tag.getBoolean("Stabilized");
 	}
 
 	@Override
 	public CompoundTag toClientTag(CompoundTag tag)
 	{
-		tag.putInt("EntropicFlux", getEntropicFlux());
+		tag.putInt("EntropicFlux", entropicFlux);
 		tag.putBoolean("Stabilized", stabilized);
 		return tag;
 	}
@@ -78,7 +75,7 @@ public class EntropicRiftBlockEntity extends BlockEntity implements BlockEntityC
 	@Override
 	public CompoundTag toTag(CompoundTag tag)
 	{
-		return super.toTag(tag);
+		return super.toTag(toClientTag(tag));
 	}
 
 	@Override
@@ -100,6 +97,9 @@ public class EntropicRiftBlockEntity extends BlockEntity implements BlockEntityC
 		if(world == null)
 			return;
 
+		if(entropicFlux <= -1)
+			entropicFlux = world.random.nextInt(501) + 500;
+
 		if(box == null)
 			box = new Box(pos);
 
@@ -119,6 +119,9 @@ public class EntropicRiftBlockEntity extends BlockEntity implements BlockEntityC
 		if(!world.isClient())
 		{
 			manageEntityDamage();
+
+			if(world.getTime() % 20 == 0)
+				sync();
 		}
 		else
 		{
@@ -138,30 +141,21 @@ public class EntropicRiftBlockEntity extends BlockEntity implements BlockEntityC
 					int count = ((ItemEntity) entity).getStack().getCount();
 
 					if(LOW_FLUX.contains(item))
-					{
 						addEntropicFlux(10 * count);
-					}
 					else if(MODERATE_FLUX.contains(item))
-					{
 						addEntropicFlux(50 * count);
-					}
 					else if(HIGH_FLUX.contains(item))
-					{
 						addEntropicFlux(150 * count);
-					}
 					else if(VERY_HIGH_FLUX.contains(item))
-					{
 						addEntropicFlux(1000 * count);
-					}
 
 					entity.remove();
 				}
 			}
-
-			if(entity instanceof LivingEntity)
-			{
+			else if(entity instanceof LivingEntity)
 				entity.damage(AADamageSource.ENTROPIC_RIFT, 4);
-			}
+			else
+				entity.remove();
 		});
 	}
 
@@ -253,7 +247,7 @@ public class EntropicRiftBlockEntity extends BlockEntity implements BlockEntityC
 
 	public void createList()
 	{
-		double radius = getEntropicFlux() * 0.015;
+		double radius = getEntropicFlux() * 0.016;
 		Iterable<BlockPos> iter = BlockPos.iterate(this.pos.add(-radius, -radius, -radius), this.pos.add(MathHelper.ceil(radius), MathHelper.ceil(radius), MathHelper.ceil(radius)));
 
 		for(BlockPos blockPos : iter)
@@ -271,9 +265,9 @@ public class EntropicRiftBlockEntity extends BlockEntity implements BlockEntityC
 	{
 		double distance = Math.max(Math.abs(point1.distanceTo(point2)), 2);
 		Vec3d normVec = new Vec3d(point1.x - point2.x, point1.y - point2.y, point1.z - point2.z).normalize();
-		double x = normVec.x * ((getEntropicFlux() * 0.0003) / distance);
-		double y = normVec.y * ((getEntropicFlux() * 0.0003) / distance);
-		double z = normVec.z * ((getEntropicFlux() * 0.0003) / distance);
+		double x = normVec.x * ((getEntropicFlux() * 0.0005) / distance);
+		double y = normVec.y * ((getEntropicFlux() * 0.0005) / distance);
+		double z = normVec.z * ((getEntropicFlux() * 0.0005) / distance);
 
 		return new Vec3d(x, y, z);
 	}
