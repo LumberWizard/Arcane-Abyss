@@ -2,9 +2,9 @@ package dev.camscorner.arcaneabyss.common.entities.projectiles;
 
 import dev.camscorner.arcaneabyss.common.network.packets.CreateProjectileEntityMessage;
 import dev.camscorner.arcaneabyss.common.items.FluxthrowerItem;
-import dev.camscorner.arcaneabyss.core.registry.ModEntities;
-import dev.camscorner.arcaneabyss.core.registry.ModParticleTypes;
-import dev.camscorner.arcaneabyss.core.registry.ModStatusEffects;
+import dev.camscorner.arcaneabyss.core.registry.AAEntities;
+import dev.camscorner.arcaneabyss.core.registry.AAParticleTypes;
+import dev.camscorner.arcaneabyss.core.registry.AAStatusEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -39,7 +39,7 @@ public class FluxBlastEntity extends PersistentProjectileEntity
 
 	public FluxBlastEntity(World world)
 	{
-		super(ModEntities.FLUX_BLAST, world);
+		super(AAEntities.FLUX_BLAST, world);
 		this.setNoGravity(true);
 		this.setDamage(4);
 	}
@@ -81,7 +81,7 @@ public class FluxBlastEntity extends PersistentProjectileEntity
 
 		if(world.isClient())
 			for(int i = 0; i < 127; ++i)
-				world.addParticle((ParticleEffect) ModParticleTypes.ENTROPIC_FLUX, getPos().x + rand.nextGaussian() / 2, getPos().y + rand.nextGaussian() / 3, getPos().z + rand.nextGaussian() / 2, 0D, 0D, 0D);
+				world.addParticle((ParticleEffect) AAParticleTypes.ENTROPIC_FLUX, getPos().x + rand.nextGaussian() / 2, getPos().y + rand.nextGaussian() / 3, getPos().z + rand.nextGaussian() / 2, 0D, 0D, 0D);
 
 		if(age >= MAX_AGE || getOwner() == null)
 			kill();
@@ -94,10 +94,10 @@ public class FluxBlastEntity extends PersistentProjectileEntity
 		{
 			LivingEntity target = (LivingEntity) hitResult.getEntity();
 			Entity owner = this.getOwner() != null ? this.getOwner() : this;
-			float damageAmount = (float) (target.hasStatusEffect(ModStatusEffects.ENTROPIC_DECAY) ? this.getDamage() * 3 : this.getDamage());
+			float damageAmount = (float) (target.hasStatusEffect(AAStatusEffects.ENTROPIC_DECAY) ? this.getDamage() * 3 : this.getDamage());
 
 			target.damage(DamageSource.arrow(this, owner), damageAmount);
-			target.addStatusEffect(new StatusEffectInstance(ModStatusEffects.ENTROPIC_DECAY, 60, 0));
+			target.addStatusEffect(new StatusEffectInstance(AAStatusEffects.ENTROPIC_DECAY, 60, 0));
 		}
 	}
 

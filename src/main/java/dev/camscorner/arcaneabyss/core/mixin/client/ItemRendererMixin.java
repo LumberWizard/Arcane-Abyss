@@ -1,7 +1,7 @@
 package dev.camscorner.arcaneabyss.core.mixin.client;
 
 import dev.camscorner.arcaneabyss.ArcaneAbyss;
-import dev.camscorner.arcaneabyss.core.registry.ModItems;
+import dev.camscorner.arcaneabyss.core.registry.AAItems;
 import net.minecraft.client.render.item.ItemModels;
 import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.render.model.BakedModel;
@@ -43,14 +43,14 @@ public abstract class ItemRendererMixin
 	{
 		ClientWorld clientWorld = world instanceof ClientWorld ? (ClientWorld)world : null;
 
-		if(stack.getItem() == ModItems.INFUSED_STAFF)
+		if(stack.getItem() == AAItems.INFUSED_STAFF)
 		{
 			BakedModel customModel = models.getModelManager().getModel(staffHandModel);;
 			BakedModel bakedModel = customModel.getOverrides().apply(customModel, stack, clientWorld, entity);
 
 			info.setReturnValue(bakedModel == null ? models.getModelManager().getMissingModel() : bakedModel);
 		}
-		else if(stack.getItem() == ModItems.FLUXTHROWER)
+		else if(stack.getItem() == AAItems.FLUXTHROWER)
 		{
 			BakedModel customModel = models.getModelManager().getModel(fluxThrowerHandModel);;
 			BakedModel bakedModel = customModel.getOverrides().apply(customModel, stack, clientWorld, entity);
@@ -64,14 +64,14 @@ public abstract class ItemRendererMixin
 	{
 		final ClientWorld clientWorld = world instanceof ClientWorld ? (ClientWorld) world : null;
 
-		if(stack.getItem() == ModItems.INFUSED_STAFF)
+		if(stack.getItem() == AAItems.INFUSED_STAFF)
 		{
 			final BakedModel customModel = models.getModelManager().getModel(staffNormalModel);
 			final BakedModel bakedModel = customModel.getOverrides().apply(customModel, stack, clientWorld, entity);
 
 			return bakedModel == null ? models.getModelManager().getMissingModel() : bakedModel;
 		}
-		else if(stack.getItem() == ModItems.FLUXTHROWER)
+		else if(stack.getItem() == AAItems.FLUXTHROWER)
 		{
 			final BakedModel customModel = models.getModelManager().getModel(fluxThrowerNormalModel);
 			final BakedModel bakedModel = customModel.getOverrides().apply(customModel, stack, clientWorld, entity);

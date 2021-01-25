@@ -11,7 +11,7 @@ import net.minecraft.util.registry.Registry;
 
 import java.util.LinkedHashMap;
 
-public class ModEntities
+public class AAEntities
 {
 	//-----Entity Map-----//
 	public static final LinkedHashMap<EntityType, Identifier> ENTITIES = new LinkedHashMap<>();

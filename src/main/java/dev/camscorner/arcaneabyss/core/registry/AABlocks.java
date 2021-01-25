@@ -16,14 +16,14 @@ import net.minecraft.world.BlockView;
 
 import java.util.LinkedHashMap;
 
-public class ModBlocks
+public class AABlocks
 {
 	//-----Block Map-----//
 	public static final LinkedHashMap<Block, Identifier> BLOCKS = new LinkedHashMap<>();
 
 	//-----Blocks-----//
 	public static final Block ENTROPIC_RIFT = create("entropic_rift", new EntropicRiftBlock(AbstractBlock.Settings.of(Material.BARRIER,
-			MaterialColor.BLACK).strength(-1, 3600000F).luminance((state) -> 5).noCollision().dropsNothing().allowsSpawning(ModBlocks::never).air()));
+			MaterialColor.BLACK).strength(-1, 3600000F).luminance((state) -> 5).noCollision().dropsNothing().allowsSpawning(AABlocks::never).air()));
 	public static final Block ENTROPIC_STONE = create("entropic_stone", new Block(AbstractBlock.Settings.of(Material.STONE,
 			MaterialColor.GRAY).requiresTool().strength(1.5F, 6.0F)));
 	public static final Block ENTROPIC_STONE_BRICKS = create("entropic_stone_bricks", new Block(AbstractBlock.Settings.of(Material.STONE,
@@ -33,15 +33,15 @@ public class ModBlocks
 	public static final Block ENTROPIC_PLANKS = create("entropic_planks", new Block(AbstractBlock.Settings.of(Material.WOOD,
 			MaterialColor.GRAY).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD)));
 	public static final Block INSCRIPTION_TABLE = create("inscription_table", new InscriptionTableBlock(AbstractBlock.Settings.of(Material.WOOD,
-			MaterialColor.BROWN).strength(2.5F).sounds(BlockSoundGroup.WOOD).nonOpaque().luminance((state) -> 12).suffocates(ModBlocks::never)
-			.blockVision(ModBlocks::never)));
+			MaterialColor.BROWN).strength(2.5F).sounds(BlockSoundGroup.WOOD).nonOpaque().luminance((state) -> 12).suffocates(AABlocks::never)
+			.blockVision(AABlocks::never)));
 	public static final Block ALTAR = create("altar", new AltarBlock(AbstractBlock.Settings.of(Material.STONE,
 			MaterialColor.GRAY).requiresTool().strength(1.5F, 6.0F).luminance((state) -> 15)));
 	public static final Block PEDESTAL = create("pedestal", new PedestalBlock(AbstractBlock.Settings.of(Material.STONE,
 			MaterialColor.GRAY).requiresTool().strength(1.5F, 6.0F)));
 	public static final Block RELAY = create("entropic_relay", new RelayBlock(AbstractBlock.Settings.of(Material.METAL,
 			MaterialColor.PURPLE).requiresTool().strength(3.5F).sounds(BlockSoundGroup.LANTERN).luminance((state) -> 5).nonOpaque()
-			.suffocates(ModBlocks::never).blockVision(ModBlocks::never)));
+			.suffocates(AABlocks::never).blockVision(AABlocks::never)));
 
 	//-----Registry-----//
 	public static void register()

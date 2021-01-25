@@ -1,6 +1,6 @@
 package dev.camscorner.arcaneabyss.common.blocks.entities;
 
-import dev.camscorner.arcaneabyss.core.registry.ModBlockEntities;
+import dev.camscorner.arcaneabyss.core.registry.AABlockEntities;
 import dev.camscorner.arcaneabyss.api.util.HasInventory;
 import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.minecraft.block.BlockState;
@@ -24,7 +24,7 @@ public class PedestalBlockEntity extends BlockEntity implements BlockEntityClien
 
 	public PedestalBlockEntity()
 	{
-		this(ModBlockEntities.PEDESTAL);
+		this(AABlockEntities.PEDESTAL);
 	}
 
 	@Override

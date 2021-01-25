@@ -1,7 +1,7 @@
 package dev.camscorner.arcaneabyss.common.blocks.entities;
 
 import dev.camscorner.arcaneabyss.api.util.EntropicFluxProvider;
-import dev.camscorner.arcaneabyss.core.registry.ModBlockEntities;
+import dev.camscorner.arcaneabyss.core.registry.AABlockEntities;
 import dev.camscorner.arcaneabyss.api.util.HasInventory;
 import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.minecraft.block.BlockState;
@@ -31,7 +31,7 @@ public class AltarBlockEntity extends BlockEntity implements BlockEntityClientSe
 
 	public AltarBlockEntity()
 	{
-		this(ModBlockEntities.ALTAR);
+		this(AABlockEntities.ALTAR);
 	}
 
 	@Override

@@ -9,7 +9,7 @@ import org.lwjgl.glfw.GLFW;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ModKeybinds
+public class AAKeybinds
 {
 	//-----Keybinding Map-----//
 	public static final List<KeyBinding> KEYBINDINGS = new ArrayList<>();

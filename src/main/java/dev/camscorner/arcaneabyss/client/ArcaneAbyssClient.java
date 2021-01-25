@@ -28,7 +28,7 @@ import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.util.ModelIdentifier;
 import net.minecraft.util.Identifier;
 
-import static dev.camscorner.arcaneabyss.core.registry.ModItems.RUNIC_STONE;
+import static dev.camscorner.arcaneabyss.core.registry.AAItems.RUNIC_STONE;
 
 @Environment(EnvType.CLIENT)
 public class ArcaneAbyssClient implements ClientModInitializer
@@ -44,34 +44,34 @@ public class ArcaneAbyssClient implements ClientModInitializer
 		registerPredicates();
 
 		//-----Particle Registry-----//
-		ParticleFactoryRegistryImpl.INSTANCE.register(ModParticleTypes.ENTROPIC_FLUX, EntropicFluxParticle.Factory::new);
+		ParticleFactoryRegistryImpl.INSTANCE.register(AAParticleTypes.ENTROPIC_FLUX, EntropicFluxParticle.Factory::new);
 
 		//-----Custom Item Model Registry-----//
 		ModelLoadingRegistry.INSTANCE.registerAppender((resourceManager, out) -> out.accept(new ModelIdentifier(new Identifier(ArcaneAbyss.MOD_ID, "infused_staff_in_hand"), "inventory")));
 		ModelLoadingRegistry.INSTANCE.registerAppender((resourceManager, out) -> out.accept(new ModelIdentifier(new Identifier(ArcaneAbyss.MOD_ID, "fluxthrower_in_hand"), "inventory")));
 
 		//-----Block Layers Registry-----//
-		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), ModBlocks.INSCRIPTION_TABLE, ModBlocks.RELAY, ModBlocks.ENTROPIC_RIFT);
+		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), AABlocks.INSCRIPTION_TABLE, AABlocks.RELAY, AABlocks.ENTROPIC_RIFT);
 
 		//-----Block Entity Renderer Registry-----//
-		BlockEntityRendererRegistry.INSTANCE.register(ModBlockEntities.ALTAR, AltarBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.INSTANCE.register(ModBlockEntities.PEDESTAL, PedestalBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.INSTANCE.register(AABlockEntities.ALTAR, AltarBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.INSTANCE.register(AABlockEntities.PEDESTAL, PedestalBlockEntityRenderer::new);
 
 		//-----Entity Renderer Registry-----//
-		EntityRendererRegistry.INSTANCE.register(ModEntities.FLUX_BLAST, ((dispatcher, context) -> new FluxBlastEntityRenderer(dispatcher)));
+		EntityRendererRegistry.INSTANCE.register(AAEntities.FLUX_BLAST, ((dispatcher, context) -> new FluxBlastEntityRenderer(dispatcher)));
 
 		//-----Custom Armour Model Registry-----//
-		ArmorRenderingRegistry.registerModel((entity, stack, slot, model) -> new InfusedArmourModel<>(slot), ModItems.INFUSED_HOOD, ModItems.INFUSED_ROBES, ModItems.INFUSED_GRIEVES);
-		ArmorRenderingRegistry.registerTexture((entity, stack, slot, layer2, suffix, texture) -> new Identifier(ArcaneAbyss.MOD_ID, "textures/models/armour/infused_armour.png"), ModItems.INFUSED_HOOD, ModItems.INFUSED_ROBES, ModItems.INFUSED_GRIEVES);
+		ArmorRenderingRegistry.registerModel((entity, stack, slot, model) -> new InfusedArmourModel<>(slot), AAItems.INFUSED_HOOD, AAItems.INFUSED_ROBES, AAItems.INFUSED_GRIEVES);
+		ArmorRenderingRegistry.registerTexture((entity, stack, slot, layer2, suffix, texture) -> new Identifier(ArcaneAbyss.MOD_ID, "textures/models/armour/infused_armour.png"), AAItems.INFUSED_HOOD, AAItems.INFUSED_ROBES, AAItems.INFUSED_GRIEVES);
 
 		//-----Keybinding Registry-----//
-		ModKeybinds.register();
+		AAKeybinds.register();
 
 		//-----Screen Registry-----//
 		ScreenRegistry.register(ArcaneAbyss.INSCRIPTION_TABLE_SCREEN_HANDLER, InscriptionTableScreen::new);
 
 		//-----Event Registry-----//
-		ModEvents.clientEvents();
+		AAEvents.clientEvents();
 
 		//-----Colour Registry-----//
 		ColorProviderRegistryImpl.ITEM.register(((stack, tintIndex) -> tintIndex == 0 ? 0xFFFFFF :

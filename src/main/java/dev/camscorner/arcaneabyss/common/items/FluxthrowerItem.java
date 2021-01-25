@@ -1,7 +1,7 @@
 package dev.camscorner.arcaneabyss.common.items;
 
 import dev.camscorner.arcaneabyss.common.entities.projectiles.FluxBlastEntity;
-import dev.camscorner.arcaneabyss.core.registry.ModEntities;
+import dev.camscorner.arcaneabyss.core.registry.AAEntities;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -33,7 +33,7 @@ public class FluxthrowerItem extends Item
 
 		if(!world.isClient())
 		{
-			FluxBlastEntity fluxBlast = new FluxBlastEntity(ModEntities.FLUX_BLAST, user, stack, world);
+			FluxBlastEntity fluxBlast = new FluxBlastEntity(AAEntities.FLUX_BLAST, user, stack, world);
 			fluxBlast.setProperties(user, user.pitch, user.yaw, 0.0F, 2.5F, 1.0F);
 			world.spawnEntity(fluxBlast);
 		}

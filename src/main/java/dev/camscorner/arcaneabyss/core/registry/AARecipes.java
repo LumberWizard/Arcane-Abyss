@@ -10,7 +10,7 @@ import net.minecraft.util.registry.Registry;
 
 import java.util.LinkedHashMap;
 
-public class ModRecipes
+public class AARecipes
 {
 	//-----Serializer/Type Maps-----//
 	public static final LinkedHashMap<RecipeSerializer, Identifier> SERIALIZERS = new LinkedHashMap<>();

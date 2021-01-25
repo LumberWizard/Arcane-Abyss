@@ -1,7 +1,7 @@
 package dev.camscorner.arcaneabyss.common.spells.modifiers;
 
 import dev.camscorner.arcaneabyss.api.spells.SpellModifier;
-import dev.camscorner.arcaneabyss.core.registry.ModItems;
+import dev.camscorner.arcaneabyss.core.registry.AAItems;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -18,7 +18,7 @@ public class VoidElementalModifier extends SpellModifier
 	@Override
 	public Item getItemCost()
 	{
-		return ModItems.ENTROPIC_CRYSTAL;
+		return AAItems.ENTROPIC_CRYSTAL;
 	}
 
 	@Override

@@ -8,7 +8,7 @@ import net.minecraft.util.registry.Registry;
 
 import java.util.LinkedHashMap;
 
-public class ModStatusEffects
+public class AAStatusEffects
 {
 	//-----Status Effect Map-----//
 	public static final LinkedHashMap<StatusEffect, Identifier> STATUS_EFFECTS = new LinkedHashMap<>();

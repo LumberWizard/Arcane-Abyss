@@ -1,6 +1,6 @@
 package dev.camscorner.arcaneabyss.client.models;
 
-import dev.camscorner.arcaneabyss.core.registry.ModItems;
+import dev.camscorner.arcaneabyss.core.registry.AAItems;
 import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
@@ -158,7 +158,7 @@ public class InfusedArmourModel<T extends LivingEntity> extends BipedEntityModel
 
 		}
 
-		if(entity.getEquippedStack(EquipmentSlot.HEAD).getItem() == ModItems.INFUSED_HOOD)
+		if(entity.getEquippedStack(EquipmentSlot.HEAD).getItem() == AAItems.INFUSED_HOOD)
 		{
 			ItemStack hood = entity.getEquippedStack(EquipmentSlot.HEAD);
 
@@ -166,7 +166,7 @@ public class InfusedArmourModel<T extends LivingEntity> extends BipedEntityModel
 			rightEyeCrystal.visible = hood.getTag().getBoolean("HasRightEyeCrystal");
 		}
 
-		if(entity.getEquippedStack(EquipmentSlot.CHEST).getItem() == ModItems.INFUSED_ROBES)
+		if(entity.getEquippedStack(EquipmentSlot.CHEST).getItem() == AAItems.INFUSED_ROBES)
 		{
 			ItemStack robes = entity.getEquippedStack(EquipmentSlot.CHEST);
 
@@ -176,7 +176,7 @@ public class InfusedArmourModel<T extends LivingEntity> extends BipedEntityModel
 			rightShoulderCrystal.visible = robes.getTag().getBoolean("HasRightShoulderCrystal");
 		}
 
-		if(entity.getEquippedStack(EquipmentSlot.LEGS).getItem() == ModItems.INFUSED_GRIEVES)
+		if(entity.getEquippedStack(EquipmentSlot.LEGS).getItem() == AAItems.INFUSED_GRIEVES)
 		{
 			ItemStack legs = entity.getEquippedStack(EquipmentSlot.LEGS);
 

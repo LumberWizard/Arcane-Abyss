@@ -3,7 +3,7 @@ package dev.camscorner.arcaneabyss.client.gui.screen;
 import com.mojang.blaze3d.systems.RenderSystem;
 import dev.camscorner.arcaneabyss.ArcaneAbyss;
 import dev.camscorner.arcaneabyss.common.gui.InscriptionTableScreenHandler;
-import dev.camscorner.arcaneabyss.core.registry.ModItems;
+import dev.camscorner.arcaneabyss.core.registry.AAItems;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
@@ -53,12 +53,12 @@ public class InscriptionTableScreen extends HandledScreen<InscriptionTableScreen
 	{
 		ItemStack stack = handler.inventory.getStack(1);
 		RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-		client.getTextureManager().bindTexture(stack.getItem() == ModItems.SPELL_PAPER ? TEXTURE_SPELL : (stack.getItem() == ModItems.RESEARCH_SCROLL && !stack.getOrCreateTag().getBoolean("Known")) ? TEXTURE_RESEARCH : TEXTURE_IDLE);
+		client.getTextureManager().bindTexture(stack.getItem() == AAItems.SPELL_PAPER ? TEXTURE_SPELL : (stack.getItem() == AAItems.RESEARCH_SCROLL && !stack.getOrCreateTag().getBoolean("Known")) ? TEXTURE_RESEARCH : TEXTURE_IDLE);
 		int x = (width - backgroundWidth) / 2;
 		int y = (height - backgroundHeight) / 2;
 		drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
 
-		if(isPointWithinBounds(152, 14 + 19, 16, 16, mouseX, mouseY) && stack.getItem() == ModItems.SPELL_PAPER)
+		if(isPointWithinBounds(152, 14 + 19, 16, 16, mouseX, mouseY) && stack.getItem() == AAItems.SPELL_PAPER)
 			drawTexture(matrices, x + backgroundWidth - 24, y + 32, backgroundWidth, 16, 16, 16);
 	}
 

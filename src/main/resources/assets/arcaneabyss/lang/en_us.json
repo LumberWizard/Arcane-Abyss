@@ -63,5 +63,9 @@
   "category.arcaneabyss.general": "Arcane Abyss",
 
   "#group": "keybinds",
-  "key.arcaneabyss.spell_menu": "Spell Menu"
+  "key.arcaneabyss.spell_menu": "Spell Menu",
+
+  "#group": "damage sources",
+  "death.attack.arcaneabyss.rift": "%s got zooted.",
+  "death.attack.arcaneabyss.rift.player": "%s got zooted with %s."
 }

@@ -29,16 +29,16 @@ public class ArcaneAbyss implements ModInitializer
 
 		ServerPlayNetworking.registerGlobalReceiver(SetStaffItemMessage.ID, SetStaffItemMessage::handle);
 
-		ModShaders.register();
-		ModBlocks.register();
-		ModBlockEntities.register();
-		ModItems.register();
-		ModEntities.register();
-		ModStatusEffects.register();
-		ModParticleTypes.register();
-		ModRecipes.registerSerializers();
-		ModRecipes.registerTypes();
-		ModSpellComponents.register();
+		AAShaders.register();
+		AABlocks.register();
+		AABlockEntities.register();
+		AAItems.register();
+		AAEntities.register();
+		AAStatusEffects.register();
+		AAParticleTypes.register();
+		AARecipes.registerSerializers();
+		AARecipes.registerTypes();
+		AASpellComponents.register();
 
 		LOGGER.info("If you gaze long enough into an abyss, the abyss will gaze back into you...");
 	}

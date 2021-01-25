@@ -2,7 +2,7 @@ package dev.camscorner.arcaneabyss.common.blocks.entities;
 
 import dev.camscorner.arcaneabyss.common.blocks.InscriptionTableBlock;
 import dev.camscorner.arcaneabyss.common.gui.InscriptionTableScreenHandler;
-import dev.camscorner.arcaneabyss.core.registry.ModBlockEntities;
+import dev.camscorner.arcaneabyss.core.registry.AABlockEntities;
 import dev.camscorner.arcaneabyss.api.util.HasInventory;
 import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.minecraft.block.BlockState;
@@ -34,7 +34,7 @@ public class InscriptionTableBlockEntity extends BlockEntity implements BlockEnt
 
 	public InscriptionTableBlockEntity()
 	{
-		this(ModBlockEntities.INSCRIPTION_TABLE);
+		this(AABlockEntities.INSCRIPTION_TABLE);
 	}
 
 	@Override

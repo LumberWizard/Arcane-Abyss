@@ -10,14 +10,14 @@ import net.minecraft.item.ItemStack;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ModEvents
+public class AAEvents
 {
 	public static int spellMenuTicks = 0;
 	private static ItemStack stack = null;
 
 	public static void setStack(ItemStack stack)
 	{
-		ModEvents.stack = stack;
+		AAEvents.stack = stack;
 	}
 
 	public static List<ItemStack> filteredPlayerItems(PlayerEntity player)
@@ -59,7 +59,7 @@ public class ModEvents
 					if(player.getMainHandStack().getItem() instanceof StaffItem ||
 							player.getOffHandStack().getItem() instanceof StaffItem)
 					{
-						if(ModKeybinds.SPELL_MENU.isPressed())
+						if(AAKeybinds.SPELL_MENU.isPressed())
 						{
 							ItemStack staff = ItemStack.EMPTY;
 

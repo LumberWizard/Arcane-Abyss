@@ -13,16 +13,16 @@ import net.minecraft.util.registry.Registry;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class ModBlockEntities
+public class AABlockEntities
 {
 	//-----Block Entity Type Map-----//
 	private static final Map<BlockEntityType<?>, Identifier> BLOCK_ENTITY_TYPES = new LinkedHashMap<>();
 
 	//-----Block Entity Types-----//
-	public static final BlockEntityType<EntropicRiftBlockEntity> ENTROPIC_RIFT = create("entropic_rift", BlockEntityType.Builder.create(EntropicRiftBlockEntity::new, ModBlocks.ENTROPIC_RIFT).build(null));
-	public static final BlockEntityType<AltarBlockEntity> ALTAR = create("altar", BlockEntityType.Builder.create(AltarBlockEntity::new, ModBlocks.ALTAR).build(null));
-	public static final BlockEntityType<PedestalBlockEntity> PEDESTAL = create("pedestal", BlockEntityType.Builder.create(PedestalBlockEntity::new, ModBlocks.PEDESTAL).build(null));
-	public static final BlockEntityType<InscriptionTableBlockEntity> INSCRIPTION_TABLE = create("inscription_table", BlockEntityType.Builder.create(InscriptionTableBlockEntity::new, ModBlocks.INSCRIPTION_TABLE).build(null));
+	public static final BlockEntityType<EntropicRiftBlockEntity> ENTROPIC_RIFT = create("entropic_rift", BlockEntityType.Builder.create(EntropicRiftBlockEntity::new, AABlocks.ENTROPIC_RIFT).build(null));
+	public static final BlockEntityType<AltarBlockEntity> ALTAR = create("altar", BlockEntityType.Builder.create(AltarBlockEntity::new, AABlocks.ALTAR).build(null));
+	public static final BlockEntityType<PedestalBlockEntity> PEDESTAL = create("pedestal", BlockEntityType.Builder.create(PedestalBlockEntity::new, AABlocks.PEDESTAL).build(null));
+	public static final BlockEntityType<InscriptionTableBlockEntity> INSCRIPTION_TABLE = create("inscription_table", BlockEntityType.Builder.create(InscriptionTableBlockEntity::new, AABlocks.INSCRIPTION_TABLE).build(null));
 
 	//-----Registry-----//
 	public static void register()

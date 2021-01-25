@@ -6,7 +6,7 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
 import com.mojang.serialization.JsonOps;
 import dev.camscorner.arcaneabyss.api.recipes.codecs.TagCodec;
-import dev.camscorner.arcaneabyss.core.registry.ModRecipes;
+import dev.camscorner.arcaneabyss.core.registry.AARecipes;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -93,13 +93,13 @@ public class AltarItemRecipe implements Recipe<Inventory>
 	@Override
 	public RecipeSerializer<?> getSerializer()
 	{
-		return ModRecipes.ALTAR_ITEM_SERIALIZER;
+		return AARecipes.ALTAR_ITEM_SERIALIZER;
 	}
 
 	@Override
 	public RecipeType<?> getType()
 	{
-		return ModRecipes.ALTAR_ITEM_TYPE;
+		return AARecipes.ALTAR_ITEM_TYPE;
 	}
 
 	public static ItemStack getItemStack(JsonObject json)

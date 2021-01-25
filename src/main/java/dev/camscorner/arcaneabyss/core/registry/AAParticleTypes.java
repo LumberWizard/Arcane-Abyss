@@ -11,7 +11,7 @@ import net.minecraft.util.registry.Registry;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class ModParticleTypes
+public class AAParticleTypes
 {
 	//-----Particle Type Map-----//
 	private static final Map<ParticleType<?>, Identifier> PARTICLE_TYPES = new LinkedHashMap<>();

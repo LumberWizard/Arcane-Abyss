@@ -3,8 +3,8 @@ package dev.camscorner.arcaneabyss.core.mixin.client;
 import com.google.common.collect.Lists;
 import com.mojang.blaze3d.systems.RenderSystem;
 import dev.camscorner.arcaneabyss.ArcaneAbyss;
-import dev.camscorner.arcaneabyss.core.registry.ModEvents;
-import dev.camscorner.arcaneabyss.core.registry.ModKeybinds;
+import dev.camscorner.arcaneabyss.core.registry.AAEvents;
+import dev.camscorner.arcaneabyss.core.registry.AAKeybinds;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawableHelper;
@@ -53,7 +53,7 @@ public abstract class InGameHudMixin extends DrawableHelper
 	private void render(MatrixStack matrices, float tickDelta, CallbackInfo callbackInfo)
 	{
 		PlayerEntity player = getCameraPlayer();
-		float spellMenuTicks = ModEvents.spellMenuTicks;
+		float spellMenuTicks = AAEvents.spellMenuTicks;
 		float scale = 1F;
 		double mouseX = client.mouse.getX();
 		double mouseY = client.mouse.getY();
@@ -61,7 +61,7 @@ public abstract class InGameHudMixin extends DrawableHelper
 
 		if(player != null)
 		{
-			List<ItemStack> filteredItems = ModEvents.filteredPlayerItems(player);
+			List<ItemStack> filteredItems = AAEvents.filteredPlayerItems(player);
 
 			if(spellMenuTicks > 1)
 			{
@@ -94,8 +94,8 @@ public abstract class InGameHudMixin extends DrawableHelper
 								(int) ((mouseY * scaledHeight / client.getWindow().getHeight()) - (scaledHeight / 2.09F)));
 						RenderSystem.scalef(1.25F, 1.25F, 0F);
 
-						if(!ModKeybinds.SPELL_MENU.isPressed() && ModKeybinds.SPELL_MENU.wasPressed())
-							ModEvents.setStack(stack);
+						if(!AAKeybinds.SPELL_MENU.isPressed() && AAKeybinds.SPELL_MENU.wasPressed())
+							AAEvents.setStack(stack);
 					}
 					client.getItemRenderer().renderInGui(stack, (int) x, (int) y);
 					RenderSystem.popMatrix();

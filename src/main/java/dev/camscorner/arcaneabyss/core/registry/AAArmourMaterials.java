@@ -12,10 +12,10 @@ import net.minecraft.util.Lazy;
 
 import java.util.function.Supplier;
 
-public enum ModArmourMaterials implements ArmorMaterial
+public enum AAArmourMaterials implements ArmorMaterial
 {
 	INFUSED("netherite", 12, new int[]{2, 4, 5, 2}, 30, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> {
-		return Ingredient.ofItems(new ItemConvertible[]{ModItems.ENTROPIC_CRYSTAL});
+		return Ingredient.ofItems(new ItemConvertible[]{AAItems.ENTROPIC_CRYSTAL});
 	});
 
 	private static final int[] BASE_DURABILITY = new int[]{13, 15, 16, 11};
@@ -28,7 +28,7 @@ public enum ModArmourMaterials implements ArmorMaterial
 	private final float knockbackResistance;
 	private final Lazy<Ingredient> repairIngredientSupplier;
 
-	ModArmourMaterials(String name, int durabilityMultiplier, int[] protectionAmounts, int enchantability, SoundEvent equipSound, float toughness, float knockbackResistance, Supplier<Ingredient> repairIngredientSupplier) {
+	AAArmourMaterials(String name, int durabilityMultiplier, int[] protectionAmounts, int enchantability, SoundEvent equipSound, float toughness, float knockbackResistance, Supplier<Ingredient> repairIngredientSupplier) {
 		this.name = name;
 		this.durabilityMultiplier = durabilityMultiplier;
 		this.protectionAmounts = protectionAmounts;

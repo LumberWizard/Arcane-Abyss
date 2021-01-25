@@ -11,7 +11,7 @@ import net.minecraft.util.registry.Registry;
 
 import java.util.LinkedHashMap;
 
-public class ModSpellComponents
+public class AASpellComponents
 {
 	//-----Spell Component Map-----//
 	public static final LinkedHashMap<SpellComponent, Identifier> COMPONENTS = new LinkedHashMap<>();

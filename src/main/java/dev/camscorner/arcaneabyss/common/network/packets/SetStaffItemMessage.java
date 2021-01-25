@@ -1,7 +1,7 @@
 package dev.camscorner.arcaneabyss.common.network.packets;
 
 import dev.camscorner.arcaneabyss.ArcaneAbyss;
-import dev.camscorner.arcaneabyss.core.registry.ModItems;
+import dev.camscorner.arcaneabyss.core.registry.AAItems;
 import io.netty.buffer.Unpooled;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.fabricmc.fabric.impl.networking.ClientSidePacketRegistryImpl;
@@ -45,7 +45,7 @@ public class SetStaffItemMessage
 			}
 			else if(isAddingItem && staffStack.getOrCreateTag().contains("Component_0"))
 			{
-				ItemStack newSpellStack = new ItemStack(ModItems.SPELL_CRYSTAL, 1);
+				ItemStack newSpellStack = new ItemStack(AAItems.SPELL_CRYSTAL, 1);
 				newSpellStack.setTag(staffStack.getOrCreateTag().copy());
 				spellStack.split(1);
 				player.inventory.offerOrDrop(player.world, newSpellStack);
@@ -53,7 +53,7 @@ public class SetStaffItemMessage
 			}
 			else if(!isAddingItem && staffStack.getOrCreateTag().contains("Component_0"))
 			{
-				ItemStack newSpellStack = new ItemStack(ModItems.SPELL_CRYSTAL, 1);
+				ItemStack newSpellStack = new ItemStack(AAItems.SPELL_CRYSTAL, 1);
 				newSpellStack.setTag(staffStack.getOrCreateTag().copy());
 				player.inventory.offerOrDrop(player.world, newSpellStack);
 				staffStack.setTag(new CompoundTag());

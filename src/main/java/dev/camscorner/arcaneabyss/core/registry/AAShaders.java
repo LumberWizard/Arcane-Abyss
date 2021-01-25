@@ -10,7 +10,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.LinkedHashMap;
 import java.util.function.Consumer;
 
-public class ModShaders
+public class AAShaders
 {
 	//-----Shader Map-----//
 	public static final LinkedHashMap<ManagedShaderEffect, Identifier> SHADERS = new LinkedHashMap<>();

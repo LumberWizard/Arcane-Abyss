@@ -2,7 +2,7 @@ package dev.camscorner.arcaneabyss.api;
 
 import dev.camscorner.arcaneabyss.ArcaneAbyss;
 import dev.camscorner.arcaneabyss.api.spells.SpellComponent;
-import dev.camscorner.arcaneabyss.core.registry.ModItems;
+import dev.camscorner.arcaneabyss.core.registry.AAItems;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.event.registry.FabricRegistryBuilder;
 import net.minecraft.item.ItemGroup;
@@ -14,7 +14,7 @@ public class ArcaneAbyssApi
 {
 	//-----Item Group-----//
 	public static final ItemGroup ITEM_GROUP = FabricItemGroupBuilder.build(new Identifier(ArcaneAbyss.MOD_ID, "general"),
-			() -> new ItemStack(ModItems.ENTROPIC_CRYSTAL));
+			() -> new ItemStack(AAItems.ENTROPIC_CRYSTAL));
 
 	//-----Custom Registries-----//
 	public static final Registry<SpellComponent> COMPONENT = FabricRegistryBuilder.createSimple(SpellComponent.class,

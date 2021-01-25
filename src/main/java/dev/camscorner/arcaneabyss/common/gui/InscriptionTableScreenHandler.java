@@ -3,7 +3,7 @@ package dev.camscorner.arcaneabyss.common.gui;
 import dev.camscorner.arcaneabyss.ArcaneAbyss;
 import dev.camscorner.arcaneabyss.common.gui.slot.SpellComponentSlot;
 import dev.camscorner.arcaneabyss.common.gui.slot.ItemSpecificSlot;
-import dev.camscorner.arcaneabyss.core.registry.ModItems;
+import dev.camscorner.arcaneabyss.core.registry.AAItems;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
@@ -41,8 +41,8 @@ public class InscriptionTableScreenHandler extends ScreenHandler
 		int m;
 		int l;
 
-		addSlot(new ItemSpecificSlot(inventory, 0, 8, 7, ModItems.INK_POT));
-		addSlot(new ItemSpecificSlot(inventory, 1, 152, 7, ModItems.RESEARCH_SCROLL, ModItems.SPELL_PAPER));
+		addSlot(new ItemSpecificSlot(inventory, 0, 8, 7, AAItems.INK_POT));
+		addSlot(new ItemSpecificSlot(inventory, 1, 152, 7, AAItems.RESEARCH_SCROLL, AAItems.SPELL_PAPER));
 
 		for(l = 0; l < 6; ++l)
 		{
@@ -70,14 +70,14 @@ public class InscriptionTableScreenHandler extends ScreenHandler
 	{
 		int count = inventory.getStack(2).getCount() + inventory.getStack(3).getCount() + inventory.getStack(4).getCount() +
 				inventory.getStack(5).getCount() + inventory.getStack(6).getCount() + inventory.getStack(7).getCount();
-		boolean stacksAreValid = inventory.getStack(1).getItem() == ModItems.SPELL_PAPER &&
-				inventory.getStack(0).getItem() == ModItems.INK_POT &&
+		boolean stacksAreValid = inventory.getStack(1).getItem() == AAItems.SPELL_PAPER &&
+				inventory.getStack(0).getItem() == AAItems.INK_POT &&
 				inventory.getStack(0).getMaxDamage() - inventory.getStack(0).getDamage() >= count;
 
 		// TODO make sure the spell order is valid
 		if(stacksAreValid)
 		{
-			ItemStack stack = new ItemStack(ModItems.SPELL_CRYSTAL);
+			ItemStack stack = new ItemStack(AAItems.SPELL_CRYSTAL);
 
 			for(int i = 0; i < 6; i++)
 			{
