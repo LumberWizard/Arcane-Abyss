@@ -90,6 +90,7 @@ public class EntropicRiftBlockEntity extends BlockEntity implements BlockEntityC
 	@Override
 	public void addEntropicFlux(int amount)
 	{
+		posList.clear();
 		entropicFlux = MathHelper.clamp(entropicFlux + amount, 0, MAX_FLUX);
 	}
 
@@ -99,32 +100,20 @@ public class EntropicRiftBlockEntity extends BlockEntity implements BlockEntityC
 		if(world == null)
 			return;
 
-		if(posList.isEmpty() && !world.isClient())
-		{
-			double radius = getEntropicFlux() * 0.015;
-			Iterable<BlockPos> iter = BlockPos.iterate(this.pos.add(-radius, -radius, -radius), this.pos.add(radius, radius, radius));
-
-			for(BlockPos blockPos : iter)
-			{
-				if(blockPos.isWithinDistance(this.pos, radius) && blockPos != pos)
-				{
-					posList.add(blockPos);
-				}
-			}
-
-			posList.sort((o1, o2) -> (int) (this.pos.getSquaredDistance(o1) - this.pos.getSquaredDistance(o2)));
-
-			for(int i = posList.size() - 9; i < posList.size(); i++)
-				System.out.println(posList.get(i));
-		}
-
 		if(box == null)
 			box = new Box(pos);
 
 		if(!stabilized)
 		{
 			manageEntityAttraction();
-			manageBlockDestruction();
+
+			if(!world.isClient())
+			{
+				if(posList.isEmpty())
+					createList();
+
+				manageBlockDestruction();
+			}
 		}
 
 		if(!world.isClient())
@@ -178,8 +167,9 @@ public class EntropicRiftBlockEntity extends BlockEntity implements BlockEntityC
 
 	public void manageBlockDestruction()
 	{
-		int i = (int) (world.getTime() % 80);
-		int j = posList.size() / 80;
+		int time = 60;
+		int i = (int) (world.getTime() % time);
+		int j = posList.size() / time;
 
 		if(i == 0 && breakPos != null)
 		{
@@ -190,11 +180,11 @@ public class EntropicRiftBlockEntity extends BlockEntity implements BlockEntityC
 		if(breakPos != null)
 			return;
 
-		if(i < 79)
+		if(i < time - 1)
 		{
 			for(int k = i * j; k < (i + 1) * j; k++)
 			{
-				if(!world.isAir(posList.get(k)))
+				if(!world.isAir(posList.get(k)) && world.getBlockState(posList.get(k)).getHardness(world, posList.get(k)) < 50)
 				{
 					breakPos = posList.get(k);
 					break;
@@ -202,11 +192,11 @@ public class EntropicRiftBlockEntity extends BlockEntity implements BlockEntityC
 			}
 		}
 
-		if(i == 79)
+		if(i == time - 1)
 		{
 			for(int k = i * j; k < posList.size(); k++)
 			{
-				if(!world.isAir(posList.get(k)))
+				if(!world.isAir(posList.get(k)) && world.getBlockState(posList.get(k)).getHardness(world, posList.get(k)) < 50)
 				{
 					breakPos = posList.get(k);
 					break;
@@ -259,6 +249,22 @@ public class EntropicRiftBlockEntity extends BlockEntity implements BlockEntityC
 				}
 			}
 		}
+	}
+
+	public void createList()
+	{
+		double radius = getEntropicFlux() * 0.015;
+		Iterable<BlockPos> iter = BlockPos.iterate(this.pos.add(-radius, -radius, -radius), this.pos.add(MathHelper.ceil(radius), MathHelper.ceil(radius), MathHelper.ceil(radius)));
+
+		for(BlockPos blockPos : iter)
+		{
+			if(blockPos.isWithinDistance(this.pos, radius) && blockPos != pos)
+			{
+				posList.add(blockPos.toImmutable());
+			}
+		}
+
+		posList.sort((o1, o2) -> (int) (this.pos.getSquaredDistance(o1) - this.pos.getSquaredDistance(o2)));
 	}
 
 	public Vec3d inverseDistance(Vec3d point1, Vec3d point2)
