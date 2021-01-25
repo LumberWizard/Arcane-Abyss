@@ -20,7 +20,7 @@ public class AltarBlockEntity extends BlockEntity implements BlockEntityClientSe
 {
 	private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(1, ItemStack.EMPTY);
 	private final BlockPos[] pedestals = { BlockPos.ORIGIN, BlockPos.ORIGIN, BlockPos.ORIGIN, BlockPos.ORIGIN, BlockPos.ORIGIN, BlockPos.ORIGIN };
-	private int entropic_flux = 0;
+	private int entropicFlux = 0;
 	public boolean active = false;
 	public Mode mode = Mode.IDLE;
 
@@ -62,7 +62,7 @@ public class AltarBlockEntity extends BlockEntity implements BlockEntityClientSe
 	{
 		Inventories.fromTag(tag, inventory);
 		mode = Mode.valueOf(tag.getString("Mode"));
-		entropic_flux = tag.getInt("EntropicFlux");
+		entropicFlux = tag.getInt("EntropicFlux");
 
 		for(int i = 0; i < pedestals.length; ++i)
 			pedestals[i] = BlockPos.fromLong(tag.getLong("PedestalPos" + i));
@@ -73,7 +73,7 @@ public class AltarBlockEntity extends BlockEntity implements BlockEntityClientSe
 	{
 		Inventories.toTag(tag, inventory);
 		tag.putString("Mode", mode.name);
-		tag.putInt("EntropicFlux", entropic_flux);
+		tag.putInt("EntropicFlux", entropicFlux);
 
 		for(int i = 0; i < pedestals.length; i++)
 			tag.putLong("PedestalPos" + i, pedestals[i].asLong());
@@ -151,13 +151,13 @@ public class AltarBlockEntity extends BlockEntity implements BlockEntityClientSe
 	@Override
 	public int getEntropicFlux()
 	{
-		return entropic_flux;
+		return entropicFlux;
 	}
 
 	@Override
 	public void addEntropicFlux(int amount)
 	{
-		entropic_flux = amount;
+		entropicFlux = amount;
 	}
 
 	public enum Mode
