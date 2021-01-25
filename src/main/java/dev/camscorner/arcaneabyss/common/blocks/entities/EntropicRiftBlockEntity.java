@@ -100,7 +100,7 @@ public class EntropicRiftBlockEntity extends BlockEntity implements BlockEntityC
 			return;
 
 		if(entropicFlux <= -1)
-			entropicFlux = world.random.nextInt(234) + 100;
+			entropicFlux = world.random.nextInt(ArcaneAbyss.config.maxNaturalRiftFlux) + 100;
 
 		if(box == null)
 			box = new Box(pos);
@@ -228,8 +228,8 @@ public class EntropicRiftBlockEntity extends BlockEntity implements BlockEntityC
 
 	public void manageSound()
 	{
-		if(world.getTime() % 170 == 0)
-			world.playSound(null, pos, AASoundEvents.RIFT_WARBLE, SoundCategory.BLOCKS, (getEntropicFlux() * 0.015F), 1F);
+		if(world.getTime() % 30 == 0)
+			world.playSound(null, pos, AASoundEvents.RIFT_WARBLE, SoundCategory.BLOCKS, 2F, 1F);
 	}
 
 	public void manageParticleEffects()
