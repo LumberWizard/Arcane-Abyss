@@ -9,6 +9,8 @@ import dev.camscorner.arcaneabyss.core.registry.AASoundEvents;
 import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.fabricmc.fabric.api.tag.TagRegistry;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.FluidBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.ItemEntity;
@@ -175,7 +177,11 @@ public class EntropicRiftBlockEntity extends BlockEntity implements BlockEntityC
 
 		if(i == 0 && breakPos != null)
 		{
-			world.breakBlock(breakPos, true);
+			if(world.getBlockState(breakPos).getBlock() instanceof FluidBlock)
+				world.setBlockState(breakPos, Blocks.AIR.getDefaultState());
+			else
+				world.breakBlock(breakPos, true);
+
 			breakPos = null;
 		}
 
@@ -186,8 +192,8 @@ public class EntropicRiftBlockEntity extends BlockEntity implements BlockEntityC
 		{
 			for(int k = i * j; k < (i + 1) * j; k++)
 			{
-				if(!world.isAir(posList.get(k)) && (world.getBlockState(posList.get(k)).getHardness(world, posList.get(k)) < 50 &&
-						world.getBlockState(posList.get(k)).getHardness(world, posList.get(k)) >= 0))
+				if(!world.isAir(posList.get(k)) && ((world.getBlockState(posList.get(k)).getHardness(world, posList.get(k)) < 50 &&
+						world.getBlockState(posList.get(k)).getHardness(world, posList.get(k)) >= 0) || world.getFluidState(posList.get(k)).isStill()))
 				{
 					breakPos = posList.get(k);
 					break;
@@ -199,8 +205,8 @@ public class EntropicRiftBlockEntity extends BlockEntity implements BlockEntityC
 		{
 			for(int k = i * j; k < posList.size(); k++)
 			{
-				if(!world.isAir(posList.get(k)) && (world.getBlockState(posList.get(k)).getHardness(world, posList.get(k)) < 50 &&
-						world.getBlockState(posList.get(k)).getHardness(world, posList.get(k)) >= 0))
+				if(!world.isAir(posList.get(k)) && ((world.getBlockState(posList.get(k)).getHardness(world, posList.get(k)) < 50 &&
+						world.getBlockState(posList.get(k)).getHardness(world, posList.get(k)) >= 0) || world.getFluidState(posList.get(k)).isStill()))
 				{
 					breakPos = posList.get(k);
 					break;
@@ -234,7 +240,7 @@ public class EntropicRiftBlockEntity extends BlockEntity implements BlockEntityC
 	public void manageSound()
 	{
 		if(world.getTime() % 30 == 0)
-			world.playSound(null, pos, AASoundEvents.RIFT_WARBLE, SoundCategory.BLOCKS, 2F, 1F);
+			world.playSound(null, pos, AASoundEvents.RIFT_WARBLE, SoundCategory.BLOCKS, ((getEntropicFlux() * 0.015F) / 10) + 2F, 1F);
 	}
 
 	public void manageParticleEffects()
