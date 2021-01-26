@@ -40,7 +40,7 @@ public class EntropicRiftBlockEntity extends BlockEntity implements BlockEntityC
 	private static final Tag<Item> VERY_HIGH_FLUX = TagRegistry.item(new Identifier(ArcaneAbyss.MOD_ID, "very_high_flux"));
 	private static final int MAX_FLUX = 1000;
 	private final List<BlockPos> posList = new ArrayList<>();
-	private BlockPos breakPos;
+	private final List<BlockPos> breakList = new ArrayList<>();
 	private Box box;
 	private int entropicFlux = -1;
 	private boolean stabilized = false;
@@ -175,27 +175,25 @@ public class EntropicRiftBlockEntity extends BlockEntity implements BlockEntityC
 		int i = (int) (world.getTime() % time);
 		int j = posList.size() / time;
 
-		if(i == 0 && breakPos != null)
+		if(i == 0 && !breakList.isEmpty())
 		{
+			BlockPos breakPos = breakList.get(world.random.nextInt(breakList.size()) / 10);
 			if(world.getBlockState(breakPos).getBlock() instanceof FluidBlock)
 				world.setBlockState(breakPos, Blocks.AIR.getDefaultState());
 			else
 				world.breakBlock(breakPos, true);
 
-			breakPos = null;
+			breakList.clear();
 		}
-
-		if(breakPos != null)
-			return;
 
 		if(i < time - 1)
 		{
 			for(int k = i * j; k < (i + 1) * j; k++)
 			{
 				if(!world.isAir(posList.get(k)) && ((world.getBlockState(posList.get(k)).getHardness(world, posList.get(k)) < 50 &&
-						world.getBlockState(posList.get(k)).getHardness(world, posList.get(k)) >= 0) || world.getFluidState(posList.get(k)).isStill()))
+						world.getBlockState(posList.get(k)).getHardness(world, posList.get(k)) >= 0) || world.getFluidState(posList.get(k)).isStill())) //TODO: add raycast logic
 				{
-					breakPos = posList.get(k);
+					breakList.add(posList.get(k));
 					break;
 				}
 			}
@@ -206,9 +204,9 @@ public class EntropicRiftBlockEntity extends BlockEntity implements BlockEntityC
 			for(int k = i * j; k < posList.size(); k++)
 			{
 				if(!world.isAir(posList.get(k)) && ((world.getBlockState(posList.get(k)).getHardness(world, posList.get(k)) < 50 &&
-						world.getBlockState(posList.get(k)).getHardness(world, posList.get(k)) >= 0) || world.getFluidState(posList.get(k)).isStill()))
+						world.getBlockState(posList.get(k)).getHardness(world, posList.get(k)) >= 0) || world.getFluidState(posList.get(k)).isStill())) //TODO: add raycast logic
 				{
-					breakPos = posList.get(k);
+					breakList.add(posList.get(k));
 					break;
 				}
 			}
@@ -279,7 +277,6 @@ public class EntropicRiftBlockEntity extends BlockEntity implements BlockEntityC
 				posList.add(blockPos.toImmutable());
 			}
 		}
-		Collections.shuffle(posList); //randomize with stable shuffle to make it seem more natural and chaotic
 		posList.sort((o1, o2) -> (int) (this.pos.getSquaredDistance(o1.getX(), o1.getY(), o1.getZ(), false) - this.pos.getSquaredDistance(o2.getX(), o2.getY(), o2.getZ(), false)));
 	}
 
