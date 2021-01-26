@@ -29,6 +29,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class EntropicRiftBlockEntity extends BlockEntity implements BlockEntityClientSerializable, Tickable, EntropicFluxProvider
@@ -38,7 +39,7 @@ public class EntropicRiftBlockEntity extends BlockEntity implements BlockEntityC
 	private static final Tag<Item> HIGH_FLUX = TagRegistry.item(new Identifier(ArcaneAbyss.MOD_ID, "high_flux"));
 	private static final Tag<Item> VERY_HIGH_FLUX = TagRegistry.item(new Identifier(ArcaneAbyss.MOD_ID, "very_high_flux"));
 	private static final int MAX_FLUX = 1000;
-	private List<BlockPos> posList = new ArrayList<>();
+	private final List<BlockPos> posList = new ArrayList<>();
 	private BlockPos breakPos;
 	private Box box;
 	private int entropicFlux = -1;
@@ -58,14 +59,14 @@ public class EntropicRiftBlockEntity extends BlockEntity implements BlockEntityC
 	public void fromClientTag(CompoundTag tag)
 	{
 		entropicFlux = tag.getInt("EntropicFlux");
-		stabilized = tag.getBoolean("Stabilized");
+		setStabilized(tag.getBoolean("Stabilized"));
 	}
 
 	@Override
 	public CompoundTag toClientTag(CompoundTag tag)
 	{
-		tag.putInt("EntropicFlux", entropicFlux);
-		tag.putBoolean("Stabilized", stabilized);
+		tag.putInt("EntropicFlux", getEntropicFlux());
+		tag.putBoolean("Stabilized", isStabilized());
 		return tag;
 	}
 
@@ -83,16 +84,23 @@ public class EntropicRiftBlockEntity extends BlockEntity implements BlockEntityC
 	}
 
 	@Override
-	public int getEntropicFlux()
-	{
+	public int getEntropicFlux() {
+		if (entropicFlux < 0) {
+			setEntropicFlux(world.random.nextInt(ArcaneAbyss.config.maxNaturalRiftFlux) + 100);
+		}
 		return entropicFlux;
 	}
 
 	@Override
 	public void addEntropicFlux(int amount)
 	{
+		setEntropicFlux(getEntropicFlux() + amount);
+	}
+
+	@Override
+	public void setEntropicFlux(int amount) {
 		posList.clear();
-		entropicFlux = MathHelper.clamp(entropicFlux + amount, 0, MAX_FLUX);
+		entropicFlux = MathHelper.clamp(amount, 0, MAX_FLUX);
 	}
 
 	@Override
@@ -100,9 +108,6 @@ public class EntropicRiftBlockEntity extends BlockEntity implements BlockEntityC
 	{
 		if(world == null)
 			return;
-
-		if(entropicFlux <= -1)
-			entropicFlux = world.random.nextInt(ArcaneAbyss.config.maxNaturalRiftFlux) + 100;
 
 		if(box == null)
 			box = new Box(pos);
@@ -214,7 +219,7 @@ public class EntropicRiftBlockEntity extends BlockEntity implements BlockEntityC
 	{
 		world.getOtherEntities(null, box.expand(getEntropicFlux() * 0.015)).forEach(entity ->
 		{
-			if(entity instanceof PlayerEntity)
+			if(entity instanceof PlayerEntity && !((PlayerEntity) entity).isCreative())
 			{
 				entity.setVelocity(entity.getVelocity().add(inverseDistance(new Vec3d(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D),
 						new Vec3d(entity.getPos().x, entity.getPos().y + (entity.getHeight() / 2), entity.getPos().z))));
@@ -274,8 +279,8 @@ public class EntropicRiftBlockEntity extends BlockEntity implements BlockEntityC
 				posList.add(blockPos.toImmutable());
 			}
 		}
-
-		posList.sort((o1, o2) -> (int) (this.pos.getSquaredDistance(o1) - this.pos.getSquaredDistance(o2)));
+		Collections.shuffle(posList); //randomize with stable shuffle to make it seem more natural and chaotic
+		posList.sort((o1, o2) -> (int) (this.pos.getSquaredDistance(o1.getX(), o1.getY(), o1.getZ(), false) - this.pos.getSquaredDistance(o2.getX(), o2.getY(), o2.getZ(), false)));
 	}
 
 	public Vec3d inverseDistance(Vec3d point1, Vec3d point2)

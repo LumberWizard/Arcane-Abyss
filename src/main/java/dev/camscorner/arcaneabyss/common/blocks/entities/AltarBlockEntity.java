@@ -155,10 +155,13 @@ public class AltarBlockEntity extends BlockEntity implements BlockEntityClientSe
 	}
 
 	@Override
-	public void addEntropicFlux(int amount)
+	public void setEntropicFlux(int amount)
 	{
 		entropicFlux = amount;
 	}
+
+	@Override
+	public void addEntropicFlux(int amount) { setEntropicFlux(getEntropicFlux() + amount); }
 
 	public enum Mode
 	{
