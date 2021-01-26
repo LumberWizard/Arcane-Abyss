@@ -63,7 +63,14 @@ public abstract class PlayerEntityMixin extends LivingEntity implements Entropic
 	@Override
 	public void addEntropicFlux(int amount)
 	{
-		dataTracker.set(ENTROPIC_FLUX, MathHelper.clamp(dataTracker.get(ENTROPIC_FLUX) + amount, 0, MAX_FLUX));
+		setEntropicFlux(getEntropicFlux() + amount);
+	}
+
+	@Unique
+	@Override
+	public void setEntropicFlux(int amount)
+	{
+		dataTracker.set(ENTROPIC_FLUX, MathHelper.clamp(amount, 0, MAX_FLUX));
 	}
 
 	@Unique
